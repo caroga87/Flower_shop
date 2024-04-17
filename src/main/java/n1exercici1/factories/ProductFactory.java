@@ -1,4 +1,4 @@
-package n1exercici1.factorys;
+package n1exercici1.factories;
 
 import n1exercici1.beans.Decoration;
 import n1exercici1.beans.Flower;
@@ -18,7 +18,7 @@ public class ProductFactory {
 	        case "decoration":
 	            return new Decoration(name, price, stock);
 	        default:
-	            throw new IllegalArgumentException(Constants.Exceptions.FACTORY+ type);
+	            throw new IllegalArgumentException(Constants.Exceptions.TYPE + type);
 		}
 	}
 }

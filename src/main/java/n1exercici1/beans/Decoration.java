@@ -2,6 +2,9 @@ package n1exercici1.beans;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+
+@JsonAutoDetect
 public class Decoration extends Product implements Serializable{
 
 	private static final long serialVersionUID = 1L;

@@ -2,68 +2,86 @@ package n1exercici1.handlers;
 
 import java.util.Scanner;
 
+import n1exercici1.utils.Constants;
 import n1exercici1.utils.Validations;
 
 public class AppHandler {
-private static Scanner scanner;
 	
+	private static Scanner scanner;
 	
 	public AppHandler() {
 		super();
 		AppHandler.scanner = new Scanner(System.in);
 	}
-
-	public void runApp() {
-			
-			String menuOption = "";
+	
+	public void runApp(String menu) {
+		
+		String menuOption = "";
+		
+		do {
+			showMenu(menu);
 			
 			do {
-				showMainMenu();
-				
-				do {
-					printText(TextMenuHandler.getChooseAnOption());
-					menuOption = readInput().trim();
-				}while(!Validations.validateMenuFourOption(menuOption));
-				
-				processMainOption(menuOption);
-				
-			}while(!menuOption.equals("0"));
+				printText(TextMenuHandler.getChooseAnOption());
+				menuOption = readInput().trim();
+			}while(!Validations.validateMenuFourOption(menuOption));
 			
-			closeScanner();
-	}
-	
-	private void showMainMenu() {
+			processMainOption(menuOption);
+			
+		}while(!menuOption.equals("0"));
 		
-		 String menuText = TextMenuHandler.getMainMenu();
-		 printText(menuText);
+		closeScanner();
 	}
-	
-	private void processMainOption(String menuOptionCatalogue) {
 
-		switch (menuOptionCatalogue) {
+	private void showMenu(String menu) {
+		
+		String menuText = "";
+		
+		if(menu.equalsIgnoreCase(Constants.Menu.APP)) {
+			menuText = TextMenuHandler.getMainMenu();
+		}else if(menu.equalsIgnoreCase(Constants.Menu.CATALOGUE)) {
+			menuText = TextMenuHandler.getCatalogueMenu();
+		}else if(menu.equalsIgnoreCase(Constants.Menu.STOCK)) {
+			menuText = TextMenuHandler.getStockMenu();
+		}else if(menu.equalsIgnoreCase(Constants.Menu.SALES)) {
+			menuText = TextMenuHandler.getSalesMenu();
+		}else {
+			throw new IllegalArgumentException(Constants.Exceptions.TYPE);
+		} 
+		printText(menuText);
+	}
+
+	private void processMainOption(String menuOption) {
+
+		switch (menuOption) {
 			case "1": 
-				printText(TextMenuHandler.getCatalogueMenu());
+				CatalogueHandler catalogue = new CatalogueHandler();
+				catalogue.runCatalogue();
 				break;
 			case "2":
-				printText(TextMenuHandler.getStockMenu());
+				StockHandler stock = new StockHandler();
+				stock.runStock();
 				break;
 			case "3":
-				printText(TextMenuHandler.getSalesMenu());
+				SalesHandler sales = new SalesHandler();
+				sales.runSales();
 				break;
 			case "0":
-				printText(TextMenuHandler.getExitMessage());
+				printText(TextMenuHandler.getExitMessage(Constants.Menu.APP));
 				break;
 			default:
 				break;
 		}		
 	}
 	
-	private void printText(String text) {
+	
+	public void printText(String text) {
 		
 		System.out.println(text);
 	}
 	
-	private String readInput() {
+	//scanner methods.
+	public String readInput() {
 		return scanner.nextLine();
 	}
 	

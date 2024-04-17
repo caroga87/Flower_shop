@@ -1,5 +1,8 @@
 package n1exercici1.beans;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+
+@JsonAutoDetect
 public abstract class Product {
 	private int idProduct;
     private static int nextID = 1;

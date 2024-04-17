@@ -2,6 +2,9 @@ package n1exercici1.beans;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+
+@JsonAutoDetect
 public class Tree extends Product implements Serializable{
 
 	

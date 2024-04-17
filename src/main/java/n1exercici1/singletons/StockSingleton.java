@@ -17,7 +17,7 @@ private static StockSingleton stockSingleton;
 		stockList = new ArrayList<>();
 	}
 	
-	public static synchronized StockSingleton getStockSingleton() {
+	public static StockSingleton getStockSingleton() {
 		if(stockSingleton == null) {
 			stockSingleton = new StockSingleton();
 		}
