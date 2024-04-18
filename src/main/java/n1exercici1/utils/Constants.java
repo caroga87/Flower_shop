@@ -25,4 +25,9 @@ public class Constants {
 		public static final String SALES = "Sales";
 	}
 	
+	public class Types	{
+		public static final String TREE = "Tree";
+		public static final String FLOWER = "Flower";
+		public static final String DECORATION = "Decoration";
+	}	
 }

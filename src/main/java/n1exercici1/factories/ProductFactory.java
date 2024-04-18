@@ -11,11 +11,11 @@ public class ProductFactory {
 	public static Product createProduct(String type, String name, double price, int stock) {
         
 		switch (type.toLowerCase()) {
-	    	case "tree":
+	    	case Constants.Types.TREE:
 	    		return new Tree(name, price, stock);
-	        case "flower":
+	        case Constants.Types.FLOWER:
 	            return new Flower(name, price, stock);
-	        case "decoration":
+	        case Constants.Types.DECORATION:
 	            return new Decoration(name, price, stock);
 	        default:
 	            throw new IllegalArgumentException(Constants.Exceptions.TYPE + type);

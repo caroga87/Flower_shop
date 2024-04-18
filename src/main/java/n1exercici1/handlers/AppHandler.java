@@ -14,12 +14,12 @@ public class AppHandler {
 		AppHandler.scanner = new Scanner(System.in);
 	}
 	
-	public void runApp(String menu) {
+	public void runApp() {
 		
 		String menuOption = "";
 		
 		do {
-			showMenu(menu);
+			showMenu(Constants.Menu.APP);
 			
 			do {
 				printText(TextMenuHandler.getChooseAnOption());
@@ -82,8 +82,10 @@ public class AppHandler {
 	
 	//scanner methods.
 	public String readInput() {
+		
 		return scanner.nextLine();
 	}
+	
 	
 	private void closeScanner() {
 		scanner.close();

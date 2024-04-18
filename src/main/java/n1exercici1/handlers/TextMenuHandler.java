@@ -7,6 +7,7 @@ public class TextMenuHandler {
 	public static String getMainMenu() {
 		
 		StringBuilder sb = new StringBuilder();
+		sb.append("---- FLOWER SHOP ----\n\n");
 		sb.append("1: Catalogue.\n");
 		sb.append("2: Stock.\n");
 		sb.append("3: Sales.\n");
@@ -21,6 +22,22 @@ public class TextMenuHandler {
 		sb.append("2: Remove Product.\n");
 		sb.append("3: Show Catalogue.\n");
 		sb.append("0: Exit.\n\n");
+		return sb.toString();
+	}
+	
+	public static String getAskAtribute(String productType)	{
+		
+		StringBuilder sb = new StringBuilder();
+		if(productType.equalsIgnoreCase(Constants.Types.TREE)) {
+			sb.append("Write height tree: \n");
+		}else if(productType.equalsIgnoreCase(Constants.Types.FLOWER)) {
+			sb.append("Write colour flower: \n");
+		}else if(productType.equalsIgnoreCase(Constants.Types.DECORATION)) {
+			sb.append("Write the material: \n");
+		}else {
+			throw new IllegalArgumentException(Constants.Exceptions.TYPE + productType);
+		}
+		
 		return sb.toString();
 	}
 	

@@ -51,6 +51,7 @@ public class CatalogueHandler {
 	
 	private String createProduct() {
 		
+		
 		return "";
 	}
 	
