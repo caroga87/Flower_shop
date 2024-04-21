@@ -5,17 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55e38529-ac3d-400c-9400-b59071d9d90b" name="Changes" comment="First commit carla">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/n1exercici1/FlowerShop.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/n1exercici1/Input.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/n1exercici1/Products/Decoration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/n1exercici1/Products/Enum/MaterialType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/n1exercici1/Products/Flower.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/n1exercici1/Products/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/n1exercici1/Products/Tree.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/n1exercici1/database/JsonPersistance.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/n1exercici1/sales/Ticket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/handlers/SalesHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n1exercici1/handlers/SalesHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/singletons/StockSingleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n1exercici1/singletons/StockSingleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/singletons/TicketSingleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n1exercici1/singletons/TicketSingleton.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +25,23 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Flowershop" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -35,6 +50,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
@@ -51,10 +71,25 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "branch__Carla",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Flowershop" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Flowershop" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
