@@ -76,5 +76,6 @@ public class Ticket {
         System.out.printf("Total: $%.2f%n", totalTicket);
         System.out.println("=============================");
     }
+
 }
 
