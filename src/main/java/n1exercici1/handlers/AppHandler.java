@@ -2,29 +2,41 @@ package n1exercici1.handlers;
 
 import java.util.Scanner;
 
-import n1exercici1.utils.Constants;
 import n1exercici1.utils.Validations;
 
 public class AppHandler {
-	
+
 	private static Scanner scanner;
 	
+
 	public AppHandler() {
 		super();
 		AppHandler.scanner = new Scanner(System.in);
 	}
 	
-	public void runApp() {
+	public void startApp() {
+		
+		loadData();
+		runApp();
+	}
+	
+	private void loadData()	{
+		
+		
+	}
+	
+	
+	private void runApp() {
 		
 		String menuOption = "";
 		
 		do {
-			showMenu(Constants.Menu.APP);
+			printText(TextMenuHandler.getMainMenu());
 			
 			do {
 				printText(TextMenuHandler.getChooseAnOption());
 				menuOption = readInput().trim();
-			}while(!Validations.validateMenuFourOption(menuOption));
+			}while(!Validations.validateMenuEightOption(menuOption));
 			
 			processMainOption(menuOption);
 			
@@ -33,41 +45,44 @@ public class AppHandler {
 		closeScanner();
 	}
 
-	private void showMenu(String menu) {
-		
-		String menuText = "";
-		
-		if(menu.equalsIgnoreCase(Constants.Menu.APP)) {
-			menuText = TextMenuHandler.getMainMenu();
-		}else if(menu.equalsIgnoreCase(Constants.Menu.CATALOGUE)) {
-			menuText = TextMenuHandler.getCatalogueMenu();
-		}else if(menu.equalsIgnoreCase(Constants.Menu.STOCK)) {
-			menuText = TextMenuHandler.getStockMenu();
-		}else if(menu.equalsIgnoreCase(Constants.Menu.SALES)) {
-			menuText = TextMenuHandler.getSalesMenu();
-		}else {
-			throw new IllegalArgumentException(Constants.Exceptions.TYPE);
-		} 
-		printText(menuText);
-	}
 
 	private void processMainOption(String menuOption) {
 
 		switch (menuOption) {
 			case "1": 
-				CatalogueHandler catalogue = new CatalogueHandler();
-				catalogue.runCatalogue();
+				//addProduct().
+				
 				break;
 			case "2":
-				StockHandler stock = new StockHandler();
-				stock.runStock();
+				//removeProduct().
+				
 				break;
 			case "3":
-				SalesHandler sales = new SalesHandler();
-				sales.runSales();
+				//showStock().
+				
 				break;
+			case "4":
+				//showQuantityStock().
+				
+				break;
+			case "5":
+				//showValueFlowerShop().
+				
+				break;
+			case "6":
+				//createTicket().
+				
+				break;
+			case "7":
+				//showHistoryTicket().
+				
+				break;
+			case "8":
+				//showEarnings().
+				
+				break;	
 			case "0":
-				printText(TextMenuHandler.getExitMessage(Constants.Menu.APP));
+				printText(TextMenuHandler.getExitMessage());
 				break;
 			default:
 				break;

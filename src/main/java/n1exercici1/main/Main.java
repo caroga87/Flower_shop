@@ -7,6 +7,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		AppHandler shop = new AppHandler();
-		shop.runApp();
+		shop.startApp();
+		
 	}
 }

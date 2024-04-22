@@ -8,7 +8,7 @@ import n1exercici1.beans.Product;
 
 public class StockSingleton {
 	
-private static StockSingleton stockSingleton;
+	private static StockSingleton stockSingleton;
 	
 	private List<Product> stockList;
 	
@@ -31,9 +31,4 @@ private static StockSingleton stockSingleton;
 	public void setStockList(List<Product> stockList) {
 		this.stockList = stockList;
 	}
-
-	@Override
-	public String toString() {
-		return "StockSingleton [stockList=" + stockList + "]";
-	}	
 }

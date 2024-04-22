@@ -8,79 +8,84 @@ public class TextMenuHandler {
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append("---- FLOWER SHOP ----\n\n");
-		sb.append("1: Catalogue.\n");
-		sb.append("2: Stock.\n");
-		sb.append("3: Sales.\n");
-		sb.append("0: Exit.\n\n");
+		sb.append("1: Create product.\n");
+		sb.append("2: Remove product.\n");
+		sb.append("3: Show Stock.\n");
+		sb.append("4: Show quantity Stock.\n");
+		sb.append("5: Show value stock.\n");
+		sb.append("6: Create ticket.\n");
+		sb.append("7: Show History Tickets\n");
+		sb.append("8: Show earnings.\n");
+		sb.append("0: Exit.\n\n");;
 		return sb.toString();
 	}
 	
-	public static String getCatalogueMenu() {
+	
+	public static String getEnterTypeProduct() {
 		
 		StringBuilder sb = new StringBuilder();
-		sb.append("1: Create/Add Product.\n");
-		sb.append("2: Remove Product.\n");
-		sb.append("3: Show Catalogue.\n");
+		sb.append("");
+		sb.append("1: Create product.\n");
+		sb.append("2: Remove product.\n");
+		sb.append("3: Show Stock.\n");
+		sb.append("4: Show quantity Stock.\n");
+		sb.append("5: Show value stock.\n");
+		sb.append("6: Create ticket.\n");
+		sb.append("7: Show History Tickets\n");
+		sb.append("8: Show earnings.\n");
 		sb.append("0: Exit.\n\n");
+		
 		return sb.toString();
 	}
 	
-	public static String getAskAtribute(String productType)	{
+	public static String getEnterNameProduct() {
+		
+		return Constants.CreateProduct.PRODUCT_NAME;
+	}
+	
+	public static String getEnterCostPriceProduct() {
+		
+		return Constants.CreateProduct.PRODUCT_COST_PRICE;
+	}
+	
+	public static String getEnterSalePriceProduct() {
+		
+		return Constants.CreateProduct.PRODUCT_SALE_PRICE;
+	}
+	
+	public static String getEnterStockProduct() {
+		
+		return Constants.CreateProduct.PRODUCT_STOCK;
+	}
+	
+	public static String getAskAttribute(String productType)	{
 		
 		StringBuilder sb = new StringBuilder();
-		if(productType.equalsIgnoreCase(Constants.Types.TREE)) {
-			sb.append("Write height tree: \n");
-		}else if(productType.equalsIgnoreCase(Constants.Types.FLOWER)) {
-			sb.append("Write colour flower: \n");
-		}else if(productType.equalsIgnoreCase(Constants.Types.DECORATION)) {
-			sb.append("Write the material: \n");
+		if(productType.equalsIgnoreCase("")) {
+			sb.append(Constants.CreateProduct.ATTRIBUTE_TREE);
+		}else if(productType.equalsIgnoreCase("")) {
+			sb.append(Constants.CreateProduct.ATTRIBUTE_FLOWER);
+		}else if(productType.equalsIgnoreCase("")) {
+			sb.append(Constants.CreateProduct.ATTRIBUTE_DECORATION);
+			sb.append("");
+			sb.append(" or ");
+			sb.append("");
+			sb.append("): \n");
 		}else {
-			throw new IllegalArgumentException(Constants.Exceptions.TYPE + productType);
+			;
 		}
 		
 		return sb.toString();
 	}
 	
 
-	public static String getStockMenu() {
-		
-		StringBuilder sb = new StringBuilder();
-		sb.append("1: General Stock.\n");
-		sb.append("2: Stock Quantity.\n");
-		sb.append("3: Stock Value.\n");
-		sb.append("0: Exit.\n\n");
-		return sb.toString();
-	}
-	
-	public static String getSalesMenu() {
-		
-		StringBuilder sb = new StringBuilder();
-		sb.append("1: Create Ticket.\n");
-		sb.append("2: Sales History.\n");
-		sb.append("3: Accounting.\n");
-		sb.append("0: Exit.\n\n");
-		return sb.toString();
-	}
-	
 	public static String getChooseAnOption() {
 		
 		return Constants.Messages.CHOOSE;
 	}
 	
-	public static String getExitMessage(String switchType) {
+	public static String getExitMessage() {
 		
-		
-		if(switchType.equalsIgnoreCase("App")) {
-			switchType = Constants.Messages.EXIT_APP;
-		}else if(switchType.equalsIgnoreCase("Catalogue")) {
-			switchType = Constants.Messages.EXIT_CATALOGUE;
-		}else if(switchType.equalsIgnoreCase("Stock")) {
-			switchType = Constants.Messages.EXIT_STOCK;
-		}else if(switchType.equalsIgnoreCase("Sales")) {
-			switchType = Constants.Messages.EXIT_SALES;
-		}else {
-			throw new IllegalArgumentException(Constants.Exceptions.TYPE);
-		}
-		return switchType;
+		return Constants.MainMenu.EXIT_MAIN_MENU;
 	}
 }

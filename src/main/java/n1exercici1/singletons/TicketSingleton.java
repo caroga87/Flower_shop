@@ -3,11 +3,13 @@ package n1exercici1.singletons;
 import java.util.ArrayList;
 import java.util.List;
 
+import n1exercici1.beans.Ticket;
+
 public class TicketSingleton {
 
-private static TicketSingleton ticketSingleton;
+	private static TicketSingleton ticketSingleton;
 	
-	private List<String> ticketsList;
+	private List<Ticket> ticketsList;
 	
 	private TicketSingleton() {
 		super();
@@ -21,17 +23,11 @@ private static TicketSingleton ticketSingleton;
 		return ticketSingleton;
 	}
 
-	public List<String> getticketsList() {
+	public List<Ticket> getTicketsList() {
 		return ticketsList;
 	}
 
-	public void setStockList(List<String> ticketsList) {
+	public void setTicketsList(List<Ticket> ticketsList) {
 		this.ticketsList = ticketsList;
 	}
-
-	@Override
-	public String toString() {
-		return "TicketSingleton [ticketsList=" + ticketsList + "]";
-	}
-
 }

@@ -1,40 +1,68 @@
 package n1exercici1.beans;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import java.io.Serializable;
 
-@JsonAutoDetect
-public abstract class Product {
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes({
+        @Type(value = Tree.class, name = "Tree"),
+        @Type(value = Flower.class, name = "Flower"),
+        @Type(value = Decoration.class, name = "Decoration")
+})
+public abstract class Product implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	private int idProduct;
     private static int nextID = 1;
     protected String name;
-    protected double price;
+    protected double costPrice;
+    protected double salePrice;
     protected int stock;
 
-    public Product(String name, double price, int stock) {
+    public Product(String name, String costPrice, String salePrice, String stock) {
         this.idProduct = nextID++;
         this.name = name;
-        this.price = price;
-        this.stock = stock;
+        this.costPrice = Double.parseDouble(costPrice);
+        this.salePrice = Double.parseDouble(salePrice);
+        this.stock = Integer.parseInt(stock);
     }
 
-    public int getIdProduct() {
-        return idProduct;
-    }
+    
+	public int getIdProduct() {
+		return idProduct;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setIdProduct(int idProduct) {
+		this.idProduct = idProduct;
+	}
 
-    public double getPrice() {
-        return price;
-    }
+	public String getName() {
+		return name;
+	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public void setPrice(double price) {
-		this.price = price;
+	public double getCostPrice() {
+		return costPrice;
+	}
+
+
+	public void setCostPrice(double costPrice) {
+		this.costPrice = costPrice;
+	}
+
+	public double getSalePrice() {
+		return salePrice;
+	}
+
+	public void setSalePrice(double salePrice) {
+		this.salePrice = salePrice;
 	}
 
 	public int getStock() {
@@ -44,10 +72,7 @@ public abstract class Product {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
-
-	@Override
-	public String toString() {
-		return "Product [idProduct=" + idProduct + ", name=" + name + ", price=" + price + ", stock=" + stock + "]";
-	}
+	
+	public abstract String toString();
 	
 }
