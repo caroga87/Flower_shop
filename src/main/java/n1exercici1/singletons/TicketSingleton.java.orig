@@ -7,19 +7,28 @@ import n1exercici1.utils.Constants;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
 import n1exercici1.beans.Ticket;
 import n1exercici1.io.FileManager;
 import n1exercici1.io.FlowerShopFileReader;
 import n1exercici1.io.FlowerShopFileWriter;
 import n1exercici1.utils.Constants;
 
-public class TicketSingleton{
+public class TicketSingleton {
 
 	private static TicketSingleton ticketSingleton;
-
+	
 	private List<Ticket> ticketsList;
 	private int maxAssignedTicketId;
 	private static int nextTicketId;
+=======
+public class TicketSingleton{
+
+private static TicketSingleton ticketSingleton;
+
+
+	private List<Ticket> ticketsList;
+>>>>>>> d2746ab0ea6944f80ded4773fd3769156ed48aaa
 	
 	private TicketSingleton() {
 		super();
@@ -48,11 +57,23 @@ public class TicketSingleton{
 		nextTicketId++;
 	}
 
+<<<<<<< HEAD
 	public List<Ticket> getTicketsList() {
 		return ticketsList;
 	}
 
 	public void setTicketsList(List<Ticket> ticketsList) {
+		this.ticketsList = ticketsList;
+	}
+	
+	public void loadSales() {
+		FlowerShopFileReader.readSalesFile(Constants.Files.SALES);		
+=======
+	public List<Ticket> getticketsList() {
+		return ticketsList;
+	}
+
+	public void setStockList(List<Ticket> ticketsList) {
 		this.ticketsList = ticketsList;
 	}
 
@@ -81,9 +102,11 @@ public class TicketSingleton{
 		return totalAmountTickets;
 	}
 
-	
-	public void loadSales() {
-		FlowerShopFileReader.readSalesFile(Constants.Files.SALES);		
+
+	@Override
+	public String toString() {
+		return "TicketSingleton [ticketsList=" + ticketsList + "]";
+>>>>>>> d2746ab0ea6944f80ded4773fd3769156ed48aaa
 	}
 	
 	public void handleMaxAssignedTicketIdPersitence() {
