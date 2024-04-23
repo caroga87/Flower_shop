@@ -13,11 +13,9 @@ public class FlowerShop implements Serializable {
 		super();
 	}
 
-	public FlowerShop(String name, double totalEarnings, double totalStockValue) {
+	public FlowerShop(String name) {
 		super();
 		this.name = name;
-		this.totalEarnings = totalEarnings;
-		this.totalStockValue = totalStockValue;
 	}
 
 	public String getName() {

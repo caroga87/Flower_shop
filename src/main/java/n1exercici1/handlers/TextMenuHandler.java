@@ -1,81 +1,40 @@
 package n1exercici1.handlers;
 
+import java.util.Arrays;
+import java.util.List;
+
+import n1exercici1.enums.ProductTypeEnum;
 import n1exercici1.utils.Constants;
 
 public class TextMenuHandler {
+	
+	public static String getCreateFlowerShopMenu() {
+		return Constants.Menus.CREATE_FS_MENU;
+	}
 
 	public static String getMainMenu() {
 		
-		StringBuilder sb = new StringBuilder();
-		sb.append("---- FLOWER SHOP ----\n\n");
-		sb.append("1: Create product.\n");
-		sb.append("2: Remove product.\n");
-		sb.append("3: Show Stock.\n");
-		sb.append("4: Show quantity Stock.\n");
-		sb.append("5: Show value stock.\n");
-		sb.append("6: Create ticket.\n");
-		sb.append("7: Show History Tickets\n");
-		sb.append("8: Show earnings.\n");
-		sb.append("0: Exit.\n\n");;
-		return sb.toString();
-	}
-	
-	
-	public static String getEnterTypeProduct() {
-		
-		StringBuilder sb = new StringBuilder();
-		sb.append("");
-		sb.append("1: Create product.\n");
-		sb.append("2: Remove product.\n");
-		sb.append("3: Show Stock.\n");
-		sb.append("4: Show quantity Stock.\n");
-		sb.append("5: Show value stock.\n");
-		sb.append("6: Create ticket.\n");
-		sb.append("7: Show History Tickets\n");
-		sb.append("8: Show earnings.\n");
-		sb.append("0: Exit.\n\n");
-		
-		return sb.toString();
+		return Constants.Menus.MAIN_MENU;
 	}
 	
 	public static String getEnterNameProduct() {
 		
-		return Constants.CreateProduct.PRODUCT_NAME;
+		return Constants.Menus.PRODUCT_NAME;
 	}
 	
 	public static String getEnterCostPriceProduct() {
 		
-		return Constants.CreateProduct.PRODUCT_COST_PRICE;
+		return Constants.Menus.COST_PRICE;
 	}
 	
 	public static String getEnterSalePriceProduct() {
 		
-		return Constants.CreateProduct.PRODUCT_SALE_PRICE;
+		return Constants.Menus.SELL_PRICE;
 	}
 	
 	public static String getEnterStockProduct() {
 		
-		return Constants.CreateProduct.PRODUCT_STOCK;
-	}
-	
-	public static String getAskAttribute(String productType)	{
-		
-		StringBuilder sb = new StringBuilder();
-		if(productType.equalsIgnoreCase("")) {
-			sb.append(Constants.CreateProduct.ATTRIBUTE_TREE);
-		}else if(productType.equalsIgnoreCase("")) {
-			sb.append(Constants.CreateProduct.ATTRIBUTE_FLOWER);
-		}else if(productType.equalsIgnoreCase("")) {
-			sb.append(Constants.CreateProduct.ATTRIBUTE_DECORATION);
-			sb.append("");
-			sb.append(" or ");
-			sb.append("");
-			sb.append("): \n");
-		}else {
-			;
-		}
-		
-		return sb.toString();
+		return Constants.Menus.STOCK;
 	}
 	
 
@@ -86,6 +45,37 @@ public class TextMenuHandler {
 	
 	public static String getExitMessage() {
 		
-		return Constants.MainMenu.EXIT_MAIN_MENU;
+		return Constants.Menus.EXIT;
+	}
+	
+	public static String getEnterValidOptionMessage() {
+		return Constants.Menus.VALID_OPTION;
+	}
+	
+	public static String getEnterValidNameMessage() {
+		
+		return Constants.Menus.VALID_NAME;
+	}
+	
+	public static String getFlowerShopCreatedMessage() {
+		
+		return Constants.Menus.CREATED_FS;
+	}
+	
+	public static String getProductMenu() {
+		
+		StringBuilder sb = new StringBuilder();
+		
+		List<ProductTypeEnum> productTypeEnumValues = Arrays.asList(ProductTypeEnum.values());
+		
+		int count = 1;
+		for(ProductTypeEnum enumValue : productTypeEnumValues) {
+			sb.append(count).append(". ").append(enumValue.getType()).append("\n");
+			count++;
+		}
+		
+		sb.append("0. Exit\n");
+		
+		return sb.toString();
 	}
 }
