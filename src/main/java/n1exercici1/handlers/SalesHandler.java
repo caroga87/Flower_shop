@@ -33,13 +33,13 @@ public class SalesHandler {
 
 		switch (menuOption) {
 			case "1": 
-				
+				// create ticket
 				break;
 			case "2":
-				
+				// sales history
 				break;
 			case "3":
-				
+				// Accounting
 				break;
 			case "0":
 				appHandler.printText(TextMenuHandler.getExitMessage(Constants.Menu.SALES));
