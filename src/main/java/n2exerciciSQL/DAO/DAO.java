@@ -5,11 +5,12 @@ import n2exerciciSQL.beans.Product;
 
 import java.util.List;
 
-public interface DAO <T> {
+public interface DAO <T,K> {
 
-    public void insert (T object) throws Exception;
-    public void modify(T object) throws Exception;
-    public void remove (T object) throws Exception;
-    public List<T> list() throws Exception;
+    public void create (T object);
+    public void update(T object);
+    public void delete (T object);
+    public List<T> read();
+    T getOne (K id);
 }
 

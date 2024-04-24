@@ -1,4 +1,4 @@
-package n2exerciciSQL.database;
+package n2exerciciSQL.MySQLdatabase;
 
 import n2exerciciSQL.utils.Input;
 
@@ -9,14 +9,20 @@ import java.sql.SQLException;
 public class SQLDatabaseConnection {
 	private static SQLDatabaseConnection instance;
 	private Connection connection;
-	private static String db_url;
-	private static String user;
-	private static String password;
+	private  String db_url;
+	private  String user;
+	private  String password;
 
 	private SQLDatabaseConnection (){
 		this.db_url = Input.inputString("Introduce your MySQL url");
 		this.user = Input.inputString("Introduce your user");
 		this.password= Input.inputString("Introduce your password");
+	}
+
+	public SQLDatabaseConnection(String db_url, String user, String password) {
+		this.db_url = db_url;
+		this.user = user;
+		this.password = password;
 	}
 
 	public static SQLDatabaseConnection getInstance(){
