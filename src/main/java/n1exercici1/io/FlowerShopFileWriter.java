@@ -4,13 +4,18 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import n1exercici1.handlers.AppHandler;
-import n1exercici1.utils.Constants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import n1exercici1.utis.Constants;
 
 public class FlowerShopFileWriter {
+
+private static Logger logger = LoggerFactory.getLogger(FlowerShopFileWriter.class);
 	
 	public static void writeIdToFile(String str, String fileName) {
+		
+		logger.info("FlowerShopFileWriter :: writeIdToFile :: " + Constants.Messages.WRITING_TO + fileName);
 		
 		FileWriter fw = null;
 		BufferedWriter bw = null;
@@ -24,25 +29,28 @@ public class FlowerShopFileWriter {
 			bw.write(sb.toString());
 
 		} catch (IOException e) {
-			AppHandler.printText(Constants.Errors.IO_EXCEPTION + e);
+			logger.error("FlowerShopFileWriter :: writeIdToFile :: " + Constants.Errors.IO_EXCEPTION, e);
 		} finally {
 			
 			try {
 				bw.close();
 			} catch (IOException e) {
-				AppHandler.printText(Constants.Errors.IO_EXCEPTION + e);
+				logger.error("FlowerShopFileWriter :: writeIdToFile :: bw.close() :: " + Constants.Errors.IO_EXCEPTION, e);
 			}
 			
 			try {
 				fw.close();
 			} catch (IOException e) {
-				AppHandler.printText(Constants.Errors.IO_EXCEPTION + e);
+				logger.error("FlowerShopFileWriter :: writeIdToFile :: fw.close() :: " + Constants.Errors.IO_EXCEPTION, e);
 			}
 			
 		}
+		
 	}
+	
 	public static void writeToJsonFile(Object object, String fileName, boolean isFirstElement, boolean isLastElement) {
 		
+		logger.info("FlowerShopFileWriter :: writeToJsonFile :: " + Constants.Messages.WRITING_TO + fileName);
 		
 		FileWriter fw = null;
 		BufferedWriter bw = null;
@@ -65,19 +73,19 @@ public class FlowerShopFileWriter {
 			}
 
 		} catch (IOException e) {
-			System.out.println(Constants.Errors.IO_EXCEPTION + e);
+			logger.error("FlowerShopFileWriter :: writeToJsonFile :: " + Constants.Errors.IO_EXCEPTION, e);
 		} finally {
 			
 			try {
 				bw.close();
 			} catch (IOException e) {
-				System.out.println(Constants.Errors.IO_EXCEPTION + e);
+				logger.error("FlowerShopFileWriter :: writeToJsonFile :: bw.close() :: " + Constants.Errors.IO_EXCEPTION, e);
 			}
 			
 			try {
 				fw.close();
 			} catch (IOException e) {
-				System.out.println(Constants.Errors.IO_EXCEPTION + e);
+				logger.error("FlowerShopFileWriter :: writeToJsonFile :: fw.close() :: " + Constants.Errors.IO_EXCEPTION, e);
 			}
 			
 		}
@@ -85,4 +93,3 @@ public class FlowerShopFileWriter {
 	}
 
 }
-

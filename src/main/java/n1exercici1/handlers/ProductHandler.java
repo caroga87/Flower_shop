@@ -19,7 +19,7 @@ public class ProductHandler {
 			do {
 				
 				AppHandler.printText(TextMenuHandler.getEnterValidOptionMessage());
-				productOption = AppHandler.readInput().trim();
+				productOption = AppHandler.readConsoleInput().trim();
 				
 			} while(!Validations.isValidProductOption(productOption));
 			

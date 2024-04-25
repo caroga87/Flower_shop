@@ -2,11 +2,11 @@ package n1exercici1.beans;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
 
-
+import n1exercici1.singletons.StockSingleton;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
         @Type(value = Tree.class, name = "Tree"),
@@ -16,28 +16,25 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 public abstract class Product implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private int idProduct;
-    private static int nextID = 1;
-    protected String name;
-    protected double costPrice;
-    protected double salePrice;
-    protected int stock;
-
-    public Product(String name, String costPrice, String salePrice, String stock) {
-        this.idProduct = nextID++;
-        this.name = name;
-        this.costPrice = Double.parseDouble(costPrice);
-        this.salePrice = Double.parseDouble(salePrice);
-        this.stock = Integer.parseInt(stock);
-    }
-
-    
-	public int getIdProduct() {
-		return idProduct;
+	
+	private int productId;
+	private String name;
+	private double sellPrice;
+	private double costPrice;
+	private int stock;
+	
+	//important for json deserialization
+	public Product() {
+		super();
 	}
-
-	public void setIdProduct(int idProduct) {
-		this.idProduct = idProduct;
+	
+	public Product(String name, double sellPrice, double costPrice, int stock) {
+		super();
+		this.productId = StockSingleton.getStockSingleton().getNextProductId();
+		this.name = name;
+		this.sellPrice = sellPrice;
+		this.costPrice = costPrice;
+		this.stock = stock;
 	}
 
 	public String getName() {
@@ -48,21 +45,24 @@ public abstract class Product implements Serializable {
 		this.name = name;
 	}
 
+	public double getSellPrice() {
+		return sellPrice;
+	}
+
+	public void setSellPrice(double sellPrice) {
+		this.sellPrice = sellPrice;
+	}
+
 	public double getCostPrice() {
 		return costPrice;
 	}
-
 
 	public void setCostPrice(double costPrice) {
 		this.costPrice = costPrice;
 	}
 
-	public double getSalePrice() {
-		return salePrice;
-	}
-
-	public void setSalePrice(double salePrice) {
-		this.salePrice = salePrice;
+	public int getProductId() {
+		return productId;
 	}
 
 	public int getStock() {
@@ -73,6 +73,32 @@ public abstract class Product implements Serializable {
 		this.stock = stock;
 	}
 	
-	public abstract String toString();
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId
+							+ ", name=" + name 
+							+ ", sellPrice=" + sellPrice
+							+ ", costPrice=" + costPrice 
+							+ ", stock=" + stock
+							+ ", ";
+	}
+	
+	public String toStock() {
+		
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append(productId).append(" >>> ")
+			.append(stock).append(" x ")
+			.append(name).append(", ")
+			.append(costPrice).append(" eur./unit, ")
+			.append(costPrice * stock).append(" eur.");
+		
+		return sb.toString();
+		
+	}
+	
+	public abstract String toCatalogue();
 	
 }
+
+	

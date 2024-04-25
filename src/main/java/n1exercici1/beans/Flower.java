@@ -1,21 +1,23 @@
 package n1exercici1.beans;
 
-import java.io.Serializable;
+import n1exercici1.enums.ProductTypeEnum;
+import n1exercici1.handlers.AppHandler;
+import n1exercici1.interfaces.ISpecificProduct;
 
-import com.fasterxml.jackson.annotation.JsonTypeName;
+public class Flower extends Product implements ISpecificProduct {
 
-@JsonTypeName("Flower")
-public class Flower extends Product implements Serializable {
+private static final long serialVersionUID = 1L;
 	
-	private static final long serialVersionUID = 1L;
 	private String colour;
 	
-	public Flower(String name, String costPrice, String salePrice, String stock, String colour) {
-		super(name, costPrice, salePrice, stock);
+	//important for json deserialization
+	public Flower() {
+		super();
+	}
+	
+	public Flower(String name, double sellPrice, double costPrice, int stock, String colour) {
+		super(name, sellPrice, costPrice, stock);
 		this.colour = colour;
-		this.costPrice = Double.parseDouble(costPrice);
-        this.salePrice = Double.parseDouble(salePrice);
-        this.stock = Integer.parseInt(stock);
 	}
 
 	public String getColour() {
@@ -27,9 +29,24 @@ public class Flower extends Product implements Serializable {
 	}
 
 	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+	public void printProductType() {
+		AppHandler.printText(ProductTypeEnum.FLOWER.getType());
 	}
+
+	@Override
+	public String toString() {
+		return super.toString() + "Flower [colour=" + colour + "]]";
+	}
+
+	@Override
+	public String toCatalogue() {
 		
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append(super.getProductId()).append(" >>> ").append(super.getName()).append(", ").append(super.getSellPrice()).append(" eur., ").append(colour);
+		
+		return sb.toString();
+		
+	}
+
 }

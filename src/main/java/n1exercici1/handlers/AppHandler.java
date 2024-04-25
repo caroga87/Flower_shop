@@ -1,38 +1,69 @@
 package n1exercici1.handlers;
 
+import java.util.List;
 import java.util.Scanner;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import n1exercici1.beans.FlowerShop;
 import n1exercici1.io.FileManager;
 import n1exercici1.io.FlowerShopFileReader;
 import n1exercici1.singletons.FlowerShopSingleton;
+import n1exercici1.singletons.SalesSingleton;
 import n1exercici1.singletons.StockSingleton;
-import n1exercici1.singletons.TicketSingleton;
-import n1exercici1.utils.Constants;
-import n1exercici1.utils.Validations;
+import n1exercici1.utis.Constants;
+import n1exercici1.utis.Validations;
+
 
 public class AppHandler {
-
-	private static Scanner scanner;
-	private ProductHandler productHandler;
 	
-
+private static Logger logger = LoggerFactory.getLogger(AppHandler.class);
+	
+	private static Scanner scanner;
+	private static List<String> colours;
+	
+	
+	@SuppressWarnings("static-access")
 	public AppHandler() {
 		super();
-		AppHandler.scanner = new Scanner(System.in);
-		this.productHandler = new ProductHandler();
+		scanner = new Scanner(System.in);
+		this.colours = FlowerShopFileReader.readColours(Constants.Files.COLOURS);
 	}
 	
-	public void startApp() {
+	public static String readConsoleInput() {
+		return scanner.nextLine();
+	}
+	
+	public static void closeConsoleInput() {
+		scanner.close();
+	}
+	
+	public static List<String> getColours() {
+		return colours;
+	}
+	
+	public static void printText(String text) {
+		System.out.println(text);
+	}
+	
+	public void runFlowerShop() {
 		
+		logger.info("AppHandler :: runFlowerShop :: __________ Flower Shop App running...");
+		
+		//checks if there is a flower shop already saved
+		//if false -> first time using the app, must create a new flower shop
 		if(!loadFlowerShopSaves()) {
 			createFlowerShop();
 		}
-		loadData();
-		runApp();
+
+		runMainMenu();
+		
 	}
 	
 	private boolean loadFlowerShopSaves() {
+		
+		logger.info("AppHandler :: loadFlowerShopSaves :: Loading saves...");
 		
 		boolean flowerShopLoaded = false;
 		
@@ -43,7 +74,7 @@ public class AppHandler {
 			flowerShopLoaded = true;
 			
 			FlowerShopFileReader.readIds(Constants.Files.IDS);
-			TicketSingleton.getTicketSingleton().loadSales();
+			SalesSingleton.getSalesSingleton().loadSales();
 			StockSingleton.getStockSingleton().loadStock();
 			
 		} else {
@@ -57,24 +88,19 @@ public class AppHandler {
 		return flowerShopLoaded;
 		
 	}
-
+	
 	private void clearAllFiles() {
-	
-	FileManager.deleteFile(Constants.Files.PATH_CONTROL, Constants.Files.IDS, true);
-	FileManager.deleteFile(Constants.Files.PATH_PERSISTENCE, Constants.Files.FLOWER_SHOP, true);
-	FileManager.deleteFile(Constants.Files.PATH_PERSISTENCE, Constants.Files.SALES, true);
-	FileManager.deleteFile(Constants.Files.PATH_PERSISTENCE, Constants.Files.STOCK, true);
-	
-}
-	
-	
-	private void loadData()	{
 		
+		FileManager.deleteFile(Constants.Files.PATH_CONTROL, Constants.Files.IDS, true);
+		FileManager.deleteFile(Constants.Files.PATH_PERSISTENCE, Constants.Files.FLOWER_SHOP, true);
+		FileManager.deleteFile(Constants.Files.PATH_PERSISTENCE, Constants.Files.SALES, true);
+		FileManager.deleteFile(Constants.Files.PATH_PERSISTENCE, Constants.Files.STOCK, true);
 		
 	}
 	
 	private void createFlowerShop() {
 		
+		logger.info("AppHandler :: createFlowerShop :: Creating a new flower shop...");
 
 		String name = "";
 		
@@ -83,7 +109,7 @@ public class AppHandler {
 		do {
 			
 			printText(TextMenuHandler.getEnterValidNameMessage());
-			name = readInput().trim();
+			name = readConsoleInput().trim();
 			
 		} while(!Validations.isValidName(name));
 		
@@ -93,98 +119,80 @@ public class AppHandler {
 		printText(TextMenuHandler.getFlowerShopCreatedMessage());	
 		
 	}
-	
-	
-	private void runApp() {
+
+
+	public static void runMainMenu() {
 		
 		String menuOption = "";
 		
 		do {
+			
 			printText(TextMenuHandler.getMainMenu());
 			
 			do {
-				printText(TextMenuHandler.getChooseAnOption());
-				menuOption = readInput().trim();
-			}while(!Validations.validateMenuEightOption(menuOption));
+				
+				printText(TextMenuHandler.getEnterValidOption());
+				menuOption = readConsoleInput().trim();
+				
+			} while(!Validations.isValidOption(menuOption));
 			
-			processMainOption(menuOption);
+			processMainMenuOption(menuOption);
 			
-		}while(!menuOption.equals("0"));
+		} while(!menuOption.equalsIgnoreCase("0"));
+
+		closeConsoleInput();
 		
-		closeScanner();
 	}
-
-
-	private void processMainOption(String menuOption) {
-
-		switch (menuOption) {
-			case "1": 
-				
-				productHandler.runAddProduct();
-				
+	
+	private static void processMainMenuOption(String menuOption) {
+		
+		switch(menuOption) {
+			case "1":
+				AddProductHandler.runAddProduct();
 				break;
 			case "2":
-				//removeProduct().
-				
+				DeleteProductHandler.runDeleteProduct();
 				break;
 			case "3":
-				//showStock().
-				
+				StockHandler.runViewCatalogue();
 				break;
 			case "4":
-				//showQuantityStock().
-				
+				StockHandler.runViewStock();
 				break;
 			case "5":
-				//showValueFlowerShop().
-				
+				StockHandler.runViewStockValue();
 				break;
 			case "6":
-				//createTicket().
-				
+				//runCreateNewTicket();
 				break;
 			case "7":
-				//showHistoryTicket().
-				
+				TicketHandler.runViewSales();
 				break;
 			case "8":
-				//showEarnings().
-				
-				break;	
+				//runViewEarnings();
+				break;
 			case "0":
 				runExitFlowerShop();
 				break;
 			default:
 				break;
-		}		
+		}
+		
 	}
 	
-	private void runExitFlowerShop() {
+	private static void runExitFlowerShop() {
+		
+		logger.info("AppHandler :: runExitFlowerShop :: Flower Shop App shutting down...");
 
 		FlowerShopSingleton.getFlowerShopSingleton().handleFlowerShopPersistance();
-		TicketSingleton.getTicketSingleton().handleMaxAssignedTicketIdPersitence();
-		TicketSingleton.getTicketSingleton().handleSalesPersistence();
+		
+		SalesSingleton.getSalesSingleton().handleMaxAssignedTicketIdPersitence();
+		SalesSingleton.getSalesSingleton().handleSalesPersistence();
+		
 		StockSingleton.getStockSingleton().handleMaxAssignedProducIdPersitence();
 		StockSingleton.getStockSingleton().handleStockPersistence();
 		
-		printText(TextMenuHandler.getExitMessage());
+		AppHandler.printText(TextMenuHandler.getExitMessage());
 		
-	}
-	
-	
-	public static void printText(String text) {
-		
-		System.out.println(text);
-	}
-	
-	//scanner methods.
-	public static String readInput() {
-		
-		return scanner.nextLine();
-	}
-	
-	
-	private void closeScanner() {
-		scanner.close();
 	}
 }

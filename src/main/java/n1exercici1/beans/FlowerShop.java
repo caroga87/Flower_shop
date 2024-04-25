@@ -4,15 +4,17 @@ import java.io.Serializable;
 
 public class FlowerShop implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
+	
 	private String name;
 	private double totalEarnings;
 	private double totalStockValue;
 	
+	//important for json deserialization
 	public FlowerShop() {
 		super();
 	}
-
+	
 	public FlowerShop(String name) {
 		super();
 		this.name = name;
@@ -44,9 +46,9 @@ public class FlowerShop implements Serializable {
 
 	@Override
 	public String toString() {
-		return "FlowerShop [name=" + name + ", totalEarnings=" + totalEarnings + ", totalStockValue=" + totalStockValue
-				+ "]";
-	}	
-}	
-	
-	
+		return "FlowerShop [name=" + name 
+								+ ", totalEarnings=" + totalEarnings 
+								+ ", totalStockValue=" + totalStockValue + "]";
+	}
+
+}

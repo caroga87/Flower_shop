@@ -1,38 +1,52 @@
 package n1exercici1.beans;
 
-import java.io.Serializable;
+import n1exercici1.enums.ProductTypeEnum;
+import n1exercici1.handlers.AppHandler;
+import n1exercici1.interfaces.ISpecificProduct;
 
-import com.fasterxml.jackson.annotation.JsonTypeName;
-
-@JsonTypeName("Decoration")
-public class Decoration extends Product implements Serializable{
+public class Decoration extends Product implements ISpecificProduct {
 	
 	private static final long serialVersionUID = 1L;
-	private String type;
-
-	public Decoration(String name, String costPrice, String salePrice, String stock, String type) {
-		super(name, costPrice, salePrice, stock);
-		this.type = type;
-		this.costPrice = Double.parseDouble(costPrice);
-        this.salePrice = Double.parseDouble(salePrice);
-        this.stock = Integer.parseInt(stock);
-		
+	
+	private String material;
+	
+	//important for json deserialization
+	public Decoration() {
+		super();
 	}
 	
-	
-	public String getType() {
-		return type;
+	public Decoration(String name, double sellPrice, double costPrice, int stock, String material) {
+		super(name, sellPrice, costPrice, stock);
+		this.material = material;
 	}
 
-
-	public void setType(String type) {
-		this.type = type;
+	public String getMaterial() {
+		return material;
 	}
 
+	public void setMaterial(String material) {
+		this.material = material;
+	}
+
+	@Override
+	public void printProductType() {
+		AppHandler.printText(ProductTypeEnum.DECORATION.getType());
+	}
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		return super.toString() + "Decoration [material=" + material + "]]";
 	}
+
+	@Override
+	public String toCatalogue() {
+
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append(super.getProductId()).append(" >>> ").append(super.getName()).append(", ").append(super.getSellPrice()).append(" eur., ").append(material);
+		
+		return sb.toString();
+		
+	}
+
 }

@@ -1,40 +1,71 @@
 package n1exercici1.beans;
 
-import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import n1exercici1.enums.ProductTypeEnum;
+import n1exercici1.handlers.AppHandler;
+import n1exercici1.interfaces.ISpecificProduct;
 
-@JsonTypeName("Tree")
-public class Tree extends Product implements Serializable{
-
-	private static final long serialVersionUID = 1L;
-	private String height;
+public class Tree extends Product implements ISpecificProduct{
 	
-	public Tree(String name, String costPrice, String salePrice, String stock, String attribute ) {
-		super(name, costPrice, salePrice, stock);
-		this.height =  attribute;
-		this.costPrice = Double.parseDouble(costPrice);
-        this.salePrice = Double.parseDouble(salePrice);
-        this.stock = Integer.parseInt(stock);
+	private static final long serialVersionUID = 1L;
+	
+	private int height;
+	
+	//important for json deserialization
+	public Tree() {
+		super();
+	}
+	
+	public Tree(String name, double sellPrice, double costPrice, int stock, int height) {
+		super(name, sellPrice, costPrice, stock);
+		this.height = height;
 	}
 
-	public String getHeight() {
+	public int getHeight() {
 		return height;
 	}
 
-	public void setHeight(String height) {
+	public void setHeight(int height) {
 		this.height = height;
 	}
 
 	@Override
+	public void printProductType() {
+		AppHandler.printText(ProductTypeEnum.TREE.getType());
+	}
+
+	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		return super.toString() + "Tree [height=" + height + "]]";
+	}
+
+	@Override
+	public String toCatalogue() {
+		
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append(super.getProductId()).append(" >>> ")
+			.append(super.getName()).append(", ")
+			.append(super.getSellPrice()).append(" eur./unit, ")
+			.append(height).append("cm");
+		
+		return sb.toString();
+		
+	}
+
+	@Override
+	public String toStock() {
+
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append(super.getProductId()).append(" >>> ")
+			.append(super.getStock()).append(" x ")
+			.append(super.getName()).append(", ")
+			.append(super.getCostPrice()).append(" eur./unit, ")
+			.append(super.getCostPrice() * super.getStock()).append(" eur.");
+		
+		return sb.toString();
+		
 	}
 
 }
-
-
-
-	
-	

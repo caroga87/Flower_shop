@@ -1,7 +1,6 @@
 package n1exercici1.singletons;
 
 
-import n1exercici1.sales.Ticket;
 import n1exercici1.utils.Constants;
 
 import java.util.ArrayList;
@@ -11,7 +10,6 @@ import n1exercici1.beans.Ticket;
 import n1exercici1.io.FileManager;
 import n1exercici1.io.FlowerShopFileReader;
 import n1exercici1.io.FlowerShopFileWriter;
-import n1exercici1.utils.Constants;
 
 public class TicketSingleton{
 
@@ -62,24 +60,24 @@ public class TicketSingleton{
 
 	}
 
-	public void removeTicket(int ticketID) {
-		for (Ticket ticket : ticketsList) {
-			if (ticket.getTicketID() == ticketID) {
-				ticketsList.remove(ticket);
-			} else {
-				System.out.println(Constants.Messages.ID_NOT_FOUND);
-			}
-		}
-	}
+//	public void removeTicket(int ticketID) {
+//		for (Ticket ticket : ticketsList) {
+//			if (ticket.getTicketID() == ticketID) {
+//				ticketsList.remove(ticket);
+//			} else {
+//				System.out.println(Constants.Messages.ID_NOT_FOUND);
+//			}
+//		}
+//	}
 
 	// l'he fet com si fos accounting del getSalesMenu
-	public float totalAmountTickets () {
-		float totalAmountTickets = 0.0F;
-		for (Ticket ticket:ticketsList){
-			totalAmountTickets += ticket.getTotalTicket();
-		}
-		return totalAmountTickets;
-	}
+//	public float totalAmountTickets () {
+//		float totalAmountTickets = 0.0F;
+//		for (Ticket ticket:ticketsList){
+//			totalAmountTickets += ticket.getTotalTicket();
+//		}
+//		return totalAmountTickets;
+//	}
 
 	
 	public void loadSales() {

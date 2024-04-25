@@ -7,20 +7,18 @@ import n1exercici1.beans.Product;
 import n1exercici1.io.FileManager;
 import n1exercici1.io.FlowerShopFileReader;
 import n1exercici1.io.FlowerShopFileWriter;
-import n1exercici1.utils.Constants;
-
+import n1exercici1.utis.Constants;
 
 public class StockSingleton {
-	
+
 	private static StockSingleton stockSingleton;
 	
 	private int maxAssignedProductId;
-	private static int nextProductId;
-	private List<Product> stockList;
+	private List<Product> stock;
 	
 	private StockSingleton() {
 		super();
-		stockList = new ArrayList<>();
+		this.stock = new ArrayList<>();
 	}
 	
 	public static StockSingleton getStockSingleton() {
@@ -31,23 +29,24 @@ public class StockSingleton {
 	}
 	
 	public int getNextProductId() {
-		this.maxAssignedProductId = nextProductId;
-		nextProductId++;
+		this.maxAssignedProductId++;
 		return maxAssignedProductId;
 	}
-	
-	//assigned from file read
-	public void setNextProductId(int readMaxAssignedProductId) {
-		nextProductId = readMaxAssignedProductId;
-		nextProductId++;
+
+	public int getMaxAssignedProductId() {
+		return maxAssignedProductId;
 	}
 
-	public List<Product> getStockList() {
-		return stockList;
+	public void setMaxAssignedProductId(int maxAssignedProductId) {
+		this.maxAssignedProductId = maxAssignedProductId;
 	}
 
-	public void setStockList(List<Product> stockList) {
-		this.stockList = stockList;
+	public List<Product> getStock() {
+		return stock;
+	}
+
+	public void setStock(List<Product> stock) {
+		this.stock = stock;
 	}
 	
 	public void loadStock() {
@@ -68,18 +67,18 @@ public class StockSingleton {
 		
 		FileManager.deleteFile(Constants.Files.PATH_PERSISTENCE, Constants.Files.STOCK, true);
 		
-		if(stockList.isEmpty()) {
+		if(stock.isEmpty()) {
 			FileManager.createFile(Constants.Files.PATH_PERSISTENCE, Constants.Files.STOCK);
 		} else {
-			for(int i = 0; i < stockList.size(); i++) {
-				if(stockList.size() == 1) {
-					FlowerShopFileWriter.writeToJsonFile(stockList.get(i), Constants.Files.STOCK, true, true);
-				} else if(i == 0 && stockList.size() > 1) {
-					FlowerShopFileWriter.writeToJsonFile(stockList.get(i), Constants.Files.STOCK, true, false);
-				} else if(i == stockList.size() - 1 && stockList.size() > 1) {
-					FlowerShopFileWriter.writeToJsonFile(stockList.get(i), Constants.Files.STOCK, false, true);
+			for(int i = 0; i < stock.size(); i++) {
+				if(stock.size() == 1) {
+					FlowerShopFileWriter.writeToJsonFile(stock.get(i), Constants.Files.STOCK, true, true);
+				} else if(i == 0 && stock.size() > 1) {
+					FlowerShopFileWriter.writeToJsonFile(stock.get(i), Constants.Files.STOCK, true, false);
+				} else if(i == stock.size() - 1 && stock.size() > 1) {
+					FlowerShopFileWriter.writeToJsonFile(stock.get(i), Constants.Files.STOCK, false, true);
 				} else {
-					FlowerShopFileWriter.writeToJsonFile(stockList.get(i), Constants.Files.STOCK, false, false);
+					FlowerShopFileWriter.writeToJsonFile(stock.get(i), Constants.Files.STOCK, false, false);
 				}
 			}
 		}

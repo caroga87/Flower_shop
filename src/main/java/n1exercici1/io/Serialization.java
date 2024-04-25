@@ -1,5 +1,10 @@
 package n1exercici1.io;
 
+
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -7,11 +12,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import n1exercici1.beans.FlowerShop;
 import n1exercici1.beans.Product;
 import n1exercici1.beans.Ticket;
-import n1exercici1.utils.Constants;
+import n1exercici1.utis.Constants;
+
 
 
 public class Serialization {
-	
+
+private static Logger logger = LoggerFactory.getLogger(Serialization.class);
 	
 	public static String mapObjectToJson(Object object) {
 		
@@ -20,7 +27,7 @@ public class Serialization {
 		try {
 			json = mapper.writeValueAsString(object);
 		} catch (JsonProcessingException e) {
-			System.out.println(Constants.Errors.JSON_SERIALIZATION + e);
+			logger.error("SerializationController :: mapObjectToJson :: " + Constants.Errors.JSON_SERIALIZATION, e);
 		}
 		
 		return json;
@@ -35,9 +42,9 @@ public class Serialization {
 		try {
 			flowerShop = mapper.readValue(str, FlowerShop.class);
 		} catch (JsonMappingException e1) {
-			System.out.println(Constants.Errors.JSON_DESERIALIZATION + e1);
+			logger.error("SerializationController :: mapJsonToFlowerShop :: " + Constants.Errors.JSON_DESERIALIZATION, e1);
 		} catch (JsonProcessingException e2) {
-			System.out.println(Constants.Errors.JSON_DESERIALIZATION + e2);
+			logger.error("SerializationController :: mapJsonToFlowerShop :: " + Constants.Errors.JSON_DESERIALIZATION, e2);
 		}
 		
 		return flowerShop;
@@ -52,9 +59,9 @@ public class Serialization {
 		try {
 			ticket = mapper.readValue(str, Ticket.class);
 		} catch (JsonMappingException e1) {
-			System.out.println(Constants.Errors.JSON_DESERIALIZATION + e1);
+			logger.error("SerializationController :: mapJsonToTicket :: " + Constants.Errors.JSON_DESERIALIZATION, e1);
 		} catch (JsonProcessingException e2) {
-			System.out.println(Constants.Errors.JSON_DESERIALIZATION + e2);
+			logger.error("SerializationController :: mapJsonToTicket :: " + Constants.Errors.JSON_DESERIALIZATION, e2);
 		}
 		
 		return ticket;
@@ -69,12 +76,13 @@ public class Serialization {
 		try {
 			product = mapper.readValue(str, Product.class);
 		} catch (JsonMappingException e1) {
-			System.out.println(Constants.Errors.JSON_DESERIALIZATION + e1);
+			logger.error("SerializationController :: mapJsonToProduct :: " + Constants.Errors.JSON_DESERIALIZATION, e1);
 		} catch (JsonProcessingException e2) {
-			System.out.println(Constants.Errors.JSON_DESERIALIZATION + e2);
+			logger.error("SerializationController :: mapJsonToProduct :: " + Constants.Errors.JSON_DESERIALIZATION, e2);
 		}
 		
 		return product;
 		
 	}
+
 }

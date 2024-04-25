@@ -4,13 +4,13 @@ import n1exercici1.beans.FlowerShop;
 import n1exercici1.io.FileManager;
 import n1exercici1.io.FlowerShopFileReader;
 import n1exercici1.io.FlowerShopFileWriter;
-import n1exercici1.utils.Constants;
+import n1exercici1.utis.Constants;
 
 public class FlowerShopSingleton {
 
-	private static FlowerShopSingleton flowerShopSingleton;
-	private FlowerShop flowerShop;
+private static FlowerShopSingleton flowerShopSingleton;
 	
+	private FlowerShop flowerShop;
 	
 	private FlowerShopSingleton() {
 		super();
@@ -39,4 +39,5 @@ public class FlowerShopSingleton {
 		FileManager.deleteFile(Constants.Files.PATH_PERSISTENCE, Constants.Files.FLOWER_SHOP, true);
 		FlowerShopFileWriter.writeToJsonFile(flowerShop, Constants.Files.FLOWER_SHOP, true, true);
 	}
+
 }
