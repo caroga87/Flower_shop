@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-public class DecorationSQL implements DecorationDAO  {
+public class DecorationSQL implements DecorationDAO {
 
     private  final Connection connection;
     public DecorationSQL (Connection connection){
@@ -41,10 +41,10 @@ public class DecorationSQL implements DecorationDAO  {
     @Override
     public void update(Decoration decoration) {
 
-        int decorationId = Input.inputInt("Enter the ID of the decoration to update:");
-        String newName = Input.inputString("Enter the new name for the decoration:");
-        String newType = Input.inputString("Enter the new material (wood or plastic):");
-        double newPrice = Input.inputDouble("Enter the new price for the decoration:");
+        int decorationId = Input.inputInt("Id of the decoration to update:");
+        String newName = Input.inputString("New name:");
+        String newType = Input.inputString("New material (wood or plastic):");
+        double newPrice = Input.inputDouble("New price:");
 
         try (PreparedStatement st = connection.prepareStatement(MySQLQueries.UPDATE_DECORATION)) {
             st.setString(1, newName);
@@ -64,11 +64,8 @@ public class DecorationSQL implements DecorationDAO  {
         }
     }
 
-
-}
-
     @Override
-    public void delete(Decoration decoration) {
+    public void delete(Decoration object) {
 
     }
 
@@ -82,3 +79,5 @@ public class DecorationSQL implements DecorationDAO  {
         return null;
     }
 }
+
+

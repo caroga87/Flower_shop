@@ -13,11 +13,11 @@ public class SQLDatabaseConnection {
 	private  String user;
 	private  String password;
 
-	private SQLDatabaseConnection (){
+	/*private SQLDatabaseConnection (){
 		this.db_url = Input.inputString("Introduce your MySQL url");
 		this.user = Input.inputString("Introduce your user");
 		this.password= Input.inputString("Introduce your password");
-	}
+	}*/
 
 	public SQLDatabaseConnection(String db_url, String user, String password) {
 		this.db_url = db_url;
@@ -25,9 +25,9 @@ public class SQLDatabaseConnection {
 		this.password = password;
 	}
 
-	public static SQLDatabaseConnection getInstance(){
+	public static SQLDatabaseConnection getInstance(String db_url, String user, String password){
 		if (instance == null){
-			instance = new SQLDatabaseConnection();
+			instance = new SQLDatabaseConnection(db_url, user, password);
 		}
 		return instance;
 	}
