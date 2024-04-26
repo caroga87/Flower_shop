@@ -1,7 +1,5 @@
 package n2MySQL.MySQLdatabase;
 
-import n2MySQL.utils.Input;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
