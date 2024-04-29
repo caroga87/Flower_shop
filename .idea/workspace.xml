@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55e38529-ac3d-400c-9400-b59071d9d90b" name="Changes" comment="Creació ticket, persistencia i altres">
-      <change afterPath="$PROJECT_DIR$/src/main/java/n2exercici2/database/SQLDatabaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+    <list default="true" id="55e38529-ac3d-400c-9400-b59071d9d90b" name="Changes" comment="Ultimes modificacions + codi SQL">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_4_2024_17_44_[Changes]1/Flower_shop Model.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_4_2024_17_44_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_4_2024_17_44__Changes_1.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/sales/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n1exercici1/sales/Ticket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/FlowerSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/FlowerSQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/MySQLQueries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/MySQLQueries.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +42,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -56,39 +59,35 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2ewrPp5bg73uBUZ00FTtGIX16Yi" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "branch__Carla",
-    "kotlin-language-version-configured": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;branch__Carla&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/rocac/IdeaProjects/Flowershop/src/main/java/n2MySQL/handlers&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2908046&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\rocac\IdeaProjects\Flowershop\src\main\java\n2MySQL\handlers" />
+      <recent name="C:\Users\rocac\IdeaProjects\Flowershop\src\main\java\n2exercici2" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="n2exercici2.database" />
     </key>
-  </component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="Flowershop" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="Flowershop" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -122,12 +121,83 @@
       <option name="project" value="LOCAL" />
       <updated>1713718052305</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Versió conexió SQL">
+      <option name="closed" value="true" />
+      <created>1713786801895</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1713786801895</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Connexio + DAO">
+      <option name="closed" value="true" />
+      <created>1713959563580</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1713959563580</updated>
+    </task>
+    <task id="LOCAL-00005" summary="DAO product">
+      <option name="closed" value="true" />
+      <created>1713959797240</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1713959797240</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Queries + DAO + MySQL Connection">
+      <option name="closed" value="true" />
+      <created>1714000840473</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1714000840473</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Afegit packages">
+      <option name="closed" value="true" />
+      <created>1714060662963</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1714060662963</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Afegit packages">
+      <option name="closed" value="true" />
+      <created>1714153639282</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1714153639282</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Ultimes modificacions + codi SQL">
+      <option name="closed" value="true" />
+      <created>1714153957685</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1714153957685</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Ultimes modificacions + codi SQL">
+      <option name="closed" value="true" />
+      <created>1714154074449</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1714154074449</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="First commit carla" />
     <MESSAGE value="Creació ticket, persistencia i altres" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creació ticket, persistencia i altres" />
+    <MESSAGE value="Versió conexió SQL" />
+    <MESSAGE value="Connexio + DAO" />
+    <MESSAGE value="DAO product" />
+    <MESSAGE value="Queries + DAO + MySQL Connection" />
+    <MESSAGE value="Afegit packages" />
+    <MESSAGE value="Ultimes modificacions + codi SQL" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ultimes modificacions + codi SQL" />
   </component>
 </project>
