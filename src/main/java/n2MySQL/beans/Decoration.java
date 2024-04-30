@@ -6,14 +6,8 @@ import n2MySQL.handlers.AppHandler;
 
 public class Decoration extends Product implements ISpecificProduct {
 	private String material;
-	
-	//important for json deserialization
-	public Decoration() {
-		super();
-	}
-	
-	public Decoration(String name, double sellPrice, double costPrice, int stock, String material) {
-		super(name, sellPrice, costPrice, stock);
+	public Decoration(int product_id,String name, double sellPrice, double costPrice, int stock, String material) {
+		super(product_id,name, sellPrice, costPrice, stock);
 		this.material = material;
 	}
 
@@ -40,7 +34,7 @@ public class Decoration extends Product implements ISpecificProduct {
 
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append(super.getProductId()).append(" >>> ").append(super.getName()).append(", ").append(super.getSellPrice()).append(" eur., ").append(material);
+		sb.append(super.getProduct_id()).append(" >>> ").append(super.getName()).append(", ").append(super.getSellPrice()).append(" eur., ").append(material);
 		
 		return sb.toString();
 		

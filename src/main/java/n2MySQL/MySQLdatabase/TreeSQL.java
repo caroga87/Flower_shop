@@ -1,7 +1,7 @@
 package n2MySQL.MySQLdatabase;
 
-import n2MySQL.DAO.DecorationDAO;
-import n2MySQL.beans.Decoration;
+import n2MySQL.DAO.TreeDAO;
+import n2MySQL.beans.Tree;
 import n2MySQL.handlers.AppHandler;
 import n2MySQL.utis.Constants;
 
@@ -9,33 +9,36 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DecorationSQL implements DecorationDAO {
+public class TreeSQL implements TreeDAO {
 
-    private  final Connection connection;
-    public DecorationSQL (Connection connection){
-        this.connection= connection;
+    private final Connection connection;
+
+    public TreeSQL(Connection connection) {
+        this.connection = connection;
     }
+
     @Override
-    public void create(Decoration decoration) {
+    public void create(Tree tree) {
         try {
             PreparedStatement productst = connection.prepareStatement(MySQLQueries.INSERT_PRODUCT, Statement.RETURN_GENERATED_KEYS);
-            PreparedStatement decorationst = connection.prepareStatement((MySQLQueries.INSERT_DECORATION));
-            productst.setString(1, decoration.getName());
-            productst.setDouble(2, decoration.getSellPrice());
-            productst.setDouble(3, decoration.getCostPrice());
-            productst.setInt(4, decoration.getStock());
-            productst.setString(5, "Decoration");
+            PreparedStatement treest = connection.prepareStatement((MySQLQueries.INSERT_TREE));
+            productst.setString(1, tree.getName());
+            productst.setDouble(2, tree.getSellPrice());
+            productst.setDouble(3, tree.getCostPrice());
+            productst.setInt(4, tree.getStock());
+            productst.setString(5, "Tree");
             productst.executeUpdate();
 
             try (ResultSet rs = productst.getGeneratedKeys()) {
                 int product_id = -1;
                 if (rs.next()) {
                     product_id = rs.getInt(1);
-                    decorationst.setInt(1, product_id);
-                    decorationst.setString(2, decoration.getMaterial());
-                    decorationst.executeUpdate();
+                    treest.setInt(1, product_id);
+                    treest.setInt(2, tree.getHeight());
+                    treest.executeUpdate();
 
                 }
+
             }
             AppHandler.printText(Constants.Menus.PRODUCT_ADDED);
         } catch (SQLException e) {
@@ -44,31 +47,30 @@ public class DecorationSQL implements DecorationDAO {
     }
 
     @Override
-    public void update(Decoration decoration) {
+    public void update(Tree tree) {
         try {
-            PreparedStatement flowerst = connection.prepareStatement(MySQLQueries.UPDATE_DECORATION);
-            flowerst.setString(1, decoration.getName());
-            flowerst.setString(2, decoration.getMaterial());
-            flowerst.setDouble(3, decoration.getSellPrice());
-            flowerst.setDouble(4, decoration.getCostPrice());
-            flowerst.setInt(5, decoration.getProduct_id());
-            flowerst.executeUpdate();
-        } catch (SQLException e) {
+            PreparedStatement treest = connection.prepareStatement(MySQLQueries.UPDATE_TREE);
+            treest.setString(1,tree.getName());
+            treest.setInt(2, tree.getHeight());
+            treest.setDouble(3, tree.getSellPrice());
+            treest.setDouble(4, tree.getCostPrice());
+            treest.setInt(5, tree.getProduct_id());
+            treest.executeUpdate();
+        }catch (SQLException e) {
             e.printStackTrace();
         }
 
     }
 
-
     @Override
-    public void delete(Decoration decoration) {
+    public void delete(Tree tree) {
         try {
-            PreparedStatement decorationst = connection.prepareStatement(MySQLQueries.DELETE_DECORATION);
+            PreparedStatement treest = connection.prepareStatement(MySQLQueries.DELETE_TREE);
             PreparedStatement productst = connection.prepareStatement(MySQLQueries.DELETE_PRODUCT);
-            decorationst.setInt(1, decoration.getProduct_id());
-            decorationst.executeUpdate();
+            treest.setInt(1, tree.getProduct_id());
+            treest.executeUpdate();
 
-            productst.setInt(1, decoration.getProduct_id());
+            productst.setInt(1, tree.getProduct_id());
             int rowsAffected = productst.executeUpdate();
             if (rowsAffected >0) {
                 AppHandler.printText(Constants.Menus.DELETED);
@@ -78,13 +80,14 @@ public class DecorationSQL implements DecorationDAO {
         }catch (SQLException e) {
             e.printStackTrace();
         }
+
     }
 
     @Override
-    public List<Decoration> readAll() {
-        ArrayList<Decoration> allDecorations = new ArrayList<>();
+    public List<Tree> readAll() {
+        ArrayList<Tree> allTrees = new ArrayList<>();
         try{
-            PreparedStatement st = connection.prepareStatement(MySQLQueries.GET_ALL_DECORATIONS);
+            PreparedStatement st = connection.prepareStatement(MySQLQueries.GET_ALL_TREES);
             ResultSet resultSet = st.executeQuery();
             while (resultSet.next()) {
                 int productId = resultSet.getInt("product_id");
@@ -92,10 +95,10 @@ public class DecorationSQL implements DecorationDAO {
                 double sellPrice = resultSet.getDouble("sell_price");
                 double costPrice = resultSet.getDouble("cost_price");
                 int stock = resultSet.getInt("stock");
-                String material = resultSet.getString("material");
+                int height = resultSet.getInt("height");
 
-                Decoration decoration = new Decoration(productId, name, sellPrice, costPrice,stock,material);
-                allDecorations.add(decoration);
+                Tree tree = new Tree (productId, name, sellPrice, costPrice,stock,height);
+                allTrees.add(tree);
             }
 
         }catch (SQLException e) {
@@ -103,14 +106,14 @@ public class DecorationSQL implements DecorationDAO {
 
         }
 
-        return allDecorations;
+        return allTrees;
     }
 
     @Override
-    public Decoration getOne(String id) {
-        Decoration decoration = null;
+    public Tree getOne(String id) {
+        Tree tree = null;
         try {
-            PreparedStatement st = connection.prepareStatement(MySQLQueries.GET_DECORATION);
+            PreparedStatement st = connection.prepareStatement(MySQLQueries.GET_TREE);
             st.setString(1, id);
             ResultSet resultSet = st.executeQuery(); {
                 if (resultSet.next()) {
@@ -119,9 +122,9 @@ public class DecorationSQL implements DecorationDAO {
                     double sellPrice = resultSet.getDouble("sell_price");
                     double costPrice = resultSet.getDouble("cost_price");
                     int stock = resultSet.getInt("stock");
-                    String material = resultSet.getString("material");
+                    int height = resultSet.getInt("height");
 
-                    decoration = new Decoration(productId, name, sellPrice, costPrice, stock, material);
+                    tree = new Tree (productId, name, sellPrice, costPrice, stock, height);
                 } else {
                     System.out.println("No se encontró una flor con el ID especificado.");
                 }
@@ -129,9 +132,6 @@ public class DecorationSQL implements DecorationDAO {
         } catch (SQLException e) {
             e.printStackTrace(); // Manejo básico de la excepción
         }
-        return decoration;
+        return tree;
     }
-    }
-
-
-
+}

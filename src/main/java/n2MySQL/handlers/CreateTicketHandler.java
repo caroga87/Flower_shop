@@ -1,9 +1,6 @@
 package n2MySQL.handlers;
 
 import n2MySQL.beans.Product;
-import n2MySQL.handlers.AppHandler;
-import n2MySQL.handlers.StockHandler;
-import n2MySQL.handlers.TextMenuHandler;
 import n2MySQL.beans.Ticket;
 import n2MySQL.beans.TicketData;
 import n2MySQL.singletons.SalesSingleton;
@@ -105,7 +102,7 @@ public class CreateTicketHandler {
 				//handle stock + sales
 				StockHandler.deductStock(product, Integer.parseInt(quantity));
 				recalculateTicketTotalAmountOnProductAdd(newTicket, Integer.parseInt(quantity), product.getSellPrice());
-				addProductToTicket(newTicket, product.getName(), Integer.parseInt(quantity), product.getProductId());
+				addProductToTicket(newTicket, product.getName(), Integer.parseInt(quantity), product.getProduct_id());
 
 				AppHandler.printText(TextMenuHandler.getProductAddedMessage());
 

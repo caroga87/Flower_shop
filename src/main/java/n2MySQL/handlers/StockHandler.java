@@ -7,8 +7,6 @@ import n2MySQL.beans.Tree;
 import n2MySQL.factories.DecorationFactory;
 import n2MySQL.factories.FlowerFactory;
 import n2MySQL.factories.TreeFactory;
-import n2MySQL.handlers.AppHandler;
-import n2MySQL.handlers.TextMenuHandler;
 import n2MySQL.singletons.FlowerShopSingleton;
 import n2MySQL.singletons.StockSingleton;
 import n2MySQL.utis.Constants;
@@ -29,9 +27,9 @@ public class StockHandler {
 		TreeFactory factory = new TreeFactory();
 		Tree tree = (Tree) factory.createSpecificProduct(name, sellPrice, costPrice, stock, height);
 
-		StockSingleton.getStockSingleton().getStock().add(tree);
+		StockSingleton.getStockSingleton().getStock().add(tree); // quan ho guarda al singleton -> canviar-la al sql
 
-		recalculateTotalStockValueOnAdd(tree.getStock(), tree.getCostPrice());
+		recalculateTotalStockValueOnAdd(tree.getStock(), tree.getCostPrice());// mirar si aquest metode és necessari
 
 		logger.info("StockHandler :: createTree :: New tree created.");
 
@@ -63,7 +61,7 @@ public class StockHandler {
 
 	}
 
-	public static void showCatalogue() {
+	public static void showCatalogue() { // nom + caracteristica + preu venda +id
 
 		List<Tree> trees = new ArrayList<>();
 		List<Flower> flowers = new ArrayList<>();
@@ -90,7 +88,7 @@ public class StockHandler {
 
 	}
 
-	public static void showStock() {
+	public static void showStock() { // nom + caracteristica + preu cost +id
 
 		List<Tree> trees = new ArrayList<>();
 		List<Flower> flowers = new ArrayList<>();
@@ -117,7 +115,7 @@ public class StockHandler {
 
 	}
 
-	public static String getTotalStockValue() {
+	public static String getTotalStockValue() { //
 
 		StringBuilder sb = new StringBuilder();
 
@@ -179,7 +177,7 @@ public class StockHandler {
 		Product product = null;
 
 		for(Product prod : StockSingleton.getStockSingleton().getStock()) {
-			if(prod.getProductId() == productId) {
+			if(prod.getProduct_id() == productId) {
 				product = prod;
 				break;
 			}
@@ -194,7 +192,7 @@ public class StockHandler {
 		boolean deleted = false;
 
 		for(Product prod : StockSingleton.getStockSingleton().getStock()) {
-			if(prod.getProductId() == productId) {
+			if(prod.getProduct_id() == productId) {
 				recalculateTotalStockValueOnDelete(prod.getStock(), prod.getCostPrice());
 				StockSingleton.getStockSingleton().getStock().remove(prod);
 				deleted = true;

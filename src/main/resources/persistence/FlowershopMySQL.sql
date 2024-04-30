@@ -1,13 +1,13 @@
 -- Crea la base de datos flower_shop si no existe
-DROP DATABASE IF EXISTS flowershop;
-CREATE DATABASE IF NOT EXISTS flowershop;
+DROP DATABASE IF EXISTS flower_shop;
+CREATE DATABASE IF NOT EXISTS flower_shop;
 
 -- Utiliza la base de datos flower_shop
-USE flowershop;
+USE flower_shop;
 
 -- Crea la tabla Product
 CREATE TABLE IF NOT EXISTS Product (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
     sell_price DOUBLE,
     cost_price DOUBLE,
@@ -17,38 +17,38 @@ CREATE TABLE IF NOT EXISTS Product (
 
 -- Crea la tabla Tree
 CREATE TABLE IF NOT EXISTS Tree (
-    product_id INT PRIMARY KEY,
+    tree_id INT PRIMARY KEY,
     height INT,
-    FOREIGN KEY (product_id) REFERENCES Product(id)
+    FOREIGN KEY (tree_id) REFERENCES Product(product_id)
 );
 
 -- Crea la tabla Decoration
 CREATE TABLE IF NOT EXISTS Decoration (
-    product_id INT PRIMARY KEY,
+    decoration_id INT PRIMARY KEY,
     material VARCHAR(255),
-    FOREIGN KEY (product_id) REFERENCES Product(id)
+    FOREIGN KEY (decoration_id) REFERENCES Product(product_id)
 );
 
 -- Crea la tabla Flower
 CREATE TABLE IF NOT EXISTS Flower (
-    product_id INT PRIMARY KEY,
+    flower_id INT PRIMARY KEY,
     colour VARCHAR(255),
-    FOREIGN KEY (product_id) REFERENCES Product(id)
+    FOREIGN KEY (flower_id) REFERENCES Product(product_id)
 );
 
 -- Crea la tabla Ticket
 CREATE TABLE IF NOT EXISTS Ticket (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    ticket_id INT AUTO_INCREMENT PRIMARY KEY,
     creation_date_time DATETIME,
     total_amount DOUBLE
 );
 
 -- Crea la tabla TicketData
 CREATE TABLE IF NOT EXISTS TicketData (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    ticketdata_id INT AUTO_INCREMENT PRIMARY KEY,
     ticket_id INT,
     product_id INT,
     quantity INT,
-    FOREIGN KEY (ticket_id) REFERENCES Ticket(id),
-    FOREIGN KEY (product_id) REFERENCES Product(id)
+    FOREIGN KEY (ticket_id) REFERENCES Ticket(ticket_id),
+    FOREIGN KEY (product_id) REFERENCES Product(product_id)
 );

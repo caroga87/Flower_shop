@@ -2,7 +2,11 @@ package n2MySQL.MySQLdatabase;
 
 import n2MySQL.DAO.FlowerDAO;
 import n2MySQL.beans.Flower;
+import n2MySQL.handlers.AppHandler;
+import n2MySQL.utis.Constants;
+
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FlowerSQL implements FlowerDAO {
@@ -35,7 +39,7 @@ public class FlowerSQL implements FlowerDAO {
                 }
 
             }
-            System.out.println("Product was added successfully");
+            AppHandler.printText(Constants.Menus.PRODUCT_ADDED);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -49,7 +53,7 @@ public class FlowerSQL implements FlowerDAO {
             flowerst.setString(2, flower.getColour());
             flowerst.setDouble(3, flower.getSellPrice());
             flowerst.setDouble(4, flower.getCostPrice());
-            flowerst.setInt(5, flower.getProductId());
+            flowerst.setInt(5, flower.getProduct_id());
             flowerst.executeUpdate();
         }catch (SQLException e) {
             e.printStackTrace();
@@ -62,15 +66,15 @@ public class FlowerSQL implements FlowerDAO {
         try {
             PreparedStatement flowerst = connection.prepareStatement(MySQLQueries.DELETE_FLOWER);
             PreparedStatement productst = connection.prepareStatement(MySQLQueries.DELETE_PRODUCT);
-            flowerst.setInt(1, flower.getProductId());
+            flowerst.setInt(1, flower.getProduct_id());
             flowerst.executeUpdate();
 
-            productst.setInt(1, flower.getProductId());
+            productst.setInt(1, flower.getProduct_id());
             int rowsAffected = productst.executeUpdate();
             if (rowsAffected >0) {
-                System.out.println("Flower deleted successfully");
+                AppHandler.printText(Constants.Menus.DELETED);
             }else {
-                System.out.println("The product ID does not find ");
+                AppHandler.printText(Constants.Menus.PRODUCT_NOT_FOUND);
             }
         }catch (SQLException e) {
             e.printStackTrace();
@@ -79,12 +83,55 @@ public class FlowerSQL implements FlowerDAO {
     }
 
     @Override
-    public List<Flower> read() {
-        return null;
+    public List<Flower> readAll() {
+        ArrayList<Flower> allFlowers = new ArrayList<>();
+        try{
+            PreparedStatement st = connection.prepareStatement(MySQLQueries.GET_ALL_FLOWERS);
+            ResultSet resultSet = st.executeQuery();
+            while (resultSet.next()) {
+                int productId = resultSet.getInt("product_id");
+                String name = resultSet.getString("name");
+                double sellPrice = resultSet.getDouble("sell_price");
+                double costPrice = resultSet.getDouble("cost_price");
+                int stock = resultSet.getInt("stock");
+                String colour = resultSet.getString("colour");
+
+                Flower flower = new Flower(productId, name, sellPrice, costPrice,stock,colour);
+                allFlowers.add(flower);
+            }
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+
+        return allFlowers;
     }
 
     @Override
     public Flower getOne(String id) {
-        return null;
+        Flower flower = null;
+        try {
+            PreparedStatement st = connection.prepareStatement(MySQLQueries.GET_FLOWER);
+            st.setString(1, id);
+            ResultSet resultSet = st.executeQuery(); {
+                if (resultSet.next()) {
+                    int productId = resultSet.getInt("product_id");
+                    String name = resultSet.getString("name");
+                    double sellPrice = resultSet.getDouble("sell_price");
+                    double costPrice = resultSet.getDouble("cost_price");
+                    int stock = resultSet.getInt("stock");
+                    String colour = resultSet.getString("colour");
+
+                    flower = new Flower(productId, name, sellPrice, costPrice, stock, colour);
+                } else {
+                    System.out.println("No se encontró una flor con el ID especificado.");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Manejo básico de la excepción
+        }
+        return flower;
     }
 }
+

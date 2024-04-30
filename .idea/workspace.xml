@@ -4,13 +4,54 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55e38529-ac3d-400c-9400-b59071d9d90b" name="Changes" comment="Ultimes modificacions + codi SQL">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_4_2024_17_44_[Changes]1/Flower_shop Model.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_4_2024_17_44_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_4_2024_17_44__Changes_1.xml" beforeDir="false" />
+    <list default="true" id="55e38529-ac3d-400c-9400-b59071d9d90b" name="Changes" comment="Afegir codi SQL">
+      <change afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/DAO/TicketDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/DAO/TicketDataDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/TicketDataSQL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/TicketSQL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/TreeSQL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Flower_shop Model.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Flower_shop.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/beans/Decoration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/beans/Flower.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/beans/Product.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/beans/Tree.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/database/JsonPersistance.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/database/SQLDatabaseConnection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/database/SQLDatabaseQueries.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/enums/DecorationEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/exceptions/IllegalArgumentFactoryException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/factories/ProductFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/handlers/AppHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/handlers/CatalogueHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/handlers/SalesHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/handlers/StockHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/handlers/TextMenuHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/main/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/sales/Ticket.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/singletons/StockSingleton.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/singletons/TicketSingleton.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/utils/Constants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/utils/Validations.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/DAO/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/DAO/DAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/DecorationSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/DecorationSQL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/FlowerSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/FlowerSQL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/MySQLQueries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/MySQLQueries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Decoration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Decoration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Flower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Flower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Tree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/DecorationFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/DecorationFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/FlowerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/FlowerFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/ProductAbstractFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/ProductAbstractFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/TreeFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/TreeFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/AppHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/AppHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/CreateTicketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/CreateTicketHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/StockHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/StockHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/singletons/TicketSingleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/singletons/TicketSingleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistence/FlowershopMySQL..png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistence/FlowershopMySQL..png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistence/FlowershopMySQL.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistence/FlowershopMySQL.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +118,8 @@
     &quot;last_opened_file_path&quot;: &quot;C:/Users/rocac/IdeaProjects/Flowershop/src/main/java/n2MySQL/handlers&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2908046&quot;
+    &quot;project.structure.side.proportion&quot;: &quot;0.2908046&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -185,7 +227,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714154074449</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Nou codi MySQL">
+      <option name="closed" value="true" />
+      <created>1714379234576</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1714379234576</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -198,6 +248,8 @@
     <MESSAGE value="Queries + DAO + MySQL Connection" />
     <MESSAGE value="Afegit packages" />
     <MESSAGE value="Ultimes modificacions + codi SQL" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ultimes modificacions + codi SQL" />
+    <MESSAGE value="Nou codi MySQL" />
+    <MESSAGE value="Afegir codi SQL" />
+    <option name="LAST_COMMIT_MESSAGE" value="Afegir codi SQL" />
   </component>
 </project>

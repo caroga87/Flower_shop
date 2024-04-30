@@ -8,13 +8,8 @@ import n2MySQL.handlers.AppHandler;
 public class Flower extends Product implements ISpecificProduct {
 
 	private String colour;
-	
-	public Flower() {
-		super();
-	}
-	
-	public Flower(String name, double sellPrice, double costPrice, int stock, String colour) {
-		super(name, sellPrice, costPrice, stock);
+	public Flower(int product_id, String name, double sellPrice, double costPrice, int stock, String colour) {
+		super(product_id,name, sellPrice, costPrice, stock);
 		this.colour = colour;
 	}
 
@@ -41,7 +36,7 @@ public class Flower extends Product implements ISpecificProduct {
 		
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append(super.getProductId()).append(" >>> ").append(super.getName()).append(", ").append(super.getSellPrice()).append(" eur., ").append(colour);
+		sb.append(super.getProduct_id()).append(" >>> ").append(super.getName()).append(", ").append(super.getSellPrice()).append(" eur., ").append(colour);
 		
 		return sb.toString();
 		

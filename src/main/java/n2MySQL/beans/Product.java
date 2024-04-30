@@ -1,25 +1,17 @@
 package n2MySQL.beans;
 
-import n2MySQL.singletons.StockSingleton;
-
 public abstract class Product  {
 	
-	private static final long serialVersionUID = 1L;
-	
-	private int productId;
+	private int product_id;
 	private String name;
 	private double sellPrice;
 	private double costPrice;
 	private int stock;
 	
-	//important for json deserialization
-	public Product() {
+
+	public Product(int productId,String name, double sellPrice, double costPrice, int stock) {
 		super();
-	}
-	
-	public Product(String name, double sellPrice, double costPrice, int stock) {
-		super();
-		this.productId = StockSingleton.getStockSingleton().getNextProductId();
+		this.product_id = productId;
 		this.name = name;
 		this.sellPrice = sellPrice;
 		this.costPrice = costPrice;
@@ -50,8 +42,8 @@ public abstract class Product  {
 		this.costPrice = costPrice;
 	}
 
-	public int getProductId() {
-		return productId;
+	public int getProduct_id() {
+		return product_id;
 	}
 
 	public int getStock() {
@@ -64,7 +56,7 @@ public abstract class Product  {
 	
 	@Override
 	public String toString() {
-		return "Product [productId=" + productId
+		return "Product [productId=" + product_id
 							+ ", name=" + name 
 							+ ", sellPrice=" + sellPrice
 							+ ", costPrice=" + costPrice 
@@ -76,7 +68,7 @@ public abstract class Product  {
 		
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append(productId).append(" >>> ")
+		sb.append(product_id).append(" >>> ")
 			.append(stock).append(" x ")
 			.append(name).append(", ")
 			.append(costPrice).append(" eur./unit, ")
