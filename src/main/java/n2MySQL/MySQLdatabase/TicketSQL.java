@@ -94,7 +94,7 @@ public class TicketSQL implements TicketDAO {
                 Timestamp creationDateTime = resultSet.getTimestamp("creation_date_time");
                 double totalAmount = resultSet.getDouble("total_amount");
 
-                return new Ticket(ticketId, creationDateTime, totalAmount);
+                return new Ticket();
             }
         } catch (SQLException | NumberFormatException e) {
             e.printStackTrace();
