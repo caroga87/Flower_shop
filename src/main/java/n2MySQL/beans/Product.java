@@ -9,9 +9,8 @@ public abstract class Product  {
 	private int stock;
 	
 
-	public Product(int productId,String name, double sellPrice, double costPrice, int stock) {
+	public Product(String name, double sellPrice, double costPrice, int stock) {
 		super();
-		this.product_id = productId;
 		this.name = name;
 		this.sellPrice = sellPrice;
 		this.costPrice = costPrice;

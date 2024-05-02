@@ -8,8 +8,8 @@ import n2MySQL.handlers.AppHandler;
 public class Tree extends Product implements ISpecificProduct{
 	private int height;
 
-	public Tree(int product_id, String name, double sellPrice, double costPrice, int stock, int height) {
-		super(product_id, name, sellPrice, costPrice, stock);
+	public Tree(String name, double sellPrice, double costPrice, int stock, int height) {
+		super(name, sellPrice, costPrice, stock);
 		this.height = height;
 	}
 

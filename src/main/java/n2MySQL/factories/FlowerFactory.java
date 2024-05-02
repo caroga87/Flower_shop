@@ -6,7 +6,7 @@ import n2MySQL.interfaces.ISpecificProduct;
 public class FlowerFactory extends ProductAbstractFactory {
 
 	@Override
-	public ISpecificProduct createSpecificProduct(int product_id,String name, double sellPrice, double costPrice, int stock, String other) {
-		return new Flower(product_id,name, sellPrice, costPrice, stock, other);
+	public ISpecificProduct createSpecificProduct(String name, double sellPrice, double costPrice, int stock, String other) {
+		return new Flower(name, sellPrice, costPrice, stock, other);
 	}
 }

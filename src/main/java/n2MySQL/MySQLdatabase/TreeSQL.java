@@ -97,7 +97,7 @@ public class TreeSQL implements TreeDAO {
                 int stock = resultSet.getInt("stock");
                 int height = resultSet.getInt("height");
 
-                Tree tree = new Tree (productId, name, sellPrice, costPrice,stock,height);
+                Tree tree = new Tree (name, sellPrice, costPrice,stock,height);
                 allTrees.add(tree);
             }
 
@@ -124,13 +124,13 @@ public class TreeSQL implements TreeDAO {
                     int stock = resultSet.getInt("stock");
                     int height = resultSet.getInt("height");
 
-                    tree = new Tree (productId, name, sellPrice, costPrice, stock, height);
+                    tree = new Tree (name, sellPrice, costPrice, stock, height);
                 } else {
-                    System.out.println("No se encontró una flor con el ID especificado.");
+                    AppHandler.printText(Constants.Menus.PRODUCT_NOT_FOUND);
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // Manejo básico de la excepción
+            e.printStackTrace();
         }
         return tree;
     }

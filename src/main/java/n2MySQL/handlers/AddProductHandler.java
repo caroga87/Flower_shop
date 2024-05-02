@@ -2,9 +2,6 @@ package n2MySQL.handlers;
 
 
 import n2MySQL.beans.Product;
-import n2MySQL.handlers.AppHandler;
-import n2MySQL.handlers.StockHandler;
-import n2MySQL.handlers.TextMenuHandler;
 import n2MySQL.utis.Constants;
 import n2MySQL.utis.Utils;
 import n2MySQL.utis.Validations;
@@ -64,6 +61,7 @@ public class AddProductHandler {
 	}
 
 	private static void runCreateTree() {
+		int product_id=0;
 
 		//name
 		String treeName = "";
