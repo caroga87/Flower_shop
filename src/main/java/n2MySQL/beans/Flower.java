@@ -8,8 +8,8 @@ import n2MySQL.handlers.AppHandler;
 public class Flower extends Product implements ISpecificProduct {
 
 	private String colour;
-	public Flower(int product_id, String name, double sellPrice, double costPrice, int stock, String colour) {
-		super(product_id,name, sellPrice, costPrice, stock);
+	public Flower(String name, double sellPrice, double costPrice, int stock, String colour) {
+		super(name, sellPrice, costPrice, stock);
 		this.colour = colour;
 	}
 

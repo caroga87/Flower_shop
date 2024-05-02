@@ -11,9 +11,12 @@ public class MySQLQueries {
     public static final String DELETE_FLOWER = "DELETE FROM flower WHERE flower_id = (?)";
     public static final String DELETE_DECORATION = "DELETE FROM decoration WHERE decoration_id = (?)";
     public static final String DELETE_TREE = "DELETE FROM tree WHERE tree_id = (?)";
+    public static final String DELETE_TICKET = "DELETE FROM ticket WHERE ticket_id = ?";
+    public static final String DELETE_TICKETDATA = "DELETE FROM ticketdata WHERE ticket_id = ?";
     public static final String UPDATE_DECORATION = "UPDATE decorations SET name = ?, material = ?, price = ? WHERE decoration_id = ?";
     public static final String UPDATE_FLOWER = "UPDATE flower SET name =?, colour=?, sell_price=?, cost_price=? WHERE flower_id=?";
     public static final String UPDATE_TREE = "UPDATE tree SET name =?, height=?, sell_price=?, cost_price=?, WHERE tree_id=?";
+    public static final String UPDATE_TICKET = "UPDATE ticket SET creation_date_time = ?, total_amount = ? WHERE ticket_id = ?";
     public static final String GET_ALL_FLOWERS = "SELECT p.product_id, p.name, p.sell_price, p.cost_price, p.stock, f.colour " +
                                                     "FROM Product p, Flower f " +
                                                         "WHERE p.product_id = f.flower_id";

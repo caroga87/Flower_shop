@@ -35,9 +35,7 @@ public class FlowerSQL implements FlowerDAO {
                     flowerst.setInt(1, product_id);
                     flowerst.setString(2, flower.getColour());
                     flowerst.executeUpdate();
-
                 }
-
             }
             AppHandler.printText(Constants.Menus.PRODUCT_ADDED);
         } catch (SQLException e) {
@@ -96,7 +94,7 @@ public class FlowerSQL implements FlowerDAO {
                 int stock = resultSet.getInt("stock");
                 String colour = resultSet.getString("colour");
 
-                Flower flower = new Flower(productId, name, sellPrice, costPrice,stock,colour);
+                Flower flower = new Flower(name, sellPrice, costPrice,stock,colour);
                 allFlowers.add(flower);
             }
 
@@ -123,7 +121,7 @@ public class FlowerSQL implements FlowerDAO {
                     int stock = resultSet.getInt("stock");
                     String colour = resultSet.getString("colour");
 
-                    flower = new Flower(productId, name, sellPrice, costPrice, stock, colour);
+                    flower = new Flower(name, sellPrice, costPrice, stock, colour);
                 } else {
                     System.out.println("No se encontró una flor con el ID especificado.");
                 }

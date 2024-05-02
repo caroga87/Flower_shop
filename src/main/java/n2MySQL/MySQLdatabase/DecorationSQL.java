@@ -94,7 +94,7 @@ public class DecorationSQL implements DecorationDAO {
                 int stock = resultSet.getInt("stock");
                 String material = resultSet.getString("material");
 
-                Decoration decoration = new Decoration(productId, name, sellPrice, costPrice,stock,material);
+                Decoration decoration = new Decoration(name, sellPrice, costPrice,stock,material);
                 allDecorations.add(decoration);
             }
 
@@ -121,7 +121,7 @@ public class DecorationSQL implements DecorationDAO {
                     int stock = resultSet.getInt("stock");
                     String material = resultSet.getString("material");
 
-                    decoration = new Decoration(productId, name, sellPrice, costPrice, stock, material);
+                    decoration = new Decoration(name, sellPrice, costPrice, stock, material);
                 } else {
                     System.out.println("No se encontró una flor con el ID especificado.");
                 }

@@ -6,8 +6,8 @@ import n2MySQL.handlers.AppHandler;
 
 public class Decoration extends Product implements ISpecificProduct {
 	private String material;
-	public Decoration(int product_id,String name, double sellPrice, double costPrice, int stock, String material) {
-		super(product_id,name, sellPrice, costPrice, stock);
+	public Decoration(String name, double sellPrice, double costPrice, int stock, String material) {
+		super(name, sellPrice, costPrice, stock);
 		this.material = material;
 	}
 

@@ -2,6 +2,8 @@ package n2MySQL.MySQLdatabase;
 
 import n2MySQL.DAO.TicketDAO;
 import n2MySQL.beans.Ticket;
+import n2MySQL.handlers.AppHandler;
+import n2MySQL.utis.Constants;
 import n2MySQL.utis.Utils;
 
 import java.sql.*;
@@ -37,8 +39,7 @@ public class TicketSQL implements TicketDAO {
 
     @Override
     public void update(Ticket ticket) {
-        String query = "UPDATE Ticket SET creation_date_time = ?, total_amount = ? WHERE ticket_id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
+         try (PreparedStatement statement = connection.prepareStatement(MySQLQueries.UPDATE_TICKET)) {
             Timestamp creationDateTime = Timestamp.valueOf(ticket.getCreationDateTime());
             statement.setTimestamp(1, creationDateTime);
             statement.setDouble(2, ticket.getTotalAmount());
@@ -52,11 +53,19 @@ public class TicketSQL implements TicketDAO {
 
     @Override
     public void delete(Ticket ticket) {
-        String query = "DELETE FROM Ticket WHERE ticket_id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, ticket.getTicketId());
 
-            statement.executeUpdate();
+        try (PreparedStatement deleteTicketStatement = connection.prepareStatement(MySQLQueries.DELETE_TICKET);
+             PreparedStatement deleteTicketDataStatement = connection.prepareStatement(MySQLQueries.DELETE_TICKETDATA)) {
+            deleteTicketStatement.setInt(1, ticket.getTicketId());
+            deleteTicketStatement.executeUpdate();
+
+            deleteTicketDataStatement.setInt(1, ticket.getTicketId());
+            int rowsAffected = deleteTicketDataStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                AppHandler.printText(Constants.Menus.DELETED);
+            } else {
+                AppHandler.printText(Constants.Menus.PRODUCT_NOT_FOUND);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
