@@ -32,6 +32,7 @@ public class SQLDatabaseConnection {
 	public Connection getConnection () throws SQLException {
 		if (connection == null || connection.isClosed()){
 			connection = DriverManager.getConnection(db_url, user, password);
+			System.out.println("Se ha conectado.");
 		}
 		return connection;
 	}

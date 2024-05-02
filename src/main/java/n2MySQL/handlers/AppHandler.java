@@ -1,15 +1,16 @@
 package n2MySQL.handlers;
 
-import n2MySQL.beans.FlowerShop;
-import n2MySQL.io.FileManager;
+import n2MySQL.MySQLdatabase.ConnectionFactory;
+import n2MySQL.MySQLdatabase.SQLDatabaseConnection;
 import n2MySQL.io.FlowerShopFileReader;
-import n2MySQL.singletons.FlowerShopSingleton;
-import n2MySQL.singletons.SalesSingleton;
-import n2MySQL.singletons.StockSingleton;
 import n2MySQL.utis.Constants;
 import n2MySQL.utis.Validations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import java.util.List;
 import java.util.Scanner;
@@ -45,78 +46,13 @@ public class AppHandler {
 		System.out.println(text);
 	}
 
-	public void runFlowerShop() {
+	public void getConnectionFlowerShop(String motor) throws SQLException {
 
-		logger.info("AppHandler :: runFlowerShop :: __________ Flower Shop App running...");
-
-		//checks if there is a flower shop already saved
-		//if false -> first time using the app, must create a new flower shop
-		if(!loadFlowerShopSaves()) {
-			createFlowerShop();
-		}
-
+		ConnectionFactory connection = new ConnectionFactory();
+		connection.getConnection(motor);
 		runMainMenu();
-
 	}
 
-	private boolean loadFlowerShopSaves() {
-
-		logger.info("AppHandler :: loadFlowerShopSaves :: Loading saves...");
-
-		boolean flowerShopLoaded = false;
-
-		FlowerShopSingleton.getFlowerShopSingleton().loadFlowerShop();
-
-		if(FlowerShopSingleton.getFlowerShopSingleton().getFlowerShop() != null) {
-
-			flowerShopLoaded = true;
-
-			FlowerShopFileReader.readIds(Constants.Files.IDS);
-			SalesSingleton.getSalesSingleton().loadSales();
-			StockSingleton.getStockSingleton().loadStock();
-
-		} else {
-
-			//if we reach this point, it means it is the first time using the app or there is a problem with the consistency of the files
-			//we delete all files to start over from scratch
-			clearAllFiles();
-
-		}
-
-		return flowerShopLoaded;
-
-	}
-
-	private void clearAllFiles() {
-
-		FileManager.deleteFile(Constants.Files.PATH_CONTROL, Constants.Files.IDS, true);
-		FileManager.deleteFile(Constants.Files.PATH_PERSISTENCE, Constants.Files.FLOWER_SHOP, true);
-		FileManager.deleteFile(Constants.Files.PATH_PERSISTENCE, Constants.Files.SALES, true);
-		FileManager.deleteFile(Constants.Files.PATH_PERSISTENCE, Constants.Files.STOCK, true);
-
-	}
-
-	private void createFlowerShop() {
-
-		logger.info("AppHandler :: createFlowerShop :: Creating a new flower shop...");
-
-		String name = "";
-
-		printText(TextMenuHandler.getCreateFlowerShopMenu());
-
-		do {
-
-			printText(TextMenuHandler.getEnterValidNameMessage());
-			name = readConsoleInput().trim();
-
-		} while(!Validations.isValidName(name));
-
-		FlowerShop flowerShop = new FlowerShop(name);
-		FlowerShopSingleton.getFlowerShopSingleton().setFlowerShop(flowerShop);
-
-		printText(TextMenuHandler.getFlowerShopCreatedMessage());
-
-	}
 
 
 	public static void runMainMenu() {
@@ -185,14 +121,7 @@ public class AppHandler {
 
 		logger.info("AppHandler :: runExitFlowerShop :: Flower Shop App shutting down...");
 
-		FlowerShopSingleton.getFlowerShopSingleton().handleFlowerShopPersistance();
-
-		SalesSingleton.getSalesSingleton().handleMaxAssignedTicketIdPersitence();
-		SalesSingleton.getSalesSingleton().handleSalesPersistence();
-
-		StockSingleton.getStockSingleton().handleMaxAssignedProducIdPersitence();
-		StockSingleton.getStockSingleton().handleStockPersistence();
-
+		
 		AppHandler.printText(TextMenuHandler.getExitMessage());
 
 	}

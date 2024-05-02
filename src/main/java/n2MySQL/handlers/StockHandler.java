@@ -1,5 +1,7 @@
 package n2MySQL.handlers;
 
+import n2MySQL.MySQLdatabase.FlowerSQL;
+import n2MySQL.MySQLdatabase.SQLDatabaseConnection;
 import n2MySQL.beans.Decoration;
 import n2MySQL.beans.Flower;
 import n2MySQL.beans.Product;
@@ -41,7 +43,7 @@ public class StockHandler {
 
 		FlowerFactory factory = new FlowerFactory();
 		Flower flower = (Flower) factory.createSpecificProduct(name, sellPrice, costPrice, stock, colour);
-
+		;
 		StockSingleton.getStockSingleton().getStock().add(flower);
 
 		recalculateTotalStockValueOnAdd(flower.getStock(), flower.getCostPrice());

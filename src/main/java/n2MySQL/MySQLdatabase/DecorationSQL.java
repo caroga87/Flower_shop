@@ -2,7 +2,6 @@ package n2MySQL.MySQLdatabase;
 
 import n2MySQL.DAO.DecorationDAO;
 import n2MySQL.beans.Decoration;
-import n2MySQL.utils.Input;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,14 +16,12 @@ public class DecorationSQL implements DecorationDAO {
     }
     @Override
     public void create(Decoration decoration) {
-        String name = Input.inputString("Decoration's name:");
-        String type = Input.inputString("Wood or plastic:");
-        double price = Input.inputDouble("Decoration's price:");
+        
         try (PreparedStatement st = connection.prepareStatement(MySQLQueries.INSERT_DECORATION)){
-            st.setString(1, name);
-            st.setString(2, type);
-            st.setDouble(3, price);
-            st.setInt(4, decoration.getIdProduct());
+            st.setString(1, decoration.getName());
+            st.setString(2, decoration.getMaterial());
+            st.setDouble(3, decoration.getCostPrice());
+            st.setInt(4, decoration.getProductId());
 
             int rowsAffected = st.executeUpdate();
 
@@ -41,10 +38,10 @@ public class DecorationSQL implements DecorationDAO {
     @Override
     public void update(Decoration decoration) {
 
-        int decorationId = Input.inputInt("Id of the decoration to update:");
-        String newName = Input.inputString("New name:");
-        String newType = Input.inputString("New material (wood or plastic):");
-        double newPrice = Input.inputDouble("New price:");
+        //int decorationId = decoration.("Id of the decoration to update:");
+        //String newName = Input.inputString("New name:");
+        //String newType = Input.inputString("New material (wood or plastic):");
+        //double newPrice = Input.inputDouble("New price:");
 
         try (PreparedStatement st = connection.prepareStatement(MySQLQueries.UPDATE_DECORATION)) {
             st.setString(1, newName);
