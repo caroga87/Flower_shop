@@ -3,7 +3,8 @@ package n2MySQL.handlers;
 import n2MySQL.handlers.AppHandler;
 import n2MySQL.handlers.StockHandler;
 import n2MySQL.handlers.TextMenuHandler;
-import n2MySQL.utis.Validations;
+import n2MySQL.utils.Validations;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,14 +26,14 @@ public class DeleteProductHandler {
 			productId = AppHandler.readConsoleInput().trim();
 
 		} while(!Validations.isNaturalNumber(productId));
-
-		boolean deleted = StockHandler.removeProductByProductId(Integer.parseInt(productId));
-
-		if(deleted) {
-			AppHandler.printText(TextMenuHandler.getDeletedMessage());
-		} else {
-			AppHandler.printText(TextMenuHandler.getNotDeletedMessage());
-		}
+//		Query
+//		boolean deleted = StockHandler.removeProductByProductId(Integer.parseInt(productId));
+//
+//		if(deleted) {
+//			AppHandler.printText(TextMenuHandler.getDeletedMessage());
+//		} else {
+//			AppHandler.printText(TextMenuHandler.getNotDeletedMessage());
+//		}
 
 	}
 }

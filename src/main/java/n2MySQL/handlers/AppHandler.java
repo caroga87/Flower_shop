@@ -1,12 +1,18 @@
 package n2MySQL.handlers;
 
-import n2MySQL.MySQLdatabase.ConnectionFactory;
-import n2MySQL.MySQLdatabase.SQLDatabaseConnection;
+import n2MySQL.MySQLdatabase.connections.ConnectionFactory;
+import n2MySQL.MySQLdatabase.connections.IConnection;
+import n2MySQL.MySQLdatabase.connections.RunningModeSingleton;
+import n2MySQL.MySQLdatabase.connections.SQLDatabaseConnection;
+import n2MySQL.exceptions.EmptyDatabaseException;
 import n2MySQL.io.FlowerShopFileReader;
-import n2MySQL.utis.Constants;
-import n2MySQL.utis.Validations;
+import n2MySQL.utils.Constants;
+import n2MySQL.utils.Validations;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import flower_shop.handlers.menus.FlowerShopHandler;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -45,14 +51,58 @@ public class AppHandler {
 	public static void printText(String text) {
 		System.out.println(text);
 	}
+	
+	
 
-	public void getConnectionFlowerShop(String motor) throws SQLException {
+	public void runApp()  {
 
-		ConnectionFactory connection = new ConnectionFactory();
-		connection.getConnection(motor);
+		runChooseRunningModeMenu();
 		runMainMenu();
 	}
-
+	
+	private static void runChooseRunningModeMenu() {
+		
+		String runningMode = "";
+		
+		do {
+			
+			printText(Constants.Menus.APP_RUNNING_MODE);
+			runningMode = readConsoleInput().trim();
+			
+		} while(!Validations.isValidRunningMode(runningMode));
+		
+		processRunningMode(runningMode);
+		
+		//Testing connections.
+		//SE HA DE BORRAR.
+		IConnection connection = null;
+		
+		try {
+			connection = ConnectionFactory.getConnection(RunningModeSingleton.getRunningModeSingleton().getRunningMode());
+		} catch (EmptyDatabaseException e) {
+			logger.error("AppHandler :: runChooseRunningModeMenu :: ", e);
+		}
+		
+		if(connection != null) {
+			printText("Conexión creada a " + RunningModeSingleton.getRunningModeSingleton().getRunningMode());
+		}
+	}
+	
+	private static void processRunningMode(String runningMode) {
+		
+		switch(runningMode) {
+			case "1":
+				RunningModeSingleton.getRunningModeSingleton().setRunningMode(Constants.RunningModes.MY_SQL);
+				printText(Constants.RunningModes.MY_SQL + "\n\n");
+				break;
+			case "2":
+				RunningModeSingleton.getRunningModeSingleton().setRunningMode(Constants.RunningModes.MONGODB);
+				printText(Constants.RunningModes.MONGODB + "\n\n");
+				break;
+			default:
+				break;
+		}	
+	}
 
 
 	public static void runMainMenu() {

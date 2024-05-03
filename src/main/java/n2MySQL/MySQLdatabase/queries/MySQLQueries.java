@@ -1,4 +1,4 @@
-package n2MySQL.MySQLdatabase;
+package n2MySQL.MySQLdatabase.queries;
 
 public class MySQLQueries {
 

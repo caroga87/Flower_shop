@@ -1,7 +1,7 @@
 package n2MySQL.handlers;
 
-import n2MySQL.MySQLdatabase.FlowerSQL;
-import n2MySQL.MySQLdatabase.SQLDatabaseConnection;
+import n2MySQL.MySQLdatabase.connections.SQLDatabaseConnection;
+import n2MySQL.MySQLdatabase.queries.FlowerSQL;
 import n2MySQL.beans.Decoration;
 import n2MySQL.beans.Flower;
 import n2MySQL.beans.Product;
@@ -13,8 +13,9 @@ import n2MySQL.handlers.AppHandler;
 import n2MySQL.handlers.TextMenuHandler;
 import n2MySQL.singletons.FlowerShopSingleton;
 import n2MySQL.singletons.StockSingleton;
-import n2MySQL.utis.Constants;
-import n2MySQL.utis.Validations;
+import n2MySQL.utils.Constants;
+import n2MySQL.utils.Validations;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

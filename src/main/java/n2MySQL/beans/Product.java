@@ -1,10 +1,7 @@
 package n2MySQL.beans;
 
-import n2MySQL.singletons.StockSingleton;
 
 public abstract class Product  {
-	
-	private static final long serialVersionUID = 1L;
 	
 	private int productId;
 	private String name;
@@ -12,14 +9,9 @@ public abstract class Product  {
 	private double costPrice;
 	private int stock;
 	
-	//important for json deserialization
-	public Product() {
-		super();
-	}
 	
 	public Product(String name, double sellPrice, double costPrice, int stock) {
 		super();
-		this.productId = StockSingleton.getStockSingleton().getNextProductId();
 		this.name = name;
 		this.sellPrice = sellPrice;
 		this.costPrice = costPrice;

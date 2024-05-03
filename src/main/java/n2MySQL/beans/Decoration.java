@@ -7,10 +7,6 @@ import n2MySQL.handlers.AppHandler;
 public class Decoration extends Product implements ISpecificProduct {
 	private String material;
 	
-	//important for json deserialization
-	public Decoration() {
-		super();
-	}
 	
 	public Decoration(String name, double sellPrice, double costPrice, int stock, String material) {
 		super(name, sellPrice, costPrice, stock);

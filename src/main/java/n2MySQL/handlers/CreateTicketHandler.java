@@ -4,10 +4,10 @@ import n2MySQL.beans.Product;
 import n2MySQL.handlers.AppHandler;
 import n2MySQL.handlers.StockHandler;
 import n2MySQL.handlers.TextMenuHandler;
+import n2MySQL.utils.Validations;
 import n2MySQL.beans.Ticket;
 import n2MySQL.beans.TicketData;
-import n2MySQL.singletons.SalesSingleton;
-import n2MySQL.utis.Validations;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +21,8 @@ public class CreateTicketHandler {
 		logger.info("CreateNewTicketMenuHandler :: runCreateNewTicket :: About to create a new ticket.");
 
 		Ticket newTicket = new Ticket();
-		newTicket.setTicketId(SalesSingleton.getSalesSingleton().getNextTicketId());
+		//Query
+		//newTicket.setTicketId(SalesSingleton.getSalesSingleton().getNextTicketId());
 		AppHandler.printText(newTicket.toString());
 
 		String ticketMenuOption = "";
@@ -39,8 +40,8 @@ public class CreateTicketHandler {
 			processTicketMenuOption(ticketMenuOption, newTicket);
 
 			if(ticketMenuOption.equalsIgnoreCase("0")) {
-
-				SalesSingleton.getSalesSingleton().getSales().add(newTicket);
+				//Query
+				//SalesSingleton.getSalesSingleton().getSales().add(newTicket);
 				TicketHandler.recalculateTotalEarnings(newTicket.getTotalAmount());
 
 			}
@@ -140,17 +141,17 @@ public class CreateTicketHandler {
 
 			} while(!Validations.isNaturalNumber(productId));
 
-			//checks if product exists in catalogue
-			Product product = StockHandler.findProductByProductId(Integer.parseInt(productId));
+			//checks if product exists in catalogue. Query.
+			//Product product = StockHandler.findProductByProductId(Integer.parseInt(productId));
 
 			//product exists in catalogue
 			if(product != null) {
 
 				int quantity = findProductQuantityInTicket(newTicket, product.getName());
 
-				//handle stock + sales
-				StockHandler.putBackInStock(product, quantity);
-				recalculateTicketTotalAmountOnProductDelete(newTicket, quantity, product.getSellPrice());
+				//handle stock + sales. Query.
+				//StockHandler.putBackInStock(product, quantity);
+				//recalculateTicketTotalAmountOnProductDelete(newTicket, quantity, product.getSellPrice());
 				removeProductFromTicket(newTicket, product.getName());
 
 				AppHandler.printText(TextMenuHandler.getDeletedMessage());

@@ -5,12 +5,12 @@ import n2MySQL.beans.Product;
 import n2MySQL.handlers.AppHandler;
 import n2MySQL.handlers.StockHandler;
 import n2MySQL.handlers.TextMenuHandler;
-import n2MySQL.utis.Constants;
-import n2MySQL.utis.Utils;
-import n2MySQL.utis.Validations;
+import n2MySQL.utils.Constants;
+import n2MySQL.utils.Utils;
+import n2MySQL.utils.Validations;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 
 
 public class AddProductHandler {

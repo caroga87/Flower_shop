@@ -9,9 +9,6 @@ public class Flower extends Product implements ISpecificProduct {
 
 	private String colour;
 	
-	public Flower() {
-		super();
-	}
 	
 	public Flower(String name, double sellPrice, double costPrice, int stock, String colour) {
 		super(name, sellPrice, costPrice, stock);

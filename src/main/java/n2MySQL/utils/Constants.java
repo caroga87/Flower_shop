@@ -1,33 +1,24 @@
-package n2MySQL.utis;
+package n2MySQL.utils;
 
 public class Constants {
 	public class Files {
 		public static final String PATH_PERSISTENCE = "src/main/resources/persistence/";
-		public static final String PATH_CONTROL = "src/main/resources/control/";
 		public static final String PATH_SIMPLE = "src/main/resources/";
-		public static final String IDS = "ids.txt";
 		public static final String COLOURS = "colours.txt";
-		public static final String FLOWER_SHOP = "flower-shop.json";
-		public static final String SALES = "sales.json";
-		public static final String STOCK = "stock.json";
 	}
 
 	public class Messages {
-		public static final String WRITING_TO = "Writing to file ";
 		public static final String READING_FROM = "Reading from file ";
-		public static final String DELETING = "Deleting file ";
-		public static final String CREATING = "Creating file ";
 	}
 
 	public class Errors {
-		public static final String JSON_SERIALIZATION = "Object to JSON failed, ";
 		public static final String IO_EXCEPTION = "I/O Exeception thrown, ";
 		public static final String FNF_EXCEPTION = "File Not Found Exeception thrown, ";
-		public static final String JSON_DESERIALIZATION = "JSON to object failed, ";
 		public static final String PARSE_EXCEPTION = "Parsing failed, ";
 	}
 
 	public class Menus {
+		public static final String CONNECTION_OPTION = "Enter a valid connection option: ";
 		public static final String CREATE_FS_MENU = "\n\nFirst time using the app?\nLet's create a new flower shop.)";
 		public static final String VALID_NAME = "\nPlease, enter a valid name:\n";
 		public static final String CREATED_FS = "\n>>> Good job! The shop is now up and running.\n\n";
@@ -69,6 +60,9 @@ public class Constants {
 		public static final String PRODUCT_NOT_FOUND = "\n>>> Could not find the product.";
 		public static final String QUANTITY = "\nEnter a valid quantity:\n";
 		public static final String INSUFFICIENT_STOCK = "\n>>> Insufficient stock of this product.\n";
+		public static final String APP_RUNNING_MODE = "\n\nSelect a running mode: "
+				+ "\n1. MySQL."
+				+ "\n2. MongoDB.";
 	}
 
 	public class Headings {
@@ -84,5 +78,14 @@ public class Constants {
 		public static final String FLOWERS = "\n_____ flowers _____\n";
 		public static final String DECORATIONS = "\n_____ decorations _____\n";
 	}
-
+	
+	public class Exceptions {
+		public static final String EMPTY_EXCEPTION = "The connection is empty or null.";
+	}
+	
+	public class RunningModes {
+		public static final String MY_SQL = "MySQL";
+		public static final String MONGODB = "MongoDB";
+	}
+	
 }

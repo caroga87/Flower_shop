@@ -1,4 +1,4 @@
-package n2MySQL.utis;
+package n2MySQL.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -118,6 +118,10 @@ private static Logger logger = LoggerFactory.getLogger(Validations.class);
 	//ticket menu options: 0 to 2
 	public static boolean isValidTicketOption(String ticketMenuOption) {
 		return ticketMenuOption.matches("^[0-2]{1}$");
+	}
+	
+	public static boolean isValidRunningMode(String runningMode) {
+		return runningMode.matches("^[1-2]{1}$");
 	}
 	
 }

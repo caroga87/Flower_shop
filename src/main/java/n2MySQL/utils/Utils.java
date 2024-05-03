@@ -1,4 +1,4 @@
-package n2MySQL.utis;
+package n2MySQL.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

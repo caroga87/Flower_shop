@@ -1,10 +1,9 @@
 package n2MySQL.beans;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import n2MySQL.utis.Utils;
+import n2MySQL.utils.Utils;
 
 public class Ticket{
 	private int ticketId;
