@@ -17,6 +17,14 @@ public abstract class Product  {
 		this.stock = stock;
 	}
 
+	public Product(int product_id, String name, double sellPrice, double costPrice, int stock) {
+		this.product_id = product_id;
+		this.name = name;
+		this.sellPrice = sellPrice;
+		this.costPrice = costPrice;
+		this.stock = stock;
+	}
+
 	public String getName() {
 		return name;
 	}

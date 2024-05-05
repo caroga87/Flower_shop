@@ -94,7 +94,7 @@ public class DecorationSQL implements DecorationDAO {
                 int stock = resultSet.getInt("stock");
                 String material = resultSet.getString("material");
 
-                Decoration decoration = new Decoration(name, sellPrice, costPrice,stock,material);
+                Decoration decoration = new Decoration(productId, name, sellPrice, costPrice,stock,material);
                 allDecorations.add(decoration);
             }
 
@@ -107,11 +107,11 @@ public class DecorationSQL implements DecorationDAO {
     }
 
     @Override
-    public Decoration getOne(String id) {
+    public Decoration getOne(String decorationName) {
         Decoration decoration = null;
         try {
             PreparedStatement st = connection.prepareStatement(MySQLQueries.GET_DECORATION);
-            st.setString(1, id);
+            st.setString(1, decorationName);
             ResultSet resultSet = st.executeQuery(); {
                 if (resultSet.next()) {
                     int productId = resultSet.getInt("product_id");
@@ -121,13 +121,13 @@ public class DecorationSQL implements DecorationDAO {
                     int stock = resultSet.getInt("stock");
                     String material = resultSet.getString("material");
 
-                    decoration = new Decoration(name, sellPrice, costPrice, stock, material);
+                    decoration = new Decoration(productId, name, sellPrice, costPrice, stock, material);
                 } else {
-                    System.out.println("No se encontró una flor con el ID especificado.");
+                    AppHandler.printText(Constants.Menus.PRODUCT_NOT_FOUND);
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // Manejo básico de la excepción
+            e.printStackTrace();
         }
         return decoration;
     }

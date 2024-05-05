@@ -13,6 +13,11 @@ public class Flower extends Product implements ISpecificProduct {
 		this.colour = colour;
 	}
 
+	public Flower(int product_id, String name, double sellPrice, double costPrice, int stock, String colour) {
+		super(product_id, name, sellPrice, costPrice, stock);
+		this.colour = colour;
+	}
+
 	public String getColour() {
 		return colour;
 	}

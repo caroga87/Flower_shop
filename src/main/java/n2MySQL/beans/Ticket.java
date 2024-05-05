@@ -18,6 +18,13 @@ public class Ticket{
 		this.creationDateTime = Utils.getCurrentDateTime();
 	}
 
+	public Ticket(int ticketId, Map<String, TicketData> products, double totalAmount, String creationDateTime) {
+		this.ticketId = ticketId;
+		this.products = products;
+		this.totalAmount = totalAmount;
+		this.creationDateTime = creationDateTime;
+	}
+
 	public Map<String, TicketData> getProducts() {
 		return products;
 	}

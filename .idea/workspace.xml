@@ -4,54 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55e38529-ac3d-400c-9400-b59071d9d90b" name="Changes" comment="Afegir codi SQL">
-      <change afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/DAO/TicketDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/DAO/TicketDataDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/TicketDataSQL.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/TicketSQL.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/TreeSQL.java" afterDir="false" />
+    <list default="true" id="55e38529-ac3d-400c-9400-b59071d9d90b" name="Changes" comment="Queries SQL, modificacions classes, DAO, ticket...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flower_shop Model.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flower_shop.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/beans/Decoration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/beans/Flower.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/beans/Product.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/beans/Tree.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/database/JsonPersistance.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/database/SQLDatabaseConnection.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/database/SQLDatabaseQueries.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/enums/DecorationEnum.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/exceptions/IllegalArgumentFactoryException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/factories/ProductFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/handlers/AppHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/handlers/CatalogueHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/handlers/SalesHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/handlers/StockHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/handlers/TextMenuHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/main/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/sales/Ticket.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/singletons/StockSingleton.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/singletons/TicketSingleton.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/utils/Constants.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n1exercici1/utils/Validations.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/DAO/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/DAO/DAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/DecorationSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/DecorationSQL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/FlowerSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/FlowerSQL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/MySQLQueries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/MySQLQueries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/TicketSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/TicketSQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/TreeSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/TreeSQL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Decoration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Decoration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Flower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Flower.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Ticket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Tree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/DecorationFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/DecorationFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/FlowerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/FlowerFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/ProductAbstractFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/ProductAbstractFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/TreeFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/TreeFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/AppHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/AppHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/CreateTicketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/CreateTicketHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/StockHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/StockHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/singletons/TicketSingleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/singletons/TicketSingleton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistence/FlowershopMySQL..png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistence/FlowershopMySQL..png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistence/FlowershopMySQL.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistence/FlowershopMySQL.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,7 +199,31 @@
       <option name="project" value="LOCAL" />
       <updated>1714379234576</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Queries SQL, modificacions classes, DAO, ticket...">
+      <option name="closed" value="true" />
+      <created>1714477756240</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1714477756240</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Queries SQL, modificacions classes, DAO, ticket...">
+      <option name="closed" value="true" />
+      <created>1714478017812</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1714478017812</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Queries SQL, modificacions classes, DAO, ticket...">
+      <option name="closed" value="true" />
+      <created>1714650746665</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1714650746665</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -250,6 +238,7 @@
     <MESSAGE value="Ultimes modificacions + codi SQL" />
     <MESSAGE value="Nou codi MySQL" />
     <MESSAGE value="Afegir codi SQL" />
-    <option name="LAST_COMMIT_MESSAGE" value="Afegir codi SQL" />
+    <MESSAGE value="Queries SQL, modificacions classes, DAO, ticket..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Queries SQL, modificacions classes, DAO, ticket..." />
   </component>
 </project>

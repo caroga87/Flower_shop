@@ -97,7 +97,7 @@ public class TreeSQL implements TreeDAO {
                 int stock = resultSet.getInt("stock");
                 int height = resultSet.getInt("height");
 
-                Tree tree = new Tree (name, sellPrice, costPrice,stock,height);
+                Tree tree = new Tree (productId, name, sellPrice, costPrice,stock,height);
                 allTrees.add(tree);
             }
 
@@ -124,7 +124,7 @@ public class TreeSQL implements TreeDAO {
                     int stock = resultSet.getInt("stock");
                     int height = resultSet.getInt("height");
 
-                    tree = new Tree (name, sellPrice, costPrice, stock, height);
+                    tree = new Tree (productId,name, sellPrice, costPrice, stock, height);
                 } else {
                     AppHandler.printText(Constants.Menus.PRODUCT_NOT_FOUND);
                 }

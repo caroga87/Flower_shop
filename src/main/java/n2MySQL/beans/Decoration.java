@@ -11,6 +11,11 @@ public class Decoration extends Product implements ISpecificProduct {
 		this.material = material;
 	}
 
+	public Decoration(int product_id, String name, double sellPrice, double costPrice, int stock, String material) {
+		super(product_id, name, sellPrice, costPrice, stock);
+		this.material = material;
+	}
+
 	public String getMaterial() {
 		return material;
 	}

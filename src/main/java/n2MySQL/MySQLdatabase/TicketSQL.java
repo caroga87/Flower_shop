@@ -2,13 +2,13 @@ package n2MySQL.MySQLdatabase;
 
 import n2MySQL.DAO.TicketDAO;
 import n2MySQL.beans.Ticket;
+import n2MySQL.beans.TicketData;
 import n2MySQL.handlers.AppHandler;
 import n2MySQL.utis.Constants;
-import n2MySQL.utis.Utils;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class TicketSQL implements TicketDAO {
     private final Connection connection;
@@ -19,20 +19,35 @@ public class TicketSQL implements TicketDAO {
 
     @Override
     public void create(Ticket ticket) {
-         try (PreparedStatement statement = connection.prepareStatement(MySQLQueries.INSERT_TICKET)) {
-             Timestamp creationDateTime = Timestamp.valueOf(ticket.getCreationDateTime());
-            statement.setTimestamp(1, creationDateTime);
-            statement.setDouble(2, ticket.getTotalAmount());
+        try {
+            // Insertar el ticket en la tabla Ticket
+            try (PreparedStatement statement = connection.prepareStatement(MySQLQueries.INSERT_TICKET, Statement.RETURN_GENERATED_KEYS)) {
+                Timestamp creationDateTime = Timestamp.valueOf(ticket.getCreationDateTime());
+                statement.setTimestamp(1, creationDateTime);
+                statement.setDouble(2, ticket.getTotalAmount());
+                statement.executeUpdate();
 
-            statement.executeUpdate();
+                try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        ticket.setTicketId(generatedKeys.getInt(1));
+                    } else {
+                        throw new SQLException("Creating ticket failed, no ID obtained.");
+                    }
+                }
+            }
 
-            ResultSet generatedKeys = statement.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                ticket.setTicketId(generatedKeys.getInt(1));
-            } else {
-                throw new SQLException("Creating ticket failed, no ID obtained.");
+            // Insertar los datos del ticket en la tabla TicketData
+            try (PreparedStatement ticketDataSt = connection.prepareStatement(MySQLQueries.INSERT_TICKETDATA)) {
+                for (TicketData ticketData : ticket.getProducts().values()) {
+                    ticketDataSt.setInt(1, ticket.getTicketId());
+                    ticketDataSt.setInt(2, ticketData.getProductId());
+                    ticketDataSt.setInt(3, ticketData.getQuantity());
+                    ticketDataSt.executeUpdate();
+                }
             }
         } catch (SQLException e) {
+            // Manejar la excepción de manera adecuada
+            System.err.println("Error al crear el ticket: " + e.getMessage());
             e.printStackTrace();
         }
     }

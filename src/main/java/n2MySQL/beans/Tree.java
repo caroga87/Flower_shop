@@ -13,6 +13,11 @@ public class Tree extends Product implements ISpecificProduct{
 		this.height = height;
 	}
 
+	public Tree(int product_id, String name, double sellPrice, double costPrice, int stock, int height) {
+		super(product_id, name, sellPrice, costPrice, stock);
+		this.height = height;
+	}
+
 	public int getHeight() {
 		return height;
 	}
