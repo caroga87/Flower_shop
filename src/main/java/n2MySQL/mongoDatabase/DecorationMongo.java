@@ -3,6 +3,8 @@ import com.mongodb.MongoException;
 import com.mongodb.client.*;
 import n2MySQL.DAO.DecorationDAO;
 import com.mongodb.client.model.Filters;
+import n2MySQL.utils.Constants;
+import n2MySQL.utils.Utils;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
@@ -11,8 +13,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DecorationMongo implements DecorationDAO {
-    private MongoCollection<Document> productsCollection;
+    private final MongoCollection<Document> productsCollection;
+    private final MongoClient mongoClient;
 
+    public DecorationMongo(MongoCollection<Document> productsCollection){
+        this.productsCollection = productsCollection;
+        mongoClient = MongoClients.create(Constants.RunningModes.MONGOCONNECTION);
+        mongoClient.getDatabase("flowershop");
+    }
+
+    public void close(){
+        mongoClient.close();
+    }
     @Override
     public void create(Decoration object) {
         try{
@@ -21,7 +33,7 @@ public class DecorationMongo implements DecorationDAO {
                         .append("sellPrice", decoration.getSellPrice())
                         .append("costPrice", decoration.getCostPrice())
                         .append("quantity", decoration.getStock())
-                        .append("type", "decoration")
+                        .append("type", Constants.Enums.DECORATION)
                         .append("material", decoration.getMaterial());
                 productsCollection.insertOne(productDoc);
             }

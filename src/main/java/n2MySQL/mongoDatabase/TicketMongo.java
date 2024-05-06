@@ -2,10 +2,13 @@ package n2MySQL.mongoDatabase;
 
 import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import n2MySQL.DAO.TicketDAO;
 import n2MySQL.beans.Ticket;
+import n2MySQL.utils.Constants;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
@@ -15,7 +18,18 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TicketMongo implements TicketDAO {
-    private MongoCollection<Document> salesCollection;
+    private final MongoCollection<Document> salesCollection;
+    private final MongoClient mongoClient;
+
+    public TicketMongo(MongoCollection<Document> salesCollection){
+        this.salesCollection = salesCollection;
+        mongoClient = MongoClients.create(Constants.RunningModes.MONGOCONNECTION);
+        mongoClient.getDatabase("flowershop");
+    }
+
+    public void close(){
+        mongoClient.close();
+    }
 
     @Override
     public void create (Ticket ticket){

@@ -4,6 +4,7 @@ import com.mongodb.client.*;
 import n2MySQL.DAO.FlowerDAO;
 import com.mongodb.client.model.Filters;
 import n2MySQL.beans.Flower;
+import n2MySQL.utils.Constants;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
@@ -11,7 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FlowerMongo implements FlowerDAO {
-    private MongoCollection<Document> productsCollection;
+    private final MongoCollection<Document> productsCollection;
+    private final MongoClient mongoClient;
+
+    public FlowerMongo(MongoCollection<Document> productsCollection){
+        this.productsCollection = productsCollection;
+        mongoClient = MongoClients.create(Constants.RunningModes.MONGOCONNECTION);
+        mongoClient.getDatabase("flowershop");
+    }
+
+    public void close(){
+        mongoClient.close();
+    }
 
     @Override
     public void create(Flower object) {

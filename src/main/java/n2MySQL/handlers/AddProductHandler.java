@@ -1,24 +1,27 @@
 package n2MySQL.handlers;
-
-
+import com.mongodb.client.MongoClient;
+import n2MySQL.beans.Decoration;
+import n2MySQL.beans.Flower;
 import n2MySQL.beans.Product;
-import n2MySQL.handlers.AppHandler;
-import n2MySQL.handlers.StockHandler;
-import n2MySQL.handlers.TextMenuHandler;
+import n2MySQL.beans.Tree;
+import n2MySQL.mongoDatabase.DecorationMongo;
+import n2MySQL.mongoDatabase.FlowerMongo;
+import n2MySQL.mongoDatabase.TreeMongo;
 import n2MySQL.utils.Constants;
 import n2MySQL.utils.Utils;
 import n2MySQL.utils.Validations;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.MongoClients;
+import org.bson.Document;
 
 public class AddProductHandler {
 
-	private static Logger logger = LoggerFactory.getLogger(AddProductHandler.class);
+	private static final Logger logger = LoggerFactory.getLogger(AddProductHandler.class);
 
 	public static void runAddProduct() {
-
 		logger.info("AddProductHandler :: runAddProduct :: About to add a new product.");
 
 		AppHandler.printText(Constants.Headings.ADD_PRODUCT);
@@ -26,25 +29,20 @@ public class AddProductHandler {
 		String productOption = "";
 
 		do {
-
 			AppHandler.printText(TextMenuHandler.getProductMenu());
 
 			do {
-
 				AppHandler.printText(TextMenuHandler.getEnterValidOption());
 				productOption = AppHandler.readConsoleInput().trim();
-
-			} while(!Validations.isValidProductOption(productOption));
+			} while (!Validations.isValidProductOption(productOption));
 
 			processAddProductOption(productOption);
 
-		} while(!productOption.equalsIgnoreCase("0"));
-
+		} while (!productOption.equalsIgnoreCase("0"));
 	}
 
 	private static void processAddProductOption(String productOption) {
-
-		switch(productOption) {
+		switch (productOption) {
 			case "1":
 				runCreateTree();
 				break;
@@ -60,206 +58,161 @@ public class AddProductHandler {
 			default:
 				break;
 		}
-
 	}
 
 	private static void runCreateTree() {
-
-		//name
 		String treeName = "";
 		do {
-
 			AppHandler.printText(TextMenuHandler.getEnterValidProductName());
 			treeName = AppHandler.readConsoleInput().trim();
-
-		} while(!Validations.isValidProductName(treeName));
+		} while (!Validations.isValidProductName(treeName));
 
 		Product product = StockHandler.findProductByName(treeName);
 
-		if(product == null) {
-
-			//sell price
+		if (product == null) {
 			String sellPrice = "";
 			do {
-
 				AppHandler.printText(TextMenuHandler.getEnterSellPrice());
 				sellPrice = AppHandler.readConsoleInput().trim();
+			} while (!Validations.isValidPrice(sellPrice));
 
-			} while(!Validations.isValidPrice(sellPrice));
-
-			//cost price
 			String costPrice = "";
 			do {
-
 				AppHandler.printText(TextMenuHandler.getEnterCostPrice());
 				costPrice = AppHandler.readConsoleInput().trim();
+			} while (!Validations.isValidPrice(costPrice));
 
-			} while(!Validations.isValidPrice(costPrice));
-
-			//stock
 			String stock = "";
 			do {
-
 				AppHandler.printText(TextMenuHandler.getEnterValidStock());
 				stock = AppHandler.readConsoleInput().trim();
+			} while (!Validations.isNaturalNumber(stock));
 
-			} while(!Validations.isNaturalNumber(stock));
-
-			//height
 			String height = "";
 			do {
-
 				AppHandler.printText(TextMenuHandler.getEnterValidHeight());
 				height = AppHandler.readConsoleInput().trim();
+			} while (!Validations.isNaturalNumber(height));
 
-			} while(!Validations.isNaturalNumber(height));
+			Tree tree = new Tree(treeName, Double.parseDouble(sellPrice),
+					Double.parseDouble(costPrice), Integer.parseInt(stock),
+					Integer.parseInt(height));
 
-			//create product
-			StockHandler.createTree(treeName, Double.parseDouble(sellPrice), Double.parseDouble(costPrice), Integer.parseInt(stock), height);
+			TreeMongo treeMongo = new TreeMongo(getMongoCollection());
+			treeMongo.create(tree);
+			treeMongo.close();
 
 			AppHandler.printText(TextMenuHandler.getProductAddedMessage());
-
 		} else {
-
 			AppHandler.printText(TextMenuHandler.getProductAlreadyExists());
-
 		}
-
 	}
 
 	private static void runCreateFlower() {
-
-		//name
 		String flowerName = "";
 		do {
-
 			AppHandler.printText(TextMenuHandler.getEnterValidProductName());
 			flowerName = AppHandler.readConsoleInput().trim();
-
-		} while(!Validations.isValidProductName(flowerName));
+		} while (!Validations.isValidProductName(flowerName));
 
 		Product product = StockHandler.findProductByName(flowerName);
 
-		if(product == null) {
-
-			//sell price
+		if (product == null) {
 			String sellPrice = "";
 			do {
-
 				AppHandler.printText(TextMenuHandler.getEnterSellPrice());
 				sellPrice = AppHandler.readConsoleInput().trim();
+			} while (!Validations.isValidPrice(sellPrice));
 
-			} while(!Validations.isValidPrice(sellPrice));
-
-			//cost price
 			String costPrice = "";
 			do {
-
 				AppHandler.printText(TextMenuHandler.getEnterCostPrice());
 				costPrice = AppHandler.readConsoleInput().trim();
+			} while (!Validations.isValidPrice(costPrice));
 
-			} while(!Validations.isValidPrice(costPrice));
-
-			//stock
 			String stock = "";
 			do {
-
 				AppHandler.printText(TextMenuHandler.getEnterValidStock());
 				stock = AppHandler.readConsoleInput().trim();
+			} while (!Validations.isNaturalNumber(stock));
 
-			} while(!Validations.isNaturalNumber(stock));
-
-			//colour
 			String colour = "";
 			do {
-
 				AppHandler.printText(TextMenuHandler.getEnterValidColour());
 				colour = AppHandler.readConsoleInput().trim();
+			} while (!Validations.isValidColour(colour, AppHandler.getColours()));
 
-			} while(!Validations.isValidColour(colour, AppHandler.getColours()));
+			Flower flower = new Flower(flowerName, Double.parseDouble(sellPrice),
+					Double.parseDouble(costPrice), Integer.parseInt(stock),
+					colour);
 
-			//create product
-			StockHandler.createFlower(flowerName, Double.parseDouble(sellPrice), Double.parseDouble(costPrice), Integer.parseInt(stock), colour);
+			FlowerMongo flowerMongo = new FlowerMongo(getMongoCollection());
+			flowerMongo.create(flower);
+			flowerMongo.close();
 
 			AppHandler.printText(TextMenuHandler.getProductAddedMessage());
-
 		} else {
-
 			AppHandler.printText(TextMenuHandler.getProductAlreadyExists());
-
 		}
-
 	}
 
 	private static void runCreateDecoration() {
-
-		//name
 		String decorationName = "";
 		do {
-
 			AppHandler.printText(TextMenuHandler.getEnterValidProductName());
 			decorationName = AppHandler.readConsoleInput().trim();
-
-		} while(!Validations.isValidProductName(decorationName));
+		} while (!Validations.isValidProductName(decorationName));
 
 		Product product = StockHandler.findProductByName(decorationName);
 
-		if(product == null) {
-
-			//sell price
+		if (product == null) {
 			String sellPrice = "";
 			do {
-
 				AppHandler.printText(TextMenuHandler.getEnterSellPrice());
 				sellPrice = AppHandler.readConsoleInput().trim();
+			} while (!Validations.isValidPrice(sellPrice));
 
-			} while(!Validations.isValidPrice(sellPrice));
-
-			//cost price
 			String costPrice = "";
 			do {
-
 				AppHandler.printText(TextMenuHandler.getEnterCostPrice());
 				costPrice = AppHandler.readConsoleInput().trim();
+			} while (!Validations.isValidPrice(costPrice));
 
-			} while(!Validations.isValidPrice(costPrice));
-
-			//stock
 			String stock = "";
 			do {
-
 				AppHandler.printText(TextMenuHandler.getEnterValidStock());
 				stock = AppHandler.readConsoleInput().trim();
+			} while (!Validations.isNaturalNumber(stock));
 
-			} while(!Validations.isNaturalNumber(stock));
-
-			//material
 			String material = "";
 			do {
-
 				AppHandler.printText(TextMenuHandler.getEnterValidMaterial());
 				material = AppHandler.readConsoleInput().trim();
+			} while (!Validations.isValidMaterialOption(material));
 
-			} while(!Validations.isValidMaterialOption(material));
+			Decoration decoration = new Decoration(decorationName, Double.parseDouble(sellPrice),
+					Double.parseDouble(costPrice), Integer.parseInt(stock),
+					Utils.getMaterial(material));
 
-			//create product
-			StockHandler.createDecoration(decorationName, Double.parseDouble(sellPrice), Double.parseDouble(costPrice), Integer.parseInt(stock), Utils.getMaterial(material));
+			DecorationMongo decorationMongo = new DecorationMongo(getMongoCollection());
+			decorationMongo.create(decoration);
+			decorationMongo.close();
 
 			AppHandler.printText(TextMenuHandler.getProductAddedMessage());
-
 		} else {
-
 			AppHandler.printText(TextMenuHandler.getProductAlreadyExists());
-
 		}
-
 	}
+
 
 	private static void runExitProductOption() {
-
 		logger.info("AddProductHandler :: runExitProductOption :: Exiting the add product menu.");
 		AppHandler.printText(TextMenuHandler.getExitCurrentMenuMessage());
-
 	}
-		
+
+	private static MongoCollection<Document> getMongoCollection() {
+		MongoClient mongoClient = MongoClients.create(Constants.RunningModes.MONGOCONNECTION);
+		MongoDatabase database = mongoClient.getDatabase("flowershop");
+		return database.getCollection("products");
+	}
 }

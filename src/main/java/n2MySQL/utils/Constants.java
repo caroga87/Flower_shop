@@ -6,6 +6,13 @@ public class Constants {
 		public static final String PATH_SIMPLE = "src/main/resources/";
 		public static final String COLOURS = "colours.txt";
 	}
+	public class Enums{
+		public static final String FLOWER = "flower";
+		public static final String TREE = "tree";
+		public static final String DECORATION = "decoration";
+		public static final String PLASTIC = "plastic";
+		public static final String WOOD = "wood";
+	}
 
 	public class Messages {
 		public static final String READING_FROM = "Reading from file ";
@@ -86,6 +93,7 @@ public class Constants {
 	public class RunningModes {
 		public static final String MY_SQL = "MySQL";
 		public static final String MONGODB = "MongoDB";
+		public static final String MONGOCONNECTION = "mongodb://localhost:27017";
 	}
 	
 }
