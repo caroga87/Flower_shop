@@ -1,24 +1,17 @@
 package n2MySQL.beans;
 
+
 public abstract class Product  {
 	
-	private int product_id;
+	private int productId;
 	private String name;
 	private double sellPrice;
 	private double costPrice;
 	private int stock;
 	
-
+	
 	public Product(String name, double sellPrice, double costPrice, int stock) {
 		super();
-		this.name = name;
-		this.sellPrice = sellPrice;
-		this.costPrice = costPrice;
-		this.stock = stock;
-	}
-
-	public Product(int product_id, String name, double sellPrice, double costPrice, int stock) {
-		this.product_id = product_id;
 		this.name = name;
 		this.sellPrice = sellPrice;
 		this.costPrice = costPrice;
@@ -49,8 +42,8 @@ public abstract class Product  {
 		this.costPrice = costPrice;
 	}
 
-	public int getProduct_id() {
-		return product_id;
+	public int getProductId() {
+		return productId;
 	}
 
 	public int getStock() {
@@ -63,7 +56,7 @@ public abstract class Product  {
 	
 	@Override
 	public String toString() {
-		return "Product [productId=" + product_id
+		return "Product [productId=" + productId
 							+ ", name=" + name 
 							+ ", sellPrice=" + sellPrice
 							+ ", costPrice=" + costPrice 
@@ -75,7 +68,7 @@ public abstract class Product  {
 		
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append(product_id).append(" >>> ")
+		sb.append(productId).append(" >>> ")
 			.append(stock).append(" x ")
 			.append(name).append(", ")
 			.append(costPrice).append(" eur./unit, ")

@@ -5,9 +5,7 @@ public class FlowerShop{
 	private String name;
 	private double totalEarnings;
 	private double totalStockValue;
-	public FlowerShop() {
-		super();
-	}
+	
 	
 	public FlowerShop(String name) {
 		super();

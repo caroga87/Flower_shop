@@ -3,11 +3,10 @@ package n2MySQL.handlers;
 import n2MySQL.beans.Ticket;
 import n2MySQL.handlers.AppHandler;
 import n2MySQL.handlers.TextMenuHandler;
-import n2MySQL.singletons.FlowerShopSingleton;
-import n2MySQL.singletons.SalesSingleton;
-import n2MySQL.utis.Constants;
-import n2MySQL.utis.Utils;
-import n2MySQL.utis.Validations;
+import n2MySQL.utils.Constants;
+import n2MySQL.utils.Utils;
+import n2MySQL.utils.Validations;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,11 +43,11 @@ public class TicketHandler {
 
 		sb.append(Constants.Headings.SALES);
 
-		for(Ticket ticket : SalesSingleton.getSalesSingleton().getSales()) {
-			if(Utils.parseDateFromString(ticket.getCreationDateTime()).after(Utils.parseDateFromString(sinceDate))) {
-				sb.append(ticket.toString());
-			}
-		}
+//		for(Ticket ticket : SalesSingleton.getSalesSingleton().getSales()) {
+//			if(Utils.parseDateFromString(ticket.getCreationDateTime()).after(Utils.parseDateFromString(sinceDate))) {
+//				sb.append(ticket.toString());
+//			}
+//		}
 
 		sb.append("\n");
 
@@ -58,8 +57,8 @@ public class TicketHandler {
 
 	public static void runViewEarnings() {
 
-		logger.info("ViewEarningsHandler :: runViewEarnings :: About to display the total earnings.");
-		AppHandler.printText(getEarnings());
+//		logger.info("ViewEarningsHandler :: runViewEarnings :: About to display the total earnings.");
+//		AppHandler.printText(getEarnings());
 
 	}
 
@@ -69,11 +68,11 @@ public class TicketHandler {
 
 		sb.append(Constants.Headings.EARNINGS);
 
-		for(Ticket ticket : SalesSingleton.getSalesSingleton().getSales()) {
-			sb.append("Ticket Id: ").append(ticket.getTicketId()).append(", ").append(ticket.getTotalAmount()).append(" eur.\n");
-		}
-
-		sb.append("\nTotal: ").append(FlowerShopSingleton.getFlowerShopSingleton().getFlowerShop().getTotalEarnings()).append(" eur.\n");
+//		for(Ticket ticket : SalesSingleton.getSalesSingleton().getSales()) {
+//			sb.append("Ticket Id: ").append(ticket.getTicketId()).append(", ").append(ticket.getTotalAmount()).append(" eur.\n");
+//		}
+//
+//		sb.append("\nTotal: ").append(FlowerShopSingleton.getFlowerShopSingleton().getFlowerShop().getTotalEarnings()).append(" eur.\n");
 
 		return sb.toString();
 
@@ -81,8 +80,8 @@ public class TicketHandler {
 
 	public static void recalculateTotalEarnings(double totalTicketAmount) {
 
-		double newTotal = FlowerShopSingleton.getFlowerShopSingleton().getFlowerShop().getTotalEarnings() + totalTicketAmount;
-		FlowerShopSingleton.getFlowerShopSingleton().getFlowerShop().setTotalEarnings(newTotal);
+//		double newTotal = FlowerShopSingleton.getFlowerShopSingleton().getFlowerShop().getTotalEarnings() + totalTicketAmount;
+//		FlowerShopSingleton.getFlowerShopSingleton().getFlowerShop().setTotalEarnings(newTotal);
 
 	}
 }
