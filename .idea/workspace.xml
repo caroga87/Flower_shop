@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55e38529-ac3d-400c-9400-b59071d9d90b" name="Changes" comment="Queries SQL, modificacions classes, DAO, ticket...">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/DecorationSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/DecorationSQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/FlowerSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/FlowerSQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/MySQLQueries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/MySQLQueries.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/TicketSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/TicketSQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/TreeSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/TreeSQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Decoration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Decoration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Flower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Flower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Ticket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Tree.java" afterDir="false" />
-    </list>
+    <list default="true" id="55e38529-ac3d-400c-9400-b59071d9d90b" name="Changes" comment="Queries SQL, modificacions classes, DAO, ticket..." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,7 +23,7 @@
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Flowershop" type="f1a62948:ProjectNode" />
+                <item name="Flower_shop" type="f1a62948:ProjectNode" />
               </path>
             </expand>
             <select />
@@ -55,7 +43,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="develope" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -71,21 +59,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;branch__Carla&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/rocac/IdeaProjects/Flowershop/src/main/java/n2MySQL/handlers&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2908046&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "#15 on branch__Carla",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/rocac/IdeaProjects/Flowershop/src/main/java/n2MySQL/handlers",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2908046",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\rocac\IdeaProjects\Flowershop\src\main\java\n2MySQL\handlers" />
@@ -225,6 +213,29 @@
     </task>
     <option name="localTasksCounter" value="15" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/develope" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
