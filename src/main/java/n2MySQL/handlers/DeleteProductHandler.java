@@ -24,7 +24,7 @@ public class DeleteProductHandler {
 
 		} while(!Validations.isNaturalNumber(productId));
 //		Query
-//		boolean deleted = StockHandler.removeProductByProductId(Integer.parseInt(productId));
+//		boolean deleted = StockHandler.removeProductByProductName(Integer.parseInt(productId));
 //
 //		if(deleted) {
 //			AppHandler.printText(TextMenuHandler.getDeletedMessage());

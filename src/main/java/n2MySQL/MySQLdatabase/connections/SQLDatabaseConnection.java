@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 public class SQLDatabaseConnection implements IConnection{
 	
 	private static Logger logger = LoggerFactory.getLogger(SQLDatabaseConnection.class);
-	private Connection connectionSQL;
+	private static Connection connectionSQL;
 	
 	private  String url;
 	private  String user;
@@ -20,7 +20,7 @@ public class SQLDatabaseConnection implements IConnection{
 		super();
 		this.url = "jdbc:mysql://localhost:3306/flower_shop";
 		this.user = "root";
-		this.password = ""; // Escribir aquí vuestra contraseña.
+		this.password = "ContrasenyaMySQL"; // Escribir aquí vuestra contraseña.
 	}
 
 

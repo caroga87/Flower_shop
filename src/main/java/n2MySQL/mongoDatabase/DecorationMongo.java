@@ -50,7 +50,7 @@ public class DecorationMongo implements DecorationDAO {
     @Override
     public void delete(Decoration object) {
         try{
-            Bson filter = Filters.eq("_id", object.productId());
+            Bson filter = Filters.eq("_id", object.getProductId());
             productsCollection.deleteOne(filter);
         }catch(MongoException e){
             e.printStackTrace();

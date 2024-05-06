@@ -1,6 +1,7 @@
 package n2MySQL.MySQLdatabase.queries;
 
 import n2MySQL.DAO.DecorationDAO;
+import n2MySQL.MySQLdatabase.connections.SQLDatabaseConnection;
 import n2MySQL.beans.Decoration;
 import n2MySQL.handlers.AppHandler;
 import n2MySQL.utils.Constants;
@@ -10,16 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DecorationSQL implements DecorationDAO {
+    private final SQLDatabaseConnection connectionManager;
 
-    private  final Connection connection;
-    public DecorationSQL (Connection connection){
-        this.connection= connection;
+    public DecorationSQL(SQLDatabaseConnection connectionManager) {
+        this.connectionManager = connectionManager;
     }
     @Override
     public void create(Decoration decoration) {
-        try {
+        try (Connection connection = connectionManager.openConnection();
             PreparedStatement productst = connection.prepareStatement(MySQLQueries.INSERT_PRODUCT, Statement.RETURN_GENERATED_KEYS);
-            PreparedStatement decorationst = connection.prepareStatement((MySQLQueries.INSERT_DECORATION));
+            PreparedStatement decorationst = connection.prepareStatement((MySQLQueries.INSERT_DECORATION))){
             productst.setString(1, decoration.getName());
             productst.setDouble(2, decoration.getSellPrice());
             productst.setDouble(3, decoration.getCostPrice());
@@ -45,8 +46,8 @@ public class DecorationSQL implements DecorationDAO {
 
     @Override
     public void update(Decoration decoration) {
-        try {
-            PreparedStatement flowerst = connection.prepareStatement(MySQLQueries.UPDATE_DECORATION);
+        try (Connection connection = connectionManager.openConnection();
+            PreparedStatement flowerst = connection.prepareStatement(MySQLQueries.UPDATE_DECORATION)){
             flowerst.setString(1, decoration.getName());
             flowerst.setString(2, decoration.getMaterial());
             flowerst.setDouble(3, decoration.getSellPrice());
@@ -62,9 +63,9 @@ public class DecorationSQL implements DecorationDAO {
 
     @Override
     public void delete(Decoration decoration) {
-        try {
+        try (Connection connection = connectionManager.openConnection();
             PreparedStatement decorationst = connection.prepareStatement(MySQLQueries.DELETE_DECORATION);
-            PreparedStatement productst = connection.prepareStatement(MySQLQueries.DELETE_PRODUCT);
+            PreparedStatement productst = connection.prepareStatement(MySQLQueries.DELETE_PRODUCT)){
             decorationst.setInt(1, decoration.getProductId());
             decorationst.executeUpdate();
 
@@ -83,8 +84,8 @@ public class DecorationSQL implements DecorationDAO {
     @Override
     public List<Decoration> readAll() {
         ArrayList<Decoration> allDecorations = new ArrayList<>();
-        try{
-            PreparedStatement st = connection.prepareStatement(MySQLQueries.GET_ALL_DECORATIONS);
+        try(Connection connection = connectionManager.openConnection();
+            PreparedStatement st = connection.prepareStatement(MySQLQueries.GET_ALL_DECORATIONS)){
             ResultSet resultSet = st.executeQuery();
             while (resultSet.next()) {
                 int productId = resultSet.getInt("product_id");
@@ -109,8 +110,8 @@ public class DecorationSQL implements DecorationDAO {
     @Override
     public Decoration getOne(String id) {
         Decoration decoration = null;
-        try {
-            PreparedStatement st = connection.prepareStatement(MySQLQueries.GET_DECORATION);
+        try (Connection connection = connectionManager.openConnection();
+            PreparedStatement st = connection.prepareStatement(MySQLQueries.GET_DECORATION)){
             st.setString(1, id);
             ResultSet resultSet = st.executeQuery(); {
                 if (resultSet.next()) {
@@ -131,10 +132,5 @@ public class DecorationSQL implements DecorationDAO {
         }
         return decoration;
     }
-	@Override
-	public List<Decoration> read() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-    
+
 }

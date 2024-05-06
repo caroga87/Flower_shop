@@ -1,7 +1,7 @@
-package n2MySQL.MySQLdatabase;
+package n2MySQL.MySQLdatabase.queries;
 
 import n2MySQL.DAO.TreeDAO;
-import n2MySQL.MySQLdatabase.queries.MySQLQueries;
+import n2MySQL.MySQLdatabase.connections.SQLDatabaseConnection;
 import n2MySQL.beans.Tree;
 import n2MySQL.handlers.AppHandler;
 import n2MySQL.utils.Constants;
@@ -11,18 +11,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TreeSQL implements TreeDAO {
+    private final SQLDatabaseConnection connectionManager;
 
-    private final Connection connection;
-
-    public TreeSQL(Connection connection) {
-        this.connection = connection;
+    public TreeSQL(SQLDatabaseConnection connectionManager) {
+        this.connectionManager = connectionManager;
     }
 
     @Override
     public void create(Tree tree) {
-        try {
+
+        try (Connection connection = connectionManager.openConnection();
             PreparedStatement productst = connection.prepareStatement(MySQLQueries.INSERT_PRODUCT, Statement.RETURN_GENERATED_KEYS);
-            PreparedStatement treest = connection.prepareStatement((MySQLQueries.INSERT_TREE));
+            PreparedStatement treest = connection.prepareStatement((MySQLQueries.INSERT_TREE))){;
             productst.setString(1, tree.getName());
             productst.setDouble(2, tree.getSellPrice());
             productst.setDouble(3, tree.getCostPrice());
@@ -39,7 +39,6 @@ public class TreeSQL implements TreeDAO {
                     treest.executeUpdate();
 
                 }
-
             }
             AppHandler.printText(Constants.Menus.PRODUCT_ADDED);
         } catch (SQLException e) {
@@ -49,8 +48,8 @@ public class TreeSQL implements TreeDAO {
 
     @Override
     public void update(Tree tree) {
-        try {
-            PreparedStatement treest = connection.prepareStatement(MySQLQueries.UPDATE_TREE);
+        try (Connection connection = connectionManager.openConnection();
+            PreparedStatement treest = connection.prepareStatement(MySQLQueries.UPDATE_TREE)){
             treest.setString(1,tree.getName());
             treest.setInt(2, tree.getHeight());
             treest.setDouble(3, tree.getSellPrice());
@@ -65,9 +64,9 @@ public class TreeSQL implements TreeDAO {
 
     @Override
     public void delete(Tree tree) {
-        try {
+        try (Connection connection = connectionManager.openConnection();
             PreparedStatement treest = connection.prepareStatement(MySQLQueries.DELETE_TREE);
-            PreparedStatement productst = connection.prepareStatement(MySQLQueries.DELETE_PRODUCT);
+            PreparedStatement productst = connection.prepareStatement(MySQLQueries.DELETE_PRODUCT)){
             treest.setInt(1, tree.getProductId());
             treest.executeUpdate();
 
@@ -87,8 +86,8 @@ public class TreeSQL implements TreeDAO {
     @Override
     public List<Tree> readAll() {
         ArrayList<Tree> allTrees = new ArrayList<>();
-        try{
-            PreparedStatement st = connection.prepareStatement(MySQLQueries.GET_ALL_TREES);
+        try(Connection connection = connectionManager.openConnection();
+            PreparedStatement st = connection.prepareStatement(MySQLQueries.GET_ALL_TREES)){
             ResultSet resultSet = st.executeQuery();
             while (resultSet.next()) {
                 int productId = resultSet.getInt("product_id");
@@ -113,8 +112,8 @@ public class TreeSQL implements TreeDAO {
     @Override
     public Tree getOne(String id) {
         Tree tree = null;
-        try {
-            PreparedStatement st = connection.prepareStatement(MySQLQueries.GET_TREE);
+        try (Connection connection = connectionManager.openConnection();
+            PreparedStatement st = connection.prepareStatement(MySQLQueries.GET_TREE)){
             st.setString(1, id);
             ResultSet resultSet = st.executeQuery(); {
                 if (resultSet.next()) {

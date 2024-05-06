@@ -4,7 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55e38529-ac3d-400c-9400-b59071d9d90b" name="Changes" comment="Merge remote-tracking branch 'origin/branch_Carla' into branch_Carla&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+    <list default="true" id="55e38529-ac3d-400c-9400-b59071d9d90b" name="Changes" comment="Merge remote-tracking branch 'origin/branch_Carla' into branch_Carla&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/TicketDataSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/TicketDataSQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/TicketSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/TicketSQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/TreeSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/TreeSQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/connections/SQLDatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/connections/SQLDatabaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/DecorationSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/DecorationSQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/FlowerSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/FlowerSQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/DecorationFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/DecorationFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/FlowerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/FlowerFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/ProductAbstractFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/ProductAbstractFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/TreeFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/TreeFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/AppHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/AppHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/CreateTicketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/CreateTicketHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/DeleteProductHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/DeleteProductHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/StockHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/StockHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/DecorationMongo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/DecorationMongo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/FlowerMongo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/FlowerMongo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/TicketMongo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/TicketMongo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/TreeMongo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/TreeMongo.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,7 +42,7 @@
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Flower_shop" type="f1a62948:ProjectNode" />
+                <item name="Flowershop" type="f1a62948:ProjectNode" />
               </path>
             </expand>
             <select />
@@ -75,13 +94,14 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Gradle.Build Flower_shop.executor": "Run",
+    "Gradle.Flowershop [:Main.main()].executor": "Run",
     "Kotlin script (Beta).build.gradle.kts.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "develope",
+    "git-widget-placeholder": "branch__Carla",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/rocac/IdeaProjects/Flowershop/src/main/java/n2MySQL/handlers",
+    "last_opened_file_path": "C:/Users/rocac/IdeaProjects/Flowershop/lib/mysql-connector-j-8.3.0.jar",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2908046"
@@ -195,6 +215,17 @@
     </task>
     <option name="localTasksCounter" value="12" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

@@ -1,4 +1,4 @@
-package n2MySQL.MySQLdatabase;
+package n2MySQL.MySQLdatabase.queries;
 
 import n2MySQL.DAO.TicketDAO;
 import n2MySQL.MySQLdatabase.queries.MySQLQueries;

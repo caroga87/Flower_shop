@@ -1,10 +1,12 @@
 package n2MySQL.mongoDatabase;
 
 import com.mongodb.MongoException;
+import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import n2MySQL.DAO.TicketDAO;
+import n2MySQL.beans.Product;
 import n2MySQL.beans.Ticket;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -60,7 +62,7 @@ public class TicketMongo implements TicketDAO {
             FindIterable<Document> findIterable = salesCollection.find();
             for (Document document : findIterable) {
                 Ticket ticket = new Ticket();
-                allTickets.add(documen);
+                allTickets.add(ticket);
             }
         }catch(MongoException e){
             e.printStackTrace();

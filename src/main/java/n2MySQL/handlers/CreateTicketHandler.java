@@ -103,7 +103,7 @@ public class CreateTicketHandler {
 				//handle stock + sales
 				StockHandler.deductStock(product, Integer.parseInt(quantity));
 				recalculateTicketTotalAmountOnProductAdd(newTicket, Integer.parseInt(quantity), product.getSellPrice());
-				addProductToTicket(newTicket, product.getName(), Integer.parseInt(quantity), product.productId());
+				addProductToTicket(newTicket, product.getName(), Integer.parseInt(quantity), product.getProductId());
 
 				AppHandler.printText(TextMenuHandler.getProductAddedMessage());
 
@@ -139,7 +139,7 @@ public class CreateTicketHandler {
 			} while(!Validations.isNaturalNumber(productId));
 
 			//checks if product exists in catalogue. Query.
-			//Product product = StockHandler.findProductByProductId(Integer.parseInt(productId));
+			Product product = StockHandler.findProductByProductId(Integer.parseInt(productId));
 
 			//product exists in catalogue
 			if(product != null) {
