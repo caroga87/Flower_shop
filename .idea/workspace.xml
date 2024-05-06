@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55e38529-ac3d-400c-9400-b59071d9d90b" name="Changes" comment="Queries SQL, modificacions classes, DAO, ticket..." />
+    <list default="true" id="55e38529-ac3d-400c-9400-b59071d9d90b" name="Changes" comment="Ultimes modificacions + codi SQL">
+      <change afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/DecorationMongo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/FlowerMongo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/MongoDatabaseConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/TicketMongo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/TreeMongo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_4_2024_17_44__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_4_2024_17_44__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,11 +52,23 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develope" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "gerenatal"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/caroga87/Flower_shop",
+    "accountId": "0729b1f6-2cf5-4eb4-9df8-7ddec9c68199"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -62,16 +83,17 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Gradle.Build Flower_shop.executor": "Run",
+    "Kotlin script (Beta).build.gradle.kts.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "#15 on branch__Carla",
+    "git-widget-placeholder": "branch__gere",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/rocac/IdeaProjects/Flowershop/src/main/java/n2MySQL/handlers",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2908046",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "project.structure.side.proportion": "0.2908046"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -82,13 +104,6 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="n2exercici2.database" />
     </key>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -179,63 +194,8 @@
       <option name="project" value="LOCAL" />
       <updated>1714154074449</updated>
     </task>
-    <task id="LOCAL-00011" summary="Nou codi MySQL">
-      <option name="closed" value="true" />
-      <created>1714379234576</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1714379234576</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Queries SQL, modificacions classes, DAO, ticket...">
-      <option name="closed" value="true" />
-      <created>1714477756240</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1714477756240</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Queries SQL, modificacions classes, DAO, ticket...">
-      <option name="closed" value="true" />
-      <created>1714478017812</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1714478017812</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Queries SQL, modificacions classes, DAO, ticket...">
-      <option name="closed" value="true" />
-      <created>1714650746665</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1714650746665</updated>
-    </task>
-    <option name="localTasksCounter" value="15" />
+    <option name="localTasksCounter" value="11" />
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/develope" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -247,9 +207,6 @@
     <MESSAGE value="Queries + DAO + MySQL Connection" />
     <MESSAGE value="Afegit packages" />
     <MESSAGE value="Ultimes modificacions + codi SQL" />
-    <MESSAGE value="Nou codi MySQL" />
-    <MESSAGE value="Afegir codi SQL" />
-    <MESSAGE value="Queries SQL, modificacions classes, DAO, ticket..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Queries SQL, modificacions classes, DAO, ticket..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Ultimes modificacions + codi SQL" />
   </component>
 </project>
