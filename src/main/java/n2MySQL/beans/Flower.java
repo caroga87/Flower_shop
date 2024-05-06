@@ -38,13 +38,13 @@ public class Flower extends Product implements ISpecificProduct {
 
 	@Override
 	public String toCatalogue() {
-		
+
 		StringBuilder sb = new StringBuilder();
-		
-		sb.append(super.getProduct_id()).append(" >>> ").append(super.getName()).append(", ").append(super.getSellPrice()).append(" eur., ").append(colour);
-		
+
+		sb.append(super.getProductId()).append(" >>> ").append(super.getName()).append(", ").append(super.getSellPrice()).append(" eur., ").append(colour);
+
 		return sb.toString();
-		
+
 	}
 
 }

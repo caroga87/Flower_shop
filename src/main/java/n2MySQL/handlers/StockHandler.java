@@ -9,8 +9,9 @@ import n2MySQL.factories.FlowerFactory;
 import n2MySQL.factories.TreeFactory;
 import n2MySQL.singletons.FlowerShopSingleton;
 import n2MySQL.singletons.StockSingleton;
-import n2MySQL.utis.Constants;
-import n2MySQL.utis.Validations;
+import n2MySQL.utils.Constants;
+import n2MySQL.utils.Validations;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,7 +40,7 @@ public class StockHandler {
 
 		FlowerFactory factory = new FlowerFactory();
 		Flower flower = (Flower) factory.createSpecificProduct(name, sellPrice, costPrice, stock, colour);
-
+		;
 		StockSingleton.getStockSingleton().getStock().add(flower);
 
 		recalculateTotalStockValueOnAdd(flower.getStock(), flower.getCostPrice());
@@ -177,7 +178,7 @@ public class StockHandler {
 		Product product = null;
 
 		for(Product prod : StockSingleton.getStockSingleton().getStock()) {
-			if(prod.getProduct_id() == productId) {
+			if(prod.productId() == productId) {
 				product = prod;
 				break;
 			}
@@ -192,7 +193,7 @@ public class StockHandler {
 		boolean deleted = false;
 
 		for(Product prod : StockSingleton.getStockSingleton().getStock()) {
-			if(prod.getProduct_id() == productId) {
+			if(prod.productId() == productId) {
 				recalculateTotalStockValueOnDelete(prod.getStock(), prod.getCostPrice());
 				StockSingleton.getStockSingleton().getStock().remove(prod);
 				deleted = true;

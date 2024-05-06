@@ -38,11 +38,11 @@ public class Decoration extends Product implements ISpecificProduct {
 	public String toCatalogue() {
 
 		StringBuilder sb = new StringBuilder();
-		
-		sb.append(super.getProduct_id()).append(" >>> ").append(super.getName()).append(", ").append(super.getSellPrice()).append(" eur., ").append(material);
-		
+
+		sb.append(super.getProductId()).append(" >>> ").append(super.getName()).append(", ").append(super.getSellPrice()).append(" eur., ").append(material);
+
 		return sb.toString();
-		
+
 	}
 
 

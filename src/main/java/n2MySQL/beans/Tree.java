@@ -38,31 +38,31 @@ public class Tree extends Product implements ISpecificProduct{
 
 	@Override
 	public String toCatalogue() {
-		
+
 		StringBuilder sb = new StringBuilder();
-		
-		sb.append(super.getProduct_id()).append(" >>> ")
-			.append(super.getName()).append(", ")
-			.append(super.getSellPrice()).append(" eur./unit, ")
-			.append(height).append("cm");
-		
+
+		sb.append(super.getProductId()).append(" >>> ")
+				.append(super.getName()).append(", ")
+				.append(super.getSellPrice()).append(" eur./unit, ")
+				.append(height).append("cm");
+
 		return sb.toString();
-		
+
 	}
 
 	@Override
 	public String toStock() {
 
 		StringBuilder sb = new StringBuilder();
-		
-		sb.append(super.getProduct_id()).append(" >>> ")
-			.append(super.getStock()).append(" x ")
-			.append(super.getName()).append(", ")
-			.append(super.getCostPrice()).append(" eur./unit, ")
-			.append(super.getCostPrice() * super.getStock()).append(" eur.");
-		
+
+		sb.append(super.getProductId()).append(" >>> ")
+				.append(super.getStock()).append(" x ")
+				.append(super.getName()).append(", ")
+				.append(super.getCostPrice()).append(" eur./unit, ")
+				.append(super.getCostPrice() * super.getStock()).append(" eur.");
+
 		return sb.toString();
-		
+
 	}
 
 }

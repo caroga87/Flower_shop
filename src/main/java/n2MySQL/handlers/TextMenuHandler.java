@@ -2,13 +2,17 @@ package n2MySQL.handlers;
 
 import n2MySQL.enums.MaterialsEnum;
 import n2MySQL.enums.ProductTypeEnum;
-import n2MySQL.utis.Constants;
+import n2MySQL.utils.Constants;
 
 import java.util.Arrays;
 import java.util.List;
 
 
 public class TextMenuHandler {
+	
+	public static String getEnterValidConnectionName() {
+		return Constants.Menus.UP_RUNNING_MODE;
+	}
 
 	public static String getCreateFlowerShopMenu() {
 		return Constants.Menus.CREATE_FS_MENU;

@@ -1,0 +1,103 @@
+Index: build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id(\"java\")\r\n}\r\n\r\ngroup = \"org.example\"\r\nversion = \"1.0-SNAPSHOT\"\r\n\r\nrepositories {\r\n    mavenCentral()\r\n}\r\n\r\ndependencies {\r\n    testImplementation(platform(\"org.junit:junit-bom:5.9.1\"))\r\n    testImplementation(\"org.junit.jupiter:junit-jupiter\")\r\n    implementation (\"com.fasterxml.jackson.core:jackson-core:2.16.1\")\r\n    implementation (\"com.fasterxml.jackson.core:jackson-annotations:2.16.1\")\r\n    implementation (\"com.fasterxml.jackson.core:jackson-databind:2.16.1\")\r\n    implementation(\"org.slf4j:slf4j-api:2.0.12\")\r\n    implementation (\"org.apache.logging.log4j:log4j-core:2.23.1\")\r\n    implementation(\"org.mongodb:mongodb-driver-sync:5.0.1\")\r\n    \r\n}\r\n\r\ntasks.test {\r\n    useJUnitPlatform()\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build.gradle.kts b/build.gradle.kts
+--- a/build.gradle.kts	
++++ b/build.gradle.kts	
+@@ -18,6 +18,8 @@
+     implementation("org.slf4j:slf4j-api:2.0.12")
+     implementation ("org.apache.logging.log4j:log4j-core:2.23.1")
+     implementation("org.mongodb:mongodb-driver-sync:5.0.1")
++    implementation ("org.slf4j:slf4j-api:1.7.32")
++    implementation ("ch.qos.logback:logback-classic:1.4.12")
+     
+ }
+ 
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"55e38529-ac3d-400c-9400-b59071d9d90b\" name=\"Changes\" comment=\"Afegir codi SQL\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/DecorationMongo.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/FlowerMongo.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/MongoDatabaseConnection.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/TicketMongo.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/TreeMongo.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_4_2024_17_44__Changes_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_4_2024_17_44__Changes_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/build.gradle.kts\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/build.gradle.kts\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/n2MySQL/beans/Decoration.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/n2MySQL/beans/Decoration.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/n2MySQL/beans/Ticket.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/n2MySQL/beans/Ticket.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"ExternalProjectsManager\">\r\n    <system id=\"GRADLE\">\r\n      <state>\r\n        <projects_view>\r\n          <tree_state>\r\n            <expand>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"Flower_shop\" type=\"f1a62948:ProjectNode\" />\r\n              </path>\r\n            </expand>\r\n            <select />\r\n          </tree_state>\r\n        </projects_view>\r\n      </state>\r\n    </system>\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 0\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2ewrPp5bg73uBUZ00FTtGIX16Yi\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;branch__Carla&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/rocac/IdeaProjects/Flowershop/src/main/java/n2MySQL/handlers&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.2908046&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\rocac\\IdeaProjects\\Flowershop\\src\\main\\java\\n2MySQL\\handlers\" />\r\n      <recent name=\"C:\\Users\\rocac\\IdeaProjects\\Flowershop\\src\\main\\java\\n2exercici2\" />\r\n    </key>\r\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\r\n      <recent name=\"n2exercici2.database\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"55e38529-ac3d-400c-9400-b59071d9d90b\" name=\"Changes\" comment=\"\" />\r\n      <created>1712826464259</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1712826464259</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"First commit carla\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1712827205427</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1712827205427</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Creació ticket, persistencia i altres\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1713718052305</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1713718052305</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Versió conexió SQL\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1713786801895</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1713786801895</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Connexio + DAO\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1713959563580</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1713959563580</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"DAO product\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1713959797240</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1713959797240</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Queries + DAO + MySQL Connection\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1714000840473</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1714000840473</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Afegit packages\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1714060662963</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1714060662963</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"Afegit packages\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1714153639282</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1714153639282</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Ultimes modificacions + codi SQL\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1714153957685</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1714153957685</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"Ultimes modificacions + codi SQL\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1714154074449</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1714154074449</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"Nou codi MySQL\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1714379234576</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1714379234576</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"12\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n    <MESSAGE value=\"First commit carla\" />\r\n    <MESSAGE value=\"Creació ticket, persistencia i altres\" />\r\n    <MESSAGE value=\"Versió conexió SQL\" />\r\n    <MESSAGE value=\"Connexio + DAO\" />\r\n    <MESSAGE value=\"DAO product\" />\r\n    <MESSAGE value=\"Queries + DAO + MySQL Connection\" />\r\n    <MESSAGE value=\"Afegit packages\" />\r\n    <MESSAGE value=\"Ultimes modificacions + codi SQL\" />\r\n    <MESSAGE value=\"Nou codi MySQL\" />\r\n    <MESSAGE value=\"Afegir codi SQL\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Afegir codi SQL\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -4,17 +4,13 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="55e38529-ac3d-400c-9400-b59071d9d90b" name="Changes" comment="Afegir codi SQL">
+-      <change afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/DecorationMongo.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/FlowerMongo.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/MongoDatabaseConnection.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/TicketMongo.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/TreeMongo.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_4_2024_17_44__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_4_2024_17_44__Changes_.xml" afterDir="false" />
++    <list default="true" id="55e38529-ac3d-400c-9400-b59071d9d90b" name="Changes" comment="First Mongo DB files added">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Decoration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Decoration.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Ticket.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/DecorationMongo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/DecorationMongo.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/FlowerMongo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/FlowerMongo.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/TicketMongo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/TicketMongo.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/TreeMongo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/TreeMongo.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -198,8 +194,39 @@
+       <option name="project" value="LOCAL" />
+       <updated>1714379234576</updated>
+     </task>
+-    <option name="localTasksCounter" value="12" />
++    <task id="LOCAL-00012" summary="First Mongo DB files added">
++      <option name="closed" value="true" />
++      <created>1714677261603</created>
++      <option name="number" value="00012" />
++      <option name="presentableId" value="LOCAL-00012" />
++      <option name="project" value="LOCAL" />
++      <updated>1714677261604</updated>
++    </task>
++    <option name="localTasksCounter" value="13" />
+     <servers />
++  </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State>
++              <option name="FILTERS">
++                <map>
++                  <entry key="branch">
++                    <value>
++                      <list>
++                        <option value="origin/branch_Carla" />
++                      </list>
++                    </value>
++                  </entry>
++                </map>
++              </option>
++            </State>
++          </value>
++        </entry>
++      </map>
++    </option>
+   </component>
+   <component name="VcsManagerConfiguration">
+     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+@@ -213,6 +240,7 @@
+     <MESSAGE value="Ultimes modificacions + codi SQL" />
+     <MESSAGE value="Nou codi MySQL" />
+     <MESSAGE value="Afegir codi SQL" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Afegir codi SQL" />
++    <MESSAGE value="First Mongo DB files added" />
++    <option name="LAST_COMMIT_MESSAGE" value="First Mongo DB files added" />
+   </component>
+ </project>
+\ No newline at end of file

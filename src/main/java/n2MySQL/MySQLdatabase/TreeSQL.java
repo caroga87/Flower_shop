@@ -1,9 +1,10 @@
 package n2MySQL.MySQLdatabase;
 
 import n2MySQL.DAO.TreeDAO;
+import n2MySQL.MySQLdatabase.queries.MySQLQueries;
 import n2MySQL.beans.Tree;
 import n2MySQL.handlers.AppHandler;
-import n2MySQL.utis.Constants;
+import n2MySQL.utils.Constants;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ public class TreeSQL implements TreeDAO {
             treest.setInt(2, tree.getHeight());
             treest.setDouble(3, tree.getSellPrice());
             treest.setDouble(4, tree.getCostPrice());
-            treest.setInt(5, tree.getProduct_id());
+            treest.setInt(5, tree.getProductId());
             treest.executeUpdate();
         }catch (SQLException e) {
             e.printStackTrace();
@@ -67,10 +68,10 @@ public class TreeSQL implements TreeDAO {
         try {
             PreparedStatement treest = connection.prepareStatement(MySQLQueries.DELETE_TREE);
             PreparedStatement productst = connection.prepareStatement(MySQLQueries.DELETE_PRODUCT);
-            treest.setInt(1, tree.getProduct_id());
+            treest.setInt(1, tree.getProductId());
             treest.executeUpdate();
 
-            productst.setInt(1, tree.getProduct_id());
+            productst.setInt(1, tree.getProductId());
             int rowsAffected = productst.executeUpdate();
             if (rowsAffected >0) {
                 AppHandler.printText(Constants.Menus.DELETED);

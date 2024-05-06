@@ -1,0 +1,39 @@
+Index: src/main/java/n2MySQL/MySQLdatabase/queries/FlowerSQL.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package n2MySQL.MySQLdatabase.queries;\r\n\r\nimport n2MySQL.DAO.FlowerDAO;\r\nimport n2MySQL.beans.Flower;\r\nimport n2MySQL.handlers.AppHandler;\r\nimport n2MySQL.utis.Constants;\r\n\r\nimport java.sql.*;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class FlowerSQL implements FlowerDAO {\r\n    private  final Connection connection;\r\n    public FlowerSQL (Connection connection){\r\n        this.connection= connection;\r\n    }\r\n\r\n    @Override\r\n    public void create(Flower flower) {\r\n\r\n        try {\r\n            PreparedStatement productst = connection.prepareStatement(MySQLQueries.INSERT_PRODUCT, Statement.RETURN_GENERATED_KEYS);\r\n            PreparedStatement flowerst = connection.prepareStatement((MySQLQueries.INSERT_FLOWER));\r\n            productst.setString(1, flower.getName());\r\n            productst.setDouble(2, flower.getSellPrice());\r\n            productst.setDouble(3, flower.getCostPrice());\r\n            productst.setInt(4, flower.getStock());\r\n            productst.setString(5, \"Flower\");\r\n            productst.executeUpdate();\r\n\r\n            try (ResultSet rs = productst.getGeneratedKeys()) {\r\n                int product_id = -1;\r\n                if (rs.next()) {\r\n                    product_id = rs.getInt(1);\r\n                    flowerst.setInt(1, product_id);\r\n                    flowerst.setString(2, flower.getColour());\r\n                    flowerst.executeUpdate();\r\n                }\r\n            }\r\n            AppHandler.printText(Constants.Menus.PRODUCT_ADDED);\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public void update(Flower flower) {\r\n        try {\r\n            PreparedStatement flowerSt = connection.prepareStatement(MySQLQueries.UPDATE_FLOWER);\r\n            flowerSt.setString(1,flower.getName());\r\n            flowerSt.setString(2, flower.getColour());\r\n            flowerSt.setDouble(3, flower.getSellPrice());\r\n            flowerSt.setDouble(4, flower.getCostPrice());\r\n            flowerSt.setInt(5, flower.getProduct_id());\r\n            flowerSt.executeUpdate();\r\n        }catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n\r\n    }\r\n\r\n    @Override\r\n    public void delete(Flower flower) {\r\n        try {\r\n            PreparedStatement flowerst = connection.prepareStatement(MySQLQueries.DELETE_FLOWER);\r\n            PreparedStatement productst = connection.prepareStatement(MySQLQueries.DELETE_PRODUCT);\r\n            flowerst.setInt(1, flower.getProduct_id());\r\n            flowerst.executeUpdate();\r\n\r\n            productst.setInt(1, flower.getProduct_id());\r\n            int rowsAffected = productst.executeUpdate();\r\n            if (rowsAffected >0) {\r\n                AppHandler.printText(Constants.Menus.DELETED);\r\n            }else {\r\n                AppHandler.printText(Constants.Menus.PRODUCT_NOT_FOUND);\r\n            }\r\n        }catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n\r\n    }\r\n\r\n    @Override\r\n    public List<Flower> readAll() {\r\n        ArrayList<Flower> allFlowers = new ArrayList<>();\r\n        try{\r\n            PreparedStatement st = connection.prepareStatement(MySQLQueries.GET_ALL_FLOWERS);\r\n            ResultSet resultSet = st.executeQuery();\r\n            while (resultSet.next()) {\r\n                int productId = resultSet.getInt(\"product_id\");\r\n                String name = resultSet.getString(\"name\");\r\n                double sellPrice = resultSet.getDouble(\"sell_price\");\r\n                double costPrice = resultSet.getDouble(\"cost_price\");\r\n                int stock = resultSet.getInt(\"stock\");\r\n                String colour = resultSet.getString(\"colour\");\r\n\r\n                Flower flower = new Flower(productId, name, sellPrice, costPrice,stock,colour);\r\n                allFlowers.add(flower);\r\n            }\r\n\r\n        }catch (SQLException e) {\r\n            e.printStackTrace();\r\n\r\n        }\r\n\r\n        return allFlowers;\r\n    }\r\n\r\n    @Override\r\n    public Flower getOne(String flowerName) {\r\n        Flower flower = null;\r\n        try {\r\n            PreparedStatement st = connection.prepareStatement(MySQLQueries.GET_FLOWER);\r\n            st.setString(1, flowerName);\r\n            ResultSet resultSet = st.executeQuery(); {\r\n                if (resultSet.next()) {\r\n                    int productId = resultSet.getInt(\"product_id\");\r\n                    String name = resultSet.getString(\"name\");\r\n                    double sellPrice = resultSet.getDouble(\"sell_price\");\r\n                    double costPrice = resultSet.getDouble(\"cost_price\");\r\n                    int stock = resultSet.getInt(\"stock\");\r\n                    String colour = resultSet.getString(\"colour\");\r\n\r\n                    flower = new Flower(productId, name, sellPrice, costPrice, stock, colour);\r\n                } else {\r\n                    AppHandler.printText(Constants.Menus.PRODUCT_NOT_FOUND);\r\n                }\r\n            }\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n        return flower;\r\n    }\r\n}\r\n\r\n
+===================================================================
+diff --git a/src/main/java/n2MySQL/MySQLdatabase/queries/FlowerSQL.java b/src/main/java/n2MySQL/MySQLdatabase/queries/FlowerSQL.java
+--- a/src/main/java/n2MySQL/MySQLdatabase/queries/FlowerSQL.java	
++++ b/src/main/java/n2MySQL/MySQLdatabase/queries/FlowerSQL.java	
+@@ -3,7 +3,7 @@
+ import n2MySQL.DAO.FlowerDAO;
+ import n2MySQL.beans.Flower;
+ import n2MySQL.handlers.AppHandler;
+-import n2MySQL.utis.Constants;
++import n2MySQL.utils.Constants;
+ 
+ import java.sql.*;
+ import java.util.ArrayList;
+@@ -51,7 +51,7 @@
+             flowerSt.setString(2, flower.getColour());
+             flowerSt.setDouble(3, flower.getSellPrice());
+             flowerSt.setDouble(4, flower.getCostPrice());
+-            flowerSt.setInt(5, flower.getProduct_id());
++            flowerSt.setInt(5, flower.getProductId());
+             flowerSt.executeUpdate();
+         }catch (SQLException e) {
+             e.printStackTrace();
+@@ -64,10 +64,10 @@
+         try {
+             PreparedStatement flowerst = connection.prepareStatement(MySQLQueries.DELETE_FLOWER);
+             PreparedStatement productst = connection.prepareStatement(MySQLQueries.DELETE_PRODUCT);
+-            flowerst.setInt(1, flower.getProduct_id());
++            flowerst.setInt(1, flower.getProductId());
+             flowerst.executeUpdate();
+ 
+-            productst.setInt(1, flower.getProduct_id());
++            productst.setInt(1, flower.getProductId());
+             int rowsAffected = productst.executeUpdate();
+             if (rowsAffected >0) {
+                 AppHandler.printText(Constants.Menus.DELETED);

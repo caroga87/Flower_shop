@@ -1,0 +1,499 @@
+Index: src/main/java/n2MySQL/mongoDatabase/TicketMongo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package n2MySQL.mongoDatabase;\r\n\r\nimport n2MySQL.DAO.TicketDAO;\r\n\r\npublic class TicketMongo implements TicketDAO {\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/n2MySQL/mongoDatabase/TicketMongo.java b/src/main/java/n2MySQL/mongoDatabase/TicketMongo.java
+--- a/src/main/java/n2MySQL/mongoDatabase/TicketMongo.java	
++++ b/src/main/java/n2MySQL/mongoDatabase/TicketMongo.java	
+@@ -1,6 +1,128 @@
+ package n2MySQL.mongoDatabase;
+ 
++import com.mongodb.MongoException;
++import com.mongodb.client.FindIterable;
++import com.mongodb.client.MongoCollection;
++import com.mongodb.client.model.Filters;
+ import n2MySQL.DAO.TicketDAO;
++import n2MySQL.beans.Ticket;
++import org.bson.Document;
++import org.bson.conversions.Bson;
++import org.bson.types.ObjectId;
++
++import java.util.ArrayList;
++import java.util.Arrays;
++import java.util.List;
+ 
+ public class TicketMongo implements TicketDAO {
++    private MongoCollection<Document> salesCollection;
++
++    @Override
++    public void create (Ticket ticket){
++        try{
++            Document ticketDoc = new Document("datetime", ticket.getCreationDateTime())
++                    .append("products", ticket.getProducts())
++                    .append("totalPrice", ticket.getTotalAmount());
++            salesCollection.insertOne(ticketDoc);
++        }catch (MongoException e){
++            e.printStackTrace();
++        }
++
++    }
++
++    @Override
++    public void update (Ticket ticket){
++        try{
++            Bson filter = Filters.eq("_id", ticket.getTicketId());
++            Document updateDoc = new Document("$set", new Document()
++                    .append("detetime", ticket.getCreationDateTime())
++                    .append("products", ticket.getProducts())
++                    .append("totalprice", ticket.getTotalAmount()));
++            salesCollection.updateOne(filter, updateDoc);
++        }catch(MongoException e){
++            e.printStackTrace();
++        }
++    }
++
++    @Override
++    public void delete(Ticket ticket){
++        try{
++            Bson filter = Filters.eq("_id", ticket.getTicketId());
++            salesCollection.deleteOne(filter);
++        }catch(MongoException e){
++            e.printStackTrace();
++        }
++    }
++
++    public List<Ticket> readAll(){ // necesita arreglar
++        List<Ticket> allTickets = new ArrayList<>();
++        try{
++            FindIterable<Document> findIterable = salesCollection.find();
++            for (Document document : findIterable) {
++                Ticket ticket = new Ticket();
++                allTickets.add(documen);
++                }
++        }catch(MongoException e){
++            e.printStackTrace();
++        }
++        return allTickets;
++    }
++
++    public List<Document> getSalesWithProductInfo() {
++        List<Document> pipeline = Arrays.asList(
++                new Document("$lookup",
++                        new Document("from", "products")
++                                .append("localField", "products")
++                                .append("foreignField", "_id")
++                                .append("as", "productsInfo")
++                ),
++                new Document("$unwind", "$productsInfo"),
++                new Document("$project",
++                        new Document("_id", 1)
++                                .append("datetime", 1)
++                                .append("totalPrice", 1)
++                                .append("product",
++                                        new Document("name", "$productsInfo.name")
++                                                .append("sellPrice", "$productsInfo.sellPrice")
++                                                .append("costPrice", "$productsInfo.costPrice")
++                                                .append("quantity", "$productsInfo.quantity")
++                                                .append("type", "$productsInfo.type")
++                                                .append("color", "$productsInfo.color")
++                                                .append("height", "$productsInfo.height")
++                                                .append("material", "$productsInfo.material")
++                                )
++                )
++        );
++
++        // Perform aggregation
++        AggregateIterable<Document> result = salesCollection.aggregate(pipeline);
++        return toList(result);
++    }
++
++    private List<Document> toList(AggregateIterable<Document> iterable) {
++        List<Document> list = new ArrayList<>();
++        for (Document document : iterable) {
++            list.add(document);
++        }
++        return list;
++    }
++
++    public Ticket getOne(String id){
++        ObjectId objectId = new ObjectId(id);
++        Document ticket = null;
++        try {
++            Bson filter = Filters.eq("_id", objectId);
++            ticket = salesCollection.find(filter).first();
++        } catch (MongoException e) {
++            e.printStackTrace();
++        }
++        assert ticket != null;
++        return new Ticket(
++                ticket.getObjectId("_id"),
++                ticket.getDate("datetime"),
++                ticket.getList("products"), // corregir esto
++                ticket.getInteger("totalPrice"));
++    }
++
++
+ }
+Index: src/main/java/n2MySQL/mongoDatabase/TreeMongo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package n2MySQL.mongoDatabase;\r\n\r\nimport n2MySQL.DAO.TreeDAO;\r\n\r\npublic class TreeMongo implements TreeDAO {\r\n\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/n2MySQL/mongoDatabase/TreeMongo.java b/src/main/java/n2MySQL/mongoDatabase/TreeMongo.java
+--- a/src/main/java/n2MySQL/mongoDatabase/TreeMongo.java	
++++ b/src/main/java/n2MySQL/mongoDatabase/TreeMongo.java	
+@@ -1,7 +1,102 @@
+ package n2MySQL.mongoDatabase;
+-
++import com.mongodb.MongoException;
++import com.mongodb.client.*;
+ import n2MySQL.DAO.TreeDAO;
++import com.mongodb.client.model.Filters;
++import org.bson.Document;
++import org.bson.conversions.Bson;
++import org.bson.types.ObjectId;
++import n2MySQL.beans.Tree;
++import java.util.ArrayList;
++import java.util.List;
+ 
+ public class TreeMongo implements TreeDAO {
++    private MongoCollection<Document> productsCollection;
++
++    @Override
++    public void create(Tree object) {
++        try{
++            if(object instanceof Tree tree) {
++                Document productDoc = new Document("name", tree.getName())
++                        .append("sellPrice", tree.getSellPrice())
++                        .append("costPrice", tree.getCostPrice())
++                        .append("quantity", tree.getStock())
++                        .append("type", "tree")
++                        .append("height", tree.getHeight());
++                productsCollection.insertOne(productDoc);
++            }
++        }catch(MongoException e){
++            e.printStackTrace();
++        }
++    }
++
++    @Override
++    public void update(Tree object) {
++        try{
++            Bson filter = Filters.eq("_id", object.getProduct_id());
++            Document updateDoc = new Document("$set", new Document()
++                    .append("name", object.getName())
++                    .append("sellPrice", object.getSellPrice())
++                    .append("costPrice", object.getCostPrice())
++                    .append("quantity", object.getStock())
++                    .append("height", object.getHeight()));
++            productsCollection.updateOne(filter, updateDoc);
++        }catch(MongoException e){
++            e.printStackTrace();
++        }
++
++    }
++
++    @Override
++    public void delete(Tree object) {
++        try{
++            Bson filter = Filters.eq("_id", object.getProduct_id());
++            productsCollection.deleteOne(filter);
++        }catch(MongoException e){
++            e.printStackTrace();
++        }
+ 
++    }
++
++    @Override
++    public List<Tree> readAll() { //Falta id?
++        List<Tree> allTrees = new ArrayList<>();
++        try{
++            FindIterable<Document> findIterable = productsCollection.find();
++            for (Document document : findIterable) {
++                if (document.getString("type").equals("tree")) {
++                    Tree tree = new Tree(
++                            document.getString("name"),
++                            document.getDouble("sellPrice"),
++                            document.getDouble("costPrice"),
++                            document.getInteger("quantity"),
++                            document.getInteger("height")
++                    );
++                    allTrees.add(tree);
++                }
++            }
++        }catch(MongoException e){
++            e.printStackTrace();
++        }
++        return allTrees;
++    }
++
++    @Override
++    public Tree getOne(String id) {
++        ObjectId objectId = new ObjectId(id);
++        Document tree = null;
++        try {
++            Bson filter = Filters.eq("_id", objectId);
++            tree = productsCollection.find(filter).first();
++        } catch (MongoException e) {
++            e.printStackTrace();
++        }
++        assert tree != null;
++        return new Tree(
++                tree.getString("name"),
++                tree.getDouble("sellPrice"),
++                tree.getDouble("costPrice"),
++                tree.getInteger("quantity"),
++                tree.getInteger("height"));
++    }
+ }
+Index: src/main/java/n2MySQL/mongoDatabase/DecorationMongo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package n2MySQL.mongoDatabase;\r\n\r\nimport com.mongodb.client.*;\r\nimport n2MySQL.DAO.DecorationDAO;\r\nimport com.mongodb.client.model.Filters;\r\nimport org.bson.Document;\r\nimport org.bson.conversions.Bson;\r\nimport org.bson.types.ObjectId;\r\nimport n2MySQL.beans.Decoration;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class DecorationMongo implements DecorationDAO {\r\n    private MongoCollection<Document> productsCollection;\r\n\r\n    @Override\r\n    public void create(Decoration object) { //falta ver se tem que botar try catch\r\n        if(object instanceof Decoration decoration) {\r\n            Document productDoc = new Document(\"name\", decoration.getName())\r\n                    .append(\"sellPrice\", decoration.getSellPrice())\r\n                    .append(\"costPrice\", decoration.getCostPrice())\r\n                    .append(\"quantity\", decoration.getStock())\r\n                    .append(\"type\", \"decoration\")\r\n                    .append(\"material\", decoration.getMaterial());\r\n            productsCollection.insertOne(productDoc);\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public void update(Decoration object) {\r\n        Bson filter = Filters.eq(\"_id\", object.getProduct_id());\r\n        Document updateDoc = new Document(\"$set\", new Document()\r\n                .append(\"name\", object.getName())\r\n                .append(\"sellPrice\", object.getSellPrice())\r\n                .append(\"costPrice\", object.getCostPrice())\r\n                .append(\"quantity\", object.getStock())\r\n                .append(\"material\", object.getMaterial()));\r\n        productsCollection.updateOne(filter, updateDoc);\r\n    }\r\n\r\n    @Override\r\n    public void delete(Decoration object) {\r\n        Bson filter = Filters.eq(\"_id\", object.getProduct_id());\r\n        productsCollection.deleteOne(filter);\r\n    }\r\n\r\n    @Override\r\n    public List<Decoration> readAll() {\r\n        List<Decoration> decorations = new ArrayList<>();\r\n        FindIterable<Document> findIterable = productsCollection.find();\r\n        for (Document document : findIterable) {\r\n            if (document.getString(\"type\").equals(\"decoration\")) {\r\n                Decoration decoration = new Decoration(\r\n                        document.getString(\"_id\"),\r\n                        document.getString(\"name\"),\r\n                        document.getDouble(\"sellPrice\"),\r\n                        document.getDouble(\"costPrice\"),\r\n                        document.getInteger(\"quantity\"),\r\n                        document.getString(\"material\")\r\n                );\r\n                decorations.add(decoration);\r\n            }\r\n        }\r\n        return decorations;\r\n    }\r\n\r\n    @Override\r\n    public Decoration getOne(String id) {\r\n        ObjectId objectId = new ObjectId(id);\r\n        Bson filter = Filters.eq(\"_id\", objectId);\r\n        Document decoration = productsCollection.find(filter).first();\r\n        return new Decoration(\r\n                decoration.getString(\"_id\"),\r\n                decoration.getString(\"name\"),\r\n                decoration.getDouble(\"sellPrice\"),\r\n                decoration.getDouble(\"costPrice\"),\r\n                decoration.getInteger(\"quantity\"),\r\n                decoration.getString(\"material\"));\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/n2MySQL/mongoDatabase/DecorationMongo.java b/src/main/java/n2MySQL/mongoDatabase/DecorationMongo.java
+--- a/src/main/java/n2MySQL/mongoDatabase/DecorationMongo.java	
++++ b/src/main/java/n2MySQL/mongoDatabase/DecorationMongo.java	
+@@ -1,5 +1,5 @@
+ package n2MySQL.mongoDatabase;
+-
++import com.mongodb.MongoException;
+ import com.mongodb.client.*;
+ import n2MySQL.DAO.DecorationDAO;
+ import com.mongodb.client.model.Filters;
+@@ -14,63 +14,85 @@
+     private MongoCollection<Document> productsCollection;
+ 
+     @Override
+-    public void create(Decoration object) { //falta ver se tem que botar try catch
+-        if(object instanceof Decoration decoration) {
+-            Document productDoc = new Document("name", decoration.getName())
+-                    .append("sellPrice", decoration.getSellPrice())
+-                    .append("costPrice", decoration.getCostPrice())
+-                    .append("quantity", decoration.getStock())
+-                    .append("type", "decoration")
+-                    .append("material", decoration.getMaterial());
+-            productsCollection.insertOne(productDoc);
++    public void create(Decoration object) {
++        try{
++            if(object instanceof Decoration decoration) {
++                Document productDoc = new Document("name", decoration.getName())
++                        .append("sellPrice", decoration.getSellPrice())
++                        .append("costPrice", decoration.getCostPrice())
++                        .append("quantity", decoration.getStock())
++                        .append("type", "decoration")
++                        .append("material", decoration.getMaterial());
++                productsCollection.insertOne(productDoc);
++            }
++        }catch(MongoException e){
++            e.printStackTrace();
+         }
+     }
+ 
+     @Override
+     public void update(Decoration object) {
+-        Bson filter = Filters.eq("_id", object.getProduct_id());
+-        Document updateDoc = new Document("$set", new Document()
+-                .append("name", object.getName())
+-                .append("sellPrice", object.getSellPrice())
+-                .append("costPrice", object.getCostPrice())
+-                .append("quantity", object.getStock())
+-                .append("material", object.getMaterial()));
+-        productsCollection.updateOne(filter, updateDoc);
++        try{
++            Bson filter = Filters.eq("_id", object.getProduct_id());
++            Document updateDoc = new Document("$set", new Document()
++                    .append("name", object.getName())
++                    .append("sellPrice", object.getSellPrice())
++                    .append("costPrice", object.getCostPrice())
++                    .append("quantity", object.getStock())
++                    .append("material", object.getMaterial()));
++            productsCollection.updateOne(filter, updateDoc);
++        }catch(MongoException e){
++            e.printStackTrace();
++        }
++
+     }
+ 
+     @Override
+     public void delete(Decoration object) {
+-        Bson filter = Filters.eq("_id", object.getProduct_id());
+-        productsCollection.deleteOne(filter);
++        try{
++            Bson filter = Filters.eq("_id", object.getProduct_id());
++            productsCollection.deleteOne(filter);
++        }catch(MongoException e){
++            e.printStackTrace();
++        }
++
+     }
+ 
+     @Override
+-    public List<Decoration> readAll() {
+-        List<Decoration> decorations = new ArrayList<>();
+-        FindIterable<Document> findIterable = productsCollection.find();
+-        for (Document document : findIterable) {
+-            if (document.getString("type").equals("decoration")) {
+-                Decoration decoration = new Decoration(
+-                        document.getString("_id"),
+-                        document.getString("name"),
+-                        document.getDouble("sellPrice"),
+-                        document.getDouble("costPrice"),
+-                        document.getInteger("quantity"),
+-                        document.getString("material")
+-                );
+-                decorations.add(decoration);
++    public List<Decoration> readAll() { //Falta id?
++        List<Decoration> allDecorations = new ArrayList<>();
++        try{
++            FindIterable<Document> findIterable = productsCollection.find();
++            for (Document document : findIterable) {
++                if (document.getString("type").equals("decoration")) {
++                    Decoration decoration = new Decoration(
++                            document.getString("name"),
++                            document.getDouble("sellPrice"),
++                            document.getDouble("costPrice"),
++                            document.getInteger("quantity"),
++                            document.getString("material")
++                    );
++                    allDecorations.add(decoration);
++                }
+             }
++        }catch(MongoException e){
++            e.printStackTrace();
+         }
+-        return decorations;
++        return allDecorations;
+     }
+ 
+     @Override
+     public Decoration getOne(String id) {
+         ObjectId objectId = new ObjectId(id);
+-        Bson filter = Filters.eq("_id", objectId);
+-        Document decoration = productsCollection.find(filter).first();
++        Document decoration = null;
++        try {
++            Bson filter = Filters.eq("_id", objectId);
++            decoration = productsCollection.find(filter).first();
++        } catch (MongoException e) {
++            e.printStackTrace();
++        }
++        assert decoration != null;
+         return new Decoration(
+-                decoration.getString("_id"),
+                 decoration.getString("name"),
+                 decoration.getDouble("sellPrice"),
+                 decoration.getDouble("costPrice"),
+Index: src/main/java/n2MySQL/mongoDatabase/FlowerMongo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package n2MySQL.mongoDatabase;\r\n\r\nimport n2MySQL.DAO.FlowerDAO;\r\n\r\npublic class FlowerMongo implements FlowerDAO {\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/n2MySQL/mongoDatabase/FlowerMongo.java b/src/main/java/n2MySQL/mongoDatabase/FlowerMongo.java
+--- a/src/main/java/n2MySQL/mongoDatabase/FlowerMongo.java	
++++ b/src/main/java/n2MySQL/mongoDatabase/FlowerMongo.java	
+@@ -1,6 +1,102 @@
+ package n2MySQL.mongoDatabase;
+-
++import com.mongodb.MongoException;
++import com.mongodb.client.*;
+ import n2MySQL.DAO.FlowerDAO;
++import com.mongodb.client.model.Filters;
++import n2MySQL.beans.Flower;
++import org.bson.Document;
++import org.bson.conversions.Bson;
++import org.bson.types.ObjectId;
++import java.util.ArrayList;
++import java.util.List;
+ 
+ public class FlowerMongo implements FlowerDAO {
++    private MongoCollection<Document> productsCollection;
++
++    @Override
++    public void create(Flower object) {
++        try{
++            if(object instanceof Flower flower) {
++                Document productDoc = new Document("name", flower.getName())
++                        .append("sellPrice", flower.getSellPrice())
++                        .append("costPrice", flower.getCostPrice())
++                        .append("quantity", flower.getStock())
++                        .append("type", "flower")
++                        .append("color", flower.getColour());
++                productsCollection.insertOne(productDoc);
++            }
++        }catch(MongoException e){
++            e.printStackTrace();
++        }
++    }
++
++    @Override
++    public void update(Flower object) {
++        try{
++            Bson filter = Filters.eq("_id", object.getProduct_id());
++            Document updateDoc = new Document("$set", new Document()
++                    .append("name", object.getName())
++                    .append("sellPrice", object.getSellPrice())
++                    .append("costPrice", object.getCostPrice())
++                    .append("quantity", object.getStock())
++                    .append("color", object.getColour()));
++            productsCollection.updateOne(filter, updateDoc);
++        }catch(MongoException e){
++            e.printStackTrace();
++        }
++
++    }
++
++    @Override
++    public void delete(Flower object) {
++        try{
++            Bson filter = Filters.eq("_id", object.getProduct_id());
++            productsCollection.deleteOne(filter);
++        }catch(MongoException e){
++            e.printStackTrace();
++        }
++
++    }
++
++    @Override
++    public List<Flower> readAll() { //Falta id?
++        List<Flower> allFlowers = new ArrayList<>();
++        try{
++            FindIterable<Document> findIterable = productsCollection.find();
++            for (Document document : findIterable) {
++                if (document.getString("type").equals("flower")) {
++                    Flower flower = new Flower(
++                            document.getString("name"),
++                            document.getDouble("sellPrice"),
++                            document.getDouble("costPrice"),
++                            document.getInteger("quantity"),
++                            document.getString("material")
++                    );
++                    allFlowers.add(flower);
++                }
++            }
++        }catch(MongoException e){
++            e.printStackTrace();
++        }
++        return allFlowers;
++    }
++
++    @Override
++    public Flower getOne(String id) {
++        ObjectId objectId = new ObjectId(id);
++        Document flower = null;
++        try {
++            Bson filter = Filters.eq("_id", objectId);
++            flower = productsCollection.find(filter).first();
++        } catch (MongoException e) {
++            e.printStackTrace();
++        }
++        assert flower != null;
++        return new Flower(
++                flower.getString("name"),
++                flower.getDouble("sellPrice"),
++                flower.getDouble("costPrice"),
++                flower.getInteger("quantity"),
++                flower.getString("color"));
++    }
+ }

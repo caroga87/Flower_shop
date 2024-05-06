@@ -4,9 +4,6 @@ public class TicketData {
 	private int quantity;
 	private int productId;
 
-	public TicketData() {
-		super();
-	}
 
 	public TicketData(int quantity, int productId) {
 		super();
