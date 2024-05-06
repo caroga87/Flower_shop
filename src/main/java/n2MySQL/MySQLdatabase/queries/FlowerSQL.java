@@ -3,7 +3,7 @@ package n2MySQL.MySQLdatabase.queries;
 import n2MySQL.DAO.FlowerDAO;
 import n2MySQL.beans.Flower;
 import n2MySQL.handlers.AppHandler;
-import n2MySQL.utis.Constants;
+import n2MySQL.utils.Constants;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -51,7 +51,7 @@ public class FlowerSQL implements FlowerDAO {
             flowerSt.setString(2, flower.getColour());
             flowerSt.setDouble(3, flower.getSellPrice());
             flowerSt.setDouble(4, flower.getCostPrice());
-            flowerSt.setInt(5, flower.getProduct_id());
+            flowerSt.setInt(5, flower.getProductId());
             flowerSt.executeUpdate();
         }catch (SQLException e) {
             e.printStackTrace();
@@ -64,10 +64,10 @@ public class FlowerSQL implements FlowerDAO {
         try {
             PreparedStatement flowerst = connection.prepareStatement(MySQLQueries.DELETE_FLOWER);
             PreparedStatement productst = connection.prepareStatement(MySQLQueries.DELETE_PRODUCT);
-            flowerst.setInt(1, flower.getProduct_id());
+            flowerst.setInt(1, flower.getProductId());
             flowerst.executeUpdate();
 
-            productst.setInt(1, flower.getProduct_id());
+            productst.setInt(1, flower.getProductId());
             int rowsAffected = productst.executeUpdate();
             if (rowsAffected >0) {
                 AppHandler.printText(Constants.Menus.DELETED);

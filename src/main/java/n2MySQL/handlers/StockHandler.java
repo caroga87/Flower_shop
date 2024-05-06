@@ -1,7 +1,5 @@
 package n2MySQL.handlers;
 
-import n2MySQL.MySQLdatabase.connections.SQLDatabaseConnection;
-import n2MySQL.MySQLdatabase.queries.FlowerSQL;
 import n2MySQL.beans.Decoration;
 import n2MySQL.beans.Flower;
 import n2MySQL.beans.Product;
@@ -180,7 +178,7 @@ public class StockHandler {
 		Product product = null;
 
 		for(Product prod : StockSingleton.getStockSingleton().getStock()) {
-			if(prod.getProduct_id() == productId) {
+			if(prod.productId() == productId) {
 				product = prod;
 				break;
 			}
@@ -195,7 +193,7 @@ public class StockHandler {
 		boolean deleted = false;
 
 		for(Product prod : StockSingleton.getStockSingleton().getStock()) {
-			if(prod.getProduct_id() == productId) {
+			if(prod.productId() == productId) {
 				recalculateTotalStockValueOnDelete(prod.getStock(), prod.getCostPrice());
 				StockSingleton.getStockSingleton().getStock().remove(prod);
 				deleted = true;

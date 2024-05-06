@@ -1,14 +1,14 @@
 package n2MySQL.MySQLdatabase;
 
 import n2MySQL.DAO.TicketDAO;
+import n2MySQL.MySQLdatabase.queries.MySQLQueries;
 import n2MySQL.beans.Ticket;
 import n2MySQL.beans.TicketData;
 import n2MySQL.handlers.AppHandler;
-import n2MySQL.utis.Constants;
+import n2MySQL.utils.Constants;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class TicketSQL implements TicketDAO {
     private final Connection connection;

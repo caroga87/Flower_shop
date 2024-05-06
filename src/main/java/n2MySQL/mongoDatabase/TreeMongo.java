@@ -33,7 +33,7 @@ public class TreeMongo implements TreeDAO {
     @Override
     public void update(Tree object) {
         try{
-            Bson filter = Filters.eq("_id", object.getProductId());
+            Bson filter = Filters.eq("_id", object.productId());
             Document updateDoc = new Document("$set", new Document()
                     .append("name", object.getName())
                     .append("sellPrice", object.getSellPrice())
@@ -50,7 +50,7 @@ public class TreeMongo implements TreeDAO {
     @Override
     public void delete(Tree object) {
         try{
-            Bson filter = Filters.eq("_id", object.getProductId());
+            Bson filter = Filters.eq("_id", object.productId());
             productsCollection.deleteOne(filter);
         }catch(MongoException e){
             e.printStackTrace();

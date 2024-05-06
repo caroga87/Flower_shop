@@ -2,9 +2,6 @@ package n2MySQL.handlers;
 
 
 import n2MySQL.beans.Product;
-import n2MySQL.handlers.AppHandler;
-import n2MySQL.handlers.StockHandler;
-import n2MySQL.handlers.TextMenuHandler;
 import n2MySQL.utils.Constants;
 import n2MySQL.utils.Utils;
 import n2MySQL.utils.Validations;

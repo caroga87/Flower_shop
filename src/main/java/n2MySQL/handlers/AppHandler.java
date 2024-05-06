@@ -3,7 +3,6 @@ package n2MySQL.handlers;
 import n2MySQL.MySQLdatabase.connections.ConnectionFactory;
 import n2MySQL.MySQLdatabase.connections.IConnection;
 import n2MySQL.MySQLdatabase.connections.RunningModeSingleton;
-import n2MySQL.MySQLdatabase.connections.SQLDatabaseConnection;
 import n2MySQL.exceptions.EmptyDatabaseException;
 import n2MySQL.io.FlowerShopFileReader;
 import n2MySQL.utils.Constants;
@@ -13,10 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import flower_shop.handlers.menus.FlowerShopHandler;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 import java.util.List;
 import java.util.Scanner;

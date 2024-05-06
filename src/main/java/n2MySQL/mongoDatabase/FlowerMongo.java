@@ -33,7 +33,7 @@ public class FlowerMongo implements FlowerDAO {
     @Override
     public void update(Flower object) {
         try{
-            Bson filter = Filters.eq("_id", object.getProductId());
+            Bson filter = Filters.eq("_id", object.productId());
             Document updateDoc = new Document("$set", new Document()
                     .append("name", object.getName())
                     .append("sellPrice", object.getSellPrice())
@@ -50,7 +50,7 @@ public class FlowerMongo implements FlowerDAO {
     @Override
     public void delete(Flower object) {
         try{
-            Bson filter = Filters.eq("_id", object.getProductId());
+            Bson filter = Filters.eq("_id", object.productId());
             productsCollection.deleteOne(filter);
         }catch(MongoException e){
             e.printStackTrace();

@@ -8,9 +8,13 @@ import n2MySQL.handlers.AppHandler;
 public class Tree extends Product implements ISpecificProduct{
 	private int height;
 
-	
 	public Tree(String name, double sellPrice, double costPrice, int stock, int height) {
 		super(name, sellPrice, costPrice, stock);
+		this.height = height;
+	}
+
+	public Tree(int product_id, String name, double sellPrice, double costPrice, int stock, int height) {
+		super(product_id, name, sellPrice, costPrice, stock);
 		this.height = height;
 	}
 
@@ -34,31 +38,31 @@ public class Tree extends Product implements ISpecificProduct{
 
 	@Override
 	public String toCatalogue() {
-		
+
 		StringBuilder sb = new StringBuilder();
-		
+
 		sb.append(super.getProductId()).append(" >>> ")
-			.append(super.getName()).append(", ")
-			.append(super.getSellPrice()).append(" eur./unit, ")
-			.append(height).append("cm");
-		
+				.append(super.getName()).append(", ")
+				.append(super.getSellPrice()).append(" eur./unit, ")
+				.append(height).append("cm");
+
 		return sb.toString();
-		
+
 	}
 
 	@Override
 	public String toStock() {
 
 		StringBuilder sb = new StringBuilder();
-		
+
 		sb.append(super.getProductId()).append(" >>> ")
-			.append(super.getStock()).append(" x ")
-			.append(super.getName()).append(", ")
-			.append(super.getCostPrice()).append(" eur./unit, ")
-			.append(super.getCostPrice() * super.getStock()).append(" eur.");
-		
+				.append(super.getStock()).append(" x ")
+				.append(super.getName()).append(", ")
+				.append(super.getCostPrice()).append(" eur./unit, ")
+				.append(super.getCostPrice() * super.getStock()).append(" eur.");
+
 		return sb.toString();
-		
+
 	}
 
 }
