@@ -46,13 +46,13 @@ public class FlowerSQL implements FlowerDAO {
     @Override
     public void update(Flower flower) {
         try {
-            PreparedStatement flowerst = connection.prepareStatement(MySQLQueries.UPDATE_FLOWER);
-            flowerst.setString(1,flower.getName());
-            flowerst.setString(2, flower.getColour());
-            flowerst.setDouble(3, flower.getSellPrice());
-            flowerst.setDouble(4, flower.getCostPrice());
-            flowerst.setInt(5, flower.getProduct_id());
-            flowerst.executeUpdate();
+            PreparedStatement flowerSt = connection.prepareStatement(MySQLQueries.UPDATE_FLOWER);
+            flowerSt.setString(1,flower.getName());
+            flowerSt.setString(2, flower.getColour());
+            flowerSt.setDouble(3, flower.getSellPrice());
+            flowerSt.setDouble(4, flower.getCostPrice());
+            flowerSt.setInt(5, flower.getProduct_id());
+            flowerSt.executeUpdate();
         }catch (SQLException e) {
             e.printStackTrace();
         }
