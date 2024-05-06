@@ -8,7 +8,7 @@ import n2MySQL.utis.Utils;
 
 public class Ticket{
 	private int ticketId;
-	private Map<String, TicketData> products;
+	private Map<String, TicketData> products; //String como nombre del producto
 	private double totalAmount;
 	private String creationDateTime;
 
@@ -16,6 +16,13 @@ public class Ticket{
 		super();
 		this.products = new HashMap<>();
 		this.creationDateTime = Utils.getCurrentDateTime();
+	}
+
+	public Ticket(int ticketId, Map<String, TicketData> products, double totalAmount, String creationDateTime) {
+		this.ticketId = ticketId;
+		this.products = products;
+		this.totalAmount = totalAmount;
+		this.creationDateTime = creationDateTime;
 	}
 
 	public Map<String, TicketData> getProducts() {

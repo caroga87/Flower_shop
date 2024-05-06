@@ -40,7 +40,7 @@ public class TicketSingleton{
 		return maxAssignedTicketId;
 	}
 	
-	//assigned from file read
+	//assigned from file readAll
 	public void setNextTicketId(int readMaxAssignedTicketId) {
 		nextTicketId = readMaxAssignedTicketId;
 		nextTicketId++;

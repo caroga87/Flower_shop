@@ -1,7 +1,7 @@
 package n2MySQL.MySQLdatabase;
 
-import n2MySQL.DAO.FlowerDAO;
-import n2MySQL.beans.Flower;
+import n2MySQL.DAO.TreeDAO;
+import n2MySQL.beans.Tree;
 import n2MySQL.handlers.AppHandler;
 import n2MySQL.utis.Constants;
 
@@ -9,33 +9,36 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FlowerSQL implements FlowerDAO {
-    private  final Connection connection;
-    public FlowerSQL (Connection connection){
-        this.connection= connection;
+public class TreeSQL implements TreeDAO {
+
+    private final Connection connection;
+
+    public TreeSQL(Connection connection) {
+        this.connection = connection;
     }
 
     @Override
-    public void create(Flower flower) {
-
+    public void create(Tree tree) {
         try {
             PreparedStatement productst = connection.prepareStatement(MySQLQueries.INSERT_PRODUCT, Statement.RETURN_GENERATED_KEYS);
-            PreparedStatement flowerst = connection.prepareStatement((MySQLQueries.INSERT_FLOWER));
-            productst.setString(1, flower.getName());
-            productst.setDouble(2, flower.getSellPrice());
-            productst.setDouble(3, flower.getCostPrice());
-            productst.setInt(4, flower.getStock());
-            productst.setString(5, "Flower");
+            PreparedStatement treest = connection.prepareStatement((MySQLQueries.INSERT_TREE));
+            productst.setString(1, tree.getName());
+            productst.setDouble(2, tree.getSellPrice());
+            productst.setDouble(3, tree.getCostPrice());
+            productst.setInt(4, tree.getStock());
+            productst.setString(5, "Tree");
             productst.executeUpdate();
 
             try (ResultSet rs = productst.getGeneratedKeys()) {
                 int product_id = -1;
                 if (rs.next()) {
                     product_id = rs.getInt(1);
-                    flowerst.setInt(1, product_id);
-                    flowerst.setString(2, flower.getColour());
-                    flowerst.executeUpdate();
+                    treest.setInt(1, product_id);
+                    treest.setInt(2, tree.getHeight());
+                    treest.executeUpdate();
+
                 }
+
             }
             AppHandler.printText(Constants.Menus.PRODUCT_ADDED);
         } catch (SQLException e) {
@@ -44,15 +47,15 @@ public class FlowerSQL implements FlowerDAO {
     }
 
     @Override
-    public void update(Flower flower) {
+    public void update(Tree tree) {
         try {
-            PreparedStatement flowerst = connection.prepareStatement(MySQLQueries.UPDATE_FLOWER);
-            flowerst.setString(1,flower.getName());
-            flowerst.setString(2, flower.getColour());
-            flowerst.setDouble(3, flower.getSellPrice());
-            flowerst.setDouble(4, flower.getCostPrice());
-            flowerst.setInt(5, flower.getProduct_id());
-            flowerst.executeUpdate();
+            PreparedStatement treest = connection.prepareStatement(MySQLQueries.UPDATE_TREE);
+            treest.setString(1,tree.getName());
+            treest.setInt(2, tree.getHeight());
+            treest.setDouble(3, tree.getSellPrice());
+            treest.setDouble(4, tree.getCostPrice());
+            treest.setInt(5, tree.getProduct_id());
+            treest.executeUpdate();
         }catch (SQLException e) {
             e.printStackTrace();
         }
@@ -60,14 +63,14 @@ public class FlowerSQL implements FlowerDAO {
     }
 
     @Override
-    public void delete(Flower flower) {
+    public void delete(Tree tree) {
         try {
-            PreparedStatement flowerst = connection.prepareStatement(MySQLQueries.DELETE_FLOWER);
+            PreparedStatement treest = connection.prepareStatement(MySQLQueries.DELETE_TREE);
             PreparedStatement productst = connection.prepareStatement(MySQLQueries.DELETE_PRODUCT);
-            flowerst.setInt(1, flower.getProduct_id());
-            flowerst.executeUpdate();
+            treest.setInt(1, tree.getProduct_id());
+            treest.executeUpdate();
 
-            productst.setInt(1, flower.getProduct_id());
+            productst.setInt(1, tree.getProduct_id());
             int rowsAffected = productst.executeUpdate();
             if (rowsAffected >0) {
                 AppHandler.printText(Constants.Menus.DELETED);
@@ -81,10 +84,10 @@ public class FlowerSQL implements FlowerDAO {
     }
 
     @Override
-    public List<Flower> readAll() {
-        ArrayList<Flower> allFlowers = new ArrayList<>();
+    public List<Tree> readAll() {
+        ArrayList<Tree> allTrees = new ArrayList<>();
         try{
-            PreparedStatement st = connection.prepareStatement(MySQLQueries.GET_ALL_FLOWERS);
+            PreparedStatement st = connection.prepareStatement(MySQLQueries.GET_ALL_TREES);
             ResultSet resultSet = st.executeQuery();
             while (resultSet.next()) {
                 int productId = resultSet.getInt("product_id");
@@ -92,10 +95,10 @@ public class FlowerSQL implements FlowerDAO {
                 double sellPrice = resultSet.getDouble("sell_price");
                 double costPrice = resultSet.getDouble("cost_price");
                 int stock = resultSet.getInt("stock");
-                String colour = resultSet.getString("colour");
+                int height = resultSet.getInt("height");
 
-                Flower flower = new Flower(productId, name, sellPrice, costPrice,stock,colour);
-                allFlowers.add(flower);
+                Tree tree = new Tree (productId, name, sellPrice, costPrice,stock,height);
+                allTrees.add(tree);
             }
 
         }catch (SQLException e) {
@@ -103,15 +106,15 @@ public class FlowerSQL implements FlowerDAO {
 
         }
 
-        return allFlowers;
+        return allTrees;
     }
 
     @Override
-    public Flower getOne(String flowerName) {
-        Flower flower = null;
+    public Tree getOne(String id) {
+        Tree tree = null;
         try {
-            PreparedStatement st = connection.prepareStatement(MySQLQueries.GET_FLOWER);
-            st.setString(1, flowerName);
+            PreparedStatement st = connection.prepareStatement(MySQLQueries.GET_TREE);
+            st.setString(1, id);
             ResultSet resultSet = st.executeQuery(); {
                 if (resultSet.next()) {
                     int productId = resultSet.getInt("product_id");
@@ -119,9 +122,9 @@ public class FlowerSQL implements FlowerDAO {
                     double sellPrice = resultSet.getDouble("sell_price");
                     double costPrice = resultSet.getDouble("cost_price");
                     int stock = resultSet.getInt("stock");
-                    String colour = resultSet.getString("colour");
+                    int height = resultSet.getInt("height");
 
-                    flower = new Flower(productId, name, sellPrice, costPrice, stock, colour);
+                    tree = new Tree (productId,name, sellPrice, costPrice, stock, height);
                 } else {
                     AppHandler.printText(Constants.Menus.PRODUCT_NOT_FOUND);
                 }
@@ -129,7 +132,6 @@ public class FlowerSQL implements FlowerDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return flower;
+        return tree;
     }
 }
-

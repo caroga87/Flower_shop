@@ -59,7 +59,7 @@ public class AppHandler {
 
 	}
 
-	private boolean loadFlowerShopSaves() {
+	private boolean loadFlowerShopSaves() { // es crea la conexió amb la bbdd
 
 		logger.info("AppHandler :: loadFlowerShopSaves :: Loading saves...");
 

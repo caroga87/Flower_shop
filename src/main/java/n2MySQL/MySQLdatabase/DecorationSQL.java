@@ -2,11 +2,11 @@ package n2MySQL.MySQLdatabase;
 
 import n2MySQL.DAO.DecorationDAO;
 import n2MySQL.beans.Decoration;
-import n2MySQL.utils.Input;
+import n2MySQL.handlers.AppHandler;
+import n2MySQL.utis.Constants;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DecorationSQL implements DecorationDAO {
@@ -17,67 +17,121 @@ public class DecorationSQL implements DecorationDAO {
     }
     @Override
     public void create(Decoration decoration) {
-        String name = Input.inputString("Decoration's name:");
-        String type = Input.inputString("Wood or plastic:");
-        double price = Input.inputDouble("Decoration's price:");
-        try (PreparedStatement st = connection.prepareStatement(MySQLQueries.INSERT_DECORATION)){
-            st.setString(1, name);
-            st.setString(2, type);
-            st.setDouble(3, price);
-            st.setInt(4, decoration.getIdProduct());
+        try {
+            PreparedStatement productst = connection.prepareStatement(MySQLQueries.INSERT_PRODUCT, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement decorationst = connection.prepareStatement((MySQLQueries.INSERT_DECORATION));
+            productst.setString(1, decoration.getName());
+            productst.setDouble(2, decoration.getSellPrice());
+            productst.setDouble(3, decoration.getCostPrice());
+            productst.setInt(4, decoration.getStock());
+            productst.setString(5, "Decoration");
+            productst.executeUpdate();
 
-            int rowsAffected = st.executeUpdate();
+            try (ResultSet rs = productst.getGeneratedKeys()) {
+                int product_id = -1;
+                if (rs.next()) {
+                    product_id = rs.getInt(1);
+                    decorationst.setInt(1, product_id);
+                    decorationst.setString(2, decoration.getMaterial());
+                    decorationst.executeUpdate();
 
-            if (rowsAffected > 0) {
-                System.out.println("Decoración insertada correctamente."); // modificar en ingles y en otra clase :)
-            } else {
-                System.out.println("No se pudo insertar la decoración.");
+                }
             }
+            AppHandler.printText(Constants.Menus.PRODUCT_ADDED);
         } catch (SQLException e) {
-            System.out.println("Error al insertar la decoración: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
     @Override
     public void update(Decoration decoration) {
-
-        int decorationId = Input.inputInt("Id of the decoration to update:");
-        String newName = Input.inputString("New name:");
-        String newType = Input.inputString("New material (wood or plastic):");
-        double newPrice = Input.inputDouble("New price:");
-
-        try (PreparedStatement st = connection.prepareStatement(MySQLQueries.UPDATE_DECORATION)) {
-            st.setString(1, newName);
-            st.setString(2, newType);
-            st.setDouble(3, newPrice);
-            st.setInt(4, decorationId);
-
-            int rowsAffected = st.executeUpdate();
-
-            if (rowsAffected > 0) {
-                System.out.println("Decoration updated successfully.");
-            } else {
-                System.out.println("No decoration found with the specified ID.");
-            }
+        try {
+            PreparedStatement flowerst = connection.prepareStatement(MySQLQueries.UPDATE_DECORATION);
+            flowerst.setString(1, decoration.getName());
+            flowerst.setString(2, decoration.getMaterial());
+            flowerst.setDouble(3, decoration.getSellPrice());
+            flowerst.setDouble(4, decoration.getCostPrice());
+            flowerst.setInt(5, decoration.getProduct_id());
+            flowerst.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Error updating decoration: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+    }
+
+
+    @Override
+    public void delete(Decoration decoration) {
+        try {
+            PreparedStatement decorationst = connection.prepareStatement(MySQLQueries.DELETE_DECORATION);
+            PreparedStatement productst = connection.prepareStatement(MySQLQueries.DELETE_PRODUCT);
+            decorationst.setInt(1, decoration.getProduct_id());
+            decorationst.executeUpdate();
+
+            productst.setInt(1, decoration.getProduct_id());
+            int rowsAffected = productst.executeUpdate();
+            if (rowsAffected >0) {
+                AppHandler.printText(Constants.Menus.DELETED);
+            }else {
+                AppHandler.printText(Constants.Menus.PRODUCT_NOT_FOUND);
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
     @Override
-    public void delete(Decoration object) {
+    public List<Decoration> readAll() {
+        ArrayList<Decoration> allDecorations = new ArrayList<>();
+        try{
+            PreparedStatement st = connection.prepareStatement(MySQLQueries.GET_ALL_DECORATIONS);
+            ResultSet resultSet = st.executeQuery();
+            while (resultSet.next()) {
+                int productId = resultSet.getInt("product_id");
+                String name = resultSet.getString("name");
+                double sellPrice = resultSet.getDouble("sell_price");
+                double costPrice = resultSet.getDouble("cost_price");
+                int stock = resultSet.getInt("stock");
+                String material = resultSet.getString("material");
 
+                Decoration decoration = new Decoration(productId, name, sellPrice, costPrice,stock,material);
+                allDecorations.add(decoration);
+            }
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+
+        return allDecorations;
     }
 
     @Override
-    public List<Decoration> read() {
-        return null;
+    public Decoration getOne(String decorationName) {
+        Decoration decoration = null;
+        try {
+            PreparedStatement st = connection.prepareStatement(MySQLQueries.GET_DECORATION);
+            st.setString(1, decorationName);
+            ResultSet resultSet = st.executeQuery(); {
+                if (resultSet.next()) {
+                    int productId = resultSet.getInt("product_id");
+                    String name = resultSet.getString("name");
+                    double sellPrice = resultSet.getDouble("sell_price");
+                    double costPrice = resultSet.getDouble("cost_price");
+                    int stock = resultSet.getInt("stock");
+                    String material = resultSet.getString("material");
+
+                    decoration = new Decoration(productId, name, sellPrice, costPrice, stock, material);
+                } else {
+                    AppHandler.printText(Constants.Menus.PRODUCT_NOT_FOUND);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return decoration;
+    }
     }
 
-    @Override
-    public Decoration getOne(String id) {
-        return null;
-    }
-}
 
 
