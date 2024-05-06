@@ -8,7 +8,7 @@ import n2MySQL.utis.Utils;
 
 public class Ticket{
 	private int ticketId;
-	private Map<String, TicketData> products;
+	private Map<String, TicketData> products; //String como nombre del producto
 	private double totalAmount;
 	private String creationDateTime;
 
