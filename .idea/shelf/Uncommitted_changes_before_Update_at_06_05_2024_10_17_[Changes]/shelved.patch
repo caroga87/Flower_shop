@@ -1,0 +1,265 @@
+Index: build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id(\"java\")\r\n}\r\n\r\ngroup = \"org.example\"\r\nversion = \"1.0-SNAPSHOT\"\r\n\r\nrepositories {\r\n    mavenCentral()\r\n}\r\n\r\ndependencies {\r\n    testImplementation(platform(\"org.junit:junit-bom:5.9.1\"))\r\n    testImplementation(\"org.junit.jupiter:junit-jupiter\")\r\n    implementation 'com.fasterxml.jackson.core:jackson-core:2.16.1'\r\n    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.16.1'\r\n    implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'\r\n    \r\n}\r\n\r\ntasks.test {\r\n    useJUnitPlatform()\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build.gradle.kts b/build.gradle.kts
+--- a/build.gradle.kts	(revision 85ba0799e42e1d81518d2e010f3cc7160ed47af3)
++++ b/build.gradle.kts	(date 1714983436159)
+@@ -1,6 +1,8 @@
+-plugins {
+-    id("java")
+-}
++Build gradle
++
++        plugins {
++            id("java")
++        }
+ 
+ group = "org.example"
+ version = "1.0-SNAPSHOT"
+@@ -10,12 +12,17 @@
+ }
+ 
+ dependencies {
+-    testImplementation(platform("org.junit:junit-bom:5.9.1"))
+-    testImplementation("org.junit.jupiter:junit-jupiter")
+-    implementation 'com.fasterxml.jackson.core:jackson-core:2.16.1'
+-    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.16.1'
+-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
+-    
++    testImplementation (platform("org.junit:junit-bom:5.9.1"))
++    testImplementation ("org.junit.jupiter:junit-jupiter")
++    implementation ("com.fasterxml.jackson.core:jackson-core:2.16.1")
++    implementation ("com.fasterxml.jackson.core:jackson-annotations:2.16.1")
++    implementation ("com.fasterxml.jackson.core:jackson-databind:2.16.1")
++    implementation ("org.slf4j:slf4j-api:2.0.12")
++    implementation ("org.apache.logging.log4j:log4j-core:2.23.1")
++    implementation ("org.mongodb:mongodb-driver-sync:5.0.1")
++    implementation ("org.slf4j:slf4j-api:1.7.32")
++    implementation ("ch.qos.logback:logback-classic:1.4.12")
++
+ }
+ 
+ tasks.test {
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"55e38529-ac3d-400c-9400-b59071d9d90b\" name=\"Changes\" comment=\"First commit carla\">\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/.name\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/uiDesigner.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/n1exercici1/FlowerShop.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/n1exercici1/Input.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/n1exercici1/Products/Decoration.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/n1exercici1/Products/Enum/MaterialType.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/n1exercici1/Products/Flower.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/n1exercici1/Products/Product.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/n1exercici1/Products/Tree.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/example/Main.java\" beforeDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 0\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2ewrPp5bg73uBUZ00FTtGIX16Yi\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"git-widget-placeholder\": \"master\",\r\n    \"kotlin-language-version-configured\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"55e38529-ac3d-400c-9400-b59071d9d90b\" name=\"Changes\" comment=\"\" />\r\n      <created>1712826464259</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1712826464259</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"First commit carla\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1712827205427</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1712827205427</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"First commit carla\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"First commit carla\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 85ba0799e42e1d81518d2e010f3cc7160ed47af3)
++++ b/.idea/workspace.xml	(date 1714982751369)
+@@ -4,18 +4,10 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="55e38529-ac3d-400c-9400-b59071d9d90b" name="Changes" comment="First commit carla">
+-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/n1exercici1/FlowerShop.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/n1exercici1/Input.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/n1exercici1/Products/Decoration.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/n1exercici1/Products/Enum/MaterialType.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/n1exercici1/Products/Flower.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/n1exercici1/Products/Product.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/n1exercici1/Products/Tree.java" afterDir="false" />
++    <list default="true" id="55e38529-ac3d-400c-9400-b59071d9d90b" name="Changes" comment="First Mongo DB files added">
++      <change afterPath="$PROJECT_DIR$/src/main/java/n1exercici1/mongodb/TreeMongo.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -26,6 +18,23 @@
+     <projectState path="$PROJECT_DIR$">
+       <ProjectState />
+     </projectState>
++  </component>
++  <component name="ExternalProjectsManager">
++    <system id="GRADLE">
++      <state>
++        <projects_view>
++          <tree_state>
++            <expand>
++              <path>
++                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
++                <item name="Flower_shop" type="f1a62948:ProjectNode" />
++              </path>
++            </expand>
++            <select />
++          </tree_state>
++        </projects_view>
++      </state>
++    </system>
+   </component>
+   <component name="FileTemplateManagerImpl">
+     <option name="RECENT_TEMPLATES">
+@@ -35,33 +44,33 @@
+     </option>
+   </component>
+   <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="branch_Carla" />
++      </map>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+   <component name="ProjectColorInfo">{
+   &quot;associatedIndex&quot;: 0
+ }</component>
+   <component name="ProjectId" id="2ewrPp5bg73uBUZ00FTtGIX16Yi" />
+-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
++  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
++    <ConfirmationsSetting value="2" id="Add" />
++  </component>
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "git-widget-placeholder": "master",
+-    "kotlin-language-version-configured": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;branch__gere&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+   }
+-}]]></component>
+-  <component name="SharedIndexes">
+-    <attachedChunks>
+-      <set>
+-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+-      </set>
+-    </attachedChunks>
+-  </component>
++}</component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+Index: src/main/java/n1exercici1/mongodb/TreeMongo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/n1exercici1/mongodb/TreeMongo.java b/src/main/java/n1exercici1/mongodb/TreeMongo.java
+new file mode 100644
+--- /dev/null	(date 1714982750444)
++++ b/src/main/java/n1exercici1/mongodb/TreeMongo.java	(date 1714982750444)
+@@ -0,0 +1,102 @@
++package n2MySQL.mongoDatabase;
++import com.mongodb.MongoException;
++import com.mongodb.client.*;
++import n2MySQL.DAO.TreeDAO;
++import com.mongodb.client.model.Filters;
++import org.bson.Document;
++import org.bson.conversions.Bson;
++import org.bson.types.ObjectId;
++import n2MySQL.beans.Tree;
++import java.util.ArrayList;
++import java.util.List;
++
++public class TreeMongo implements TreeDAO {
++    private MongoCollection<Document> productsCollection;
++
++    @Override
++    public void create(Tree object) {
++        try{
++            if(object instanceof Tree tree) {
++                Document productDoc = new Document("name", tree.getName())
++                        .append("sellPrice", tree.getSellPrice())
++                        .append("costPrice", tree.getCostPrice())
++                        .append("quantity", tree.getStock())
++                        .append("type", "tree")
++                        .append("height", tree.getHeight());
++                productsCollection.insertOne(productDoc);
++            }
++        }catch(MongoException e){
++            e.printStackTrace();
++        }
++    }
++
++    @Override
++    public void update(Tree object) {
++        try{
++            Bson filter = Filters.eq("_id", object.getProduct_id());
++            Document updateDoc = new Document("$set", new Document()
++                    .append("name", object.getName())
++                    .append("sellPrice", object.getSellPrice())
++                    .append("costPrice", object.getCostPrice())
++                    .append("quantity", object.getStock())
++                    .append("height", object.getHeight()));
++            productsCollection.updateOne(filter, updateDoc);
++        }catch(MongoException e){
++            e.printStackTrace();
++        }
++
++    }
++
++    @Override
++    public void delete(Tree object) {
++        try{
++            Bson filter = Filters.eq("_id", object.getProduct_id());
++            productsCollection.deleteOne(filter);
++        }catch(MongoException e){
++            e.printStackTrace();
++        }
++
++    }
++
++    @Override
++    public List<Tree> readAll() { //Falta id?
++        List<Tree> allTrees = new ArrayList<>();
++        try{
++            FindIterable<Document> findIterable = productsCollection.find();
++            for (Document document : findIterable) {
++                if (document.getString("type").equals("tree")) {
++                    Tree tree = new Tree(
++                            document.getString("name"),
++                            document.getDouble("sellPrice"),
++                            document.getDouble("costPrice"),
++                            document.getInteger("quantity"),
++                            document.getInteger("height")
++                    );
++                    allTrees.add(tree);
++                }
++            }
++        }catch(MongoException e){
++            e.printStackTrace();
++        }
++        return allTrees;
++    }
++
++    @Override
++    public Tree getOne(String id) {
++        ObjectId objectId = new ObjectId(id);
++        Document tree = null;
++        try {
++            Bson filter = Filters.eq("_id", objectId);
++            tree = productsCollection.find(filter).first();
++        } catch (MongoException e) {
++            e.printStackTrace();
++        }
++        assert tree != null;
++        return new Tree(
++                tree.getString("name"),
++                tree.getDouble("sellPrice"),
++                tree.getDouble("costPrice"),
++                tree.getInteger("quantity"),
++                tree.getInteger("height"));
++    }
++}
+\ No newline at end of file

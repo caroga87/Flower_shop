@@ -1,5 +1,4 @@
 package n2MySQL.mongoDatabase;
-
 import com.mongodb.client.*;
 import n2MySQL.DAO.DecorationDAO;
 import com.mongodb.client.model.Filters;
@@ -28,7 +27,7 @@ public class DecorationMongo implements DecorationDAO {
 
     @Override
     public void update(Decoration object) {
-        Bson filter = Filters.eq("_id", object.getProduct_id());
+        Bson filter = Filters.eq("_id", object.getProductId());
         Document updateDoc = new Document("$set", new Document()
                 .append("name", object.getName())
                 .append("sellPrice", object.getSellPrice())
@@ -40,7 +39,7 @@ public class DecorationMongo implements DecorationDAO {
 
     @Override
     public void delete(Decoration object) {
-        Bson filter = Filters.eq("_id", object.getProduct_id());
+        Bson filter = Filters.eq("_id", object.getProductId());
         productsCollection.deleteOne(filter);
     }
 
@@ -51,7 +50,6 @@ public class DecorationMongo implements DecorationDAO {
         for (Document document : findIterable) {
             if (document.getString("type").equals("decoration")) {
                 Decoration decoration = new Decoration(
-                        document.getString("_id"),
                         document.getString("name"),
                         document.getDouble("sellPrice"),
                         document.getDouble("costPrice"),
@@ -69,8 +67,8 @@ public class DecorationMongo implements DecorationDAO {
         ObjectId objectId = new ObjectId(id);
         Bson filter = Filters.eq("_id", objectId);
         Document decoration = productsCollection.find(filter).first();
+        assert decoration != null;
         return new Decoration(
-                decoration.getString("_id"),
                 decoration.getString("name"),
                 decoration.getDouble("sellPrice"),
                 decoration.getDouble("costPrice"),

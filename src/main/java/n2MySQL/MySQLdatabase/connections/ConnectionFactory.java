@@ -1,6 +1,7 @@
 package n2MySQL.MySQLdatabase.connections;
 
 import n2MySQL.exceptions.EmptyDatabaseException;
+import n2MySQL.mongoDatabase.MongoDatabaseConnection;
 import n2MySQL.utils.Constants;
 
 public class ConnectionFactory {
