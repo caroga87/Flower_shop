@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import n1exercici1.beans.Product;
+import n1exercici1.sales.Ticket;
 
 
 public class StockSingleton {
