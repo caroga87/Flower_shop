@@ -4,25 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55e38529-ac3d-400c-9400-b59071d9d90b" name="Changes" comment="Merge remote-tracking branch 'origin/branch_Carla' into branch_Carla&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/TicketDataSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/TicketDataSQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/TicketSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/TicketSQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/TreeSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/TreeSQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/connections/SQLDatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/connections/SQLDatabaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/DecorationSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/DecorationSQL.java" afterDir="false" />
+    <list default="true" id="55e38529-ac3d-400c-9400-b59071d9d90b" name="Changes" comment="StockHandler modified">
+      <change afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/DAO/ProductDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/ProductSQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/FlowerSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/FlowerSQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/DecorationFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/DecorationFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/FlowerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/FlowerFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/ProductAbstractFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/ProductAbstractFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/TreeFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/TreeFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/AppHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/AppHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/CreateTicketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/CreateTicketHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/DeleteProductHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/DeleteProductHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/StockHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/StockHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/DecorationMongo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/DecorationMongo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/FlowerMongo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/FlowerMongo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/TicketMongo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/TicketMongo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/TreeMongo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/TreeMongo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/MySQLQueries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/MySQLQueries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/DecorationMongo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/FlowerMongo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/MongoDatabaseConnection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/TicketMongo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/TreeMongo.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,8 +46,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -213,7 +205,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714988168821</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="StockHandler modified">
+      <option name="closed" value="true" />
+      <created>1715036478280</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1715036478280</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -238,6 +238,7 @@
     <MESSAGE value="Afegit packages" />
     <MESSAGE value="Ultimes modificacions + codi SQL" />
     <MESSAGE value="Merge remote-tracking branch 'origin/branch_Carla' into branch_Carla&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/branch_Carla' into branch_Carla&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+    <MESSAGE value="StockHandler modified" />
+    <option name="LAST_COMMIT_MESSAGE" value="StockHandler modified" />
   </component>
 </project>

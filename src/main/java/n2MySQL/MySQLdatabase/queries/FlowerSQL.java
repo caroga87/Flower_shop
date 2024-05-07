@@ -52,6 +52,7 @@ public class FlowerSQL implements FlowerDAO {
             flowerSt.setString(2, flower.getColour());
             flowerSt.setDouble(3, flower.getSellPrice());
             flowerSt.setDouble(4, flower.getCostPrice());
+            flowerSt.setInt(5,flower.getStock());
             flowerSt.setInt(5, flower.getProductId());
             flowerSt.executeUpdate();
         }catch (SQLException e) {
