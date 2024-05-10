@@ -6,18 +6,13 @@ import n2MySQL.utils.Constants;
 import n2MySQL.utils.Utils;
 import n2MySQL.utils.Validations;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 
 public class AddProductHandler {
 
-	private static Logger logger = LoggerFactory.getLogger(AddProductHandler.class);
-
+	
 	public static void runAddProduct() {
 
-		logger.info("AddProductHandler :: runAddProduct :: About to add a new product.");
-
+		
 		AppHandler.printText(Constants.Headings.ADD_PRODUCT);
 
 		String productOption = "";
@@ -254,7 +249,6 @@ public class AddProductHandler {
 
 	private static void runExitProductOption() {
 
-		logger.info("AddProductHandler :: runExitProductOption :: Exiting the add product menu.");
 		AppHandler.printText(TextMenuHandler.getExitCurrentMenuMessage());
 
 	}

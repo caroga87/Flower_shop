@@ -4,20 +4,12 @@ import n2MySQL.utils.Constants;
 import n2MySQL.utils.Utils;
 import n2MySQL.utils.Validations;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 
 public class TicketHandler {
 
 
-
-	private static Logger logger = LoggerFactory.getLogger(TicketHandler.class);
-
-
 	public static void runViewSales() {
 
-		logger.info("TicketHandler :: runViewSales :: About to display the tickets created since the given date.");
 
 		String date = "";
 
@@ -54,7 +46,7 @@ public class TicketHandler {
 
 	public static void runViewEarnings() {
 
-//		logger.info("ViewEarningsHandler :: runViewEarnings :: About to display the total earnings.");
+
 //		AppHandler.printText(getEarnings());
 
 	}

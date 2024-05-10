@@ -4,12 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class SQLDatabaseConnection implements IConnection{
 	
-	private static Logger logger = LoggerFactory.getLogger(SQLDatabaseConnection.class);
 	private Connection connectionSQL;
 	
 	private  String url;
@@ -20,7 +16,7 @@ public class SQLDatabaseConnection implements IConnection{
 		super();
 		this.url = "jdbc:mysql://localhost:3306/flower_shop";
 		this.user = "root";
-		this.password = ""; // Escribir aquí vuestra contraseña.
+		this.password = "Claudio2023!"; // Escribir aquí vuestra contraseña.
 	}
 
 
@@ -54,7 +50,7 @@ public class SQLDatabaseConnection implements IConnection{
 		try {
 			this.connectionSQL = DriverManager.getConnection(this.url, this.user, this.password);
 		} catch (SQLException e) {
-			logger.error("ConnectionManager :: openConnection :: " , e);
+			System.out.println("ConnectionManager :: openConnection :: " + e);
 		}
 		return connectionSQL;
 	}
@@ -67,7 +63,7 @@ public class SQLDatabaseConnection implements IConnection{
 				connection.close();
 			}
 		} catch (SQLException e) {
-			logger.error("ConnectionManager :: closeConnection :: " , e);
+			System.out.println("ConnectionManager :: closeConnection :: " +  e);
 		}
 	}
 

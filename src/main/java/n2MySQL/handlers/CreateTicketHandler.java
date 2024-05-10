@@ -5,18 +5,15 @@ import n2MySQL.utils.Validations;
 import n2MySQL.beans.Ticket;
 import n2MySQL.beans.TicketData;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 public class CreateTicketHandler {
 
-	private static Logger logger = LoggerFactory.getLogger(CreateTicketHandler.class);
+	
 
 	public static void runCreateNewTicket() {
 
-		logger.info("CreateNewTicketMenuHandler :: runCreateNewTicket :: About to create a new ticket.");
-
+		
 		Ticket newTicket = new Ticket();
 		//Query
 		//newTicket.setTicketId(SalesSingleton.getSalesSingleton().getNextTicketId());

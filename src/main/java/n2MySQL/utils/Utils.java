@@ -6,9 +6,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import n2MySQL.enums.DateFormatEnum;
 import n2MySQL.enums.MaterialsEnum;
 
@@ -16,7 +13,7 @@ import n2MySQL.enums.MaterialsEnum;
 
 public class Utils {
 
-private static Logger logger = LoggerFactory.getLogger(Utils.class);
+
 	
 	public static String getCurrentDateTime() {
 		return new SimpleDateFormat(DateFormatEnum.TIMESTAMP.getFormat()).format(new Date());
@@ -30,7 +27,7 @@ private static Logger logger = LoggerFactory.getLogger(Utils.class);
 		try {
 			date = sdf.parse(strDate);
 		} catch (ParseException e) {
-			logger.error("Utils :: parseDateFromString :: " + Constants.Errors.PARSE_EXCEPTION, e);
+			System.out.println("Utils :: parseDateFromString :: " + Constants.Errors.PARSE_EXCEPTION + e);
 		}
 		
 		return date;

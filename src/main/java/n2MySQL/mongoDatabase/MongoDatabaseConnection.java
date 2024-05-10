@@ -4,13 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import n2MySQL.MySQLdatabase.connections.IConnection;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 
 public class MongoDatabaseConnection implements IConnection {
 	
-	private static Logger logger = LoggerFactory.getLogger(MongoDatabaseConnection.class);
+
 	private Connection connectionMongo;
 	
 	private String url;
@@ -55,7 +54,7 @@ public class MongoDatabaseConnection implements IConnection {
 		try {
 			this.connectionMongo = DriverManager.getConnection(this.url, this.user, this.password);
 		} catch (SQLException e) {
-			logger.error("ConnectionManager :: openConnection :: " , e);
+			System.out.println("ConnectionManager :: openConnection :: " + e);
 		}
 		
 		return this.connectionMongo;
@@ -69,7 +68,7 @@ public class MongoDatabaseConnection implements IConnection {
 				connection.close();
 			}
 		} catch (SQLException e) {
-			logger.error("ConnectionManager :: closeConnection :: " , e);
+			System.out.println("ConnectionManager :: closeConnection :: " + e);
 		}
 		
 	}

@@ -8,17 +8,13 @@ import n2MySQL.io.FlowerShopFileReader;
 import n2MySQL.utils.Constants;
 import n2MySQL.utils.Validations;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import flower_shop.handlers.menus.FlowerShopHandler;
 
 import java.util.List;
 import java.util.Scanner;
 
 
 public class AppHandler {
-	private static Logger logger = LoggerFactory.getLogger(AppHandler.class);
+	
 
 	private static Scanner scanner;
 	private static List<String> colours;
@@ -75,7 +71,7 @@ public class AppHandler {
 		try {
 			connection = ConnectionFactory.getConnection(RunningModeSingleton.getRunningModeSingleton().getRunningMode());
 		} catch (EmptyDatabaseException e) {
-			logger.error("AppHandler :: runChooseRunningModeMenu :: ", e);
+			System.out.println("AppHandler :: runChooseRunningModeMenu :: " + e);
 		}
 		
 		if(connection != null) {
@@ -164,7 +160,7 @@ public class AppHandler {
 
 	private static void runExitFlowerShop() {
 
-		logger.info("AppHandler :: runExitFlowerShop :: Flower Shop App shutting down...");
+		System.out.println("AppHandler :: runExitFlowerShop :: Flower Shop App shutting down...");
 
 		
 		AppHandler.printText(TextMenuHandler.getExitMessage());

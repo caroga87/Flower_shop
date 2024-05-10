@@ -5,9 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import n2MySQL.enums.DateFormatEnum;
 import n2MySQL.enums.MaterialsEnum;
 import n2MySQL.enums.ProductTypeEnum;
@@ -16,7 +13,7 @@ import n2MySQL.enums.ProductTypeEnum;
 
 public class Validations {
 
-private static Logger logger = LoggerFactory.getLogger(Validations.class);
+
 	
 	//valid shop name: alphanumeric + some special characters + white spaces
 	public static boolean isValidName(String name) {
@@ -84,7 +81,7 @@ private static Logger logger = LoggerFactory.getLogger(Validations.class);
 			}
 			
 		} catch (ParseException e) {
-			logger.error("Validations :: isValidDate :: " + Constants.Errors.PARSE_EXCEPTION, e);
+			System.out.println("Validations :: isValidDate :: " + Constants.Errors.PARSE_EXCEPTION + e);
 			return false;
 		}
 		
