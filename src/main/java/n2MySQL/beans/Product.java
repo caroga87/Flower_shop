@@ -1,28 +1,33 @@
 package n2MySQL.beans;
 
-public abstract class Product  {
+public abstract class Product <T> {
 
 	private int product_id;
 	private String name;
 	private double sellPrice;
 	private double costPrice;
 	private int stock;
+	private ProductType productType;
+	private T attribute;
 
 
-	public Product(String name, double sellPrice, double costPrice, int stock) {
-		super();
+	public Product(String name, double sellPrice, double costPrice, int stock, ProductType productType, T attribute) {
 		this.name = name;
 		this.sellPrice = sellPrice;
 		this.costPrice = costPrice;
 		this.stock = stock;
+		this.productType = productType;
+		this.attribute = attribute;
 	}
 
-	public Product(int product_id, String name, double sellPrice, double costPrice, int stock) {
+	public Product(int product_id, String name, double sellPrice, double costPrice, int stock,  ProductType productType, T attribute) {
 		this.product_id = product_id;
 		this.name = name;
 		this.sellPrice = sellPrice;
 		this.costPrice = costPrice;
 		this.stock = stock;
+		this.productType = productType;
+		this.attribute = attribute;
 	}
 
 	public String getName() {
@@ -47,6 +52,22 @@ public abstract class Product  {
 
 	public void setCostPrice(double costPrice) {
 		this.costPrice = costPrice;
+	}
+
+	public T getAttribute() {
+		return attribute;
+	}
+
+	public ProductType getProductType() {
+		return productType;
+	}
+
+	public void setProductType(ProductType productType) {
+		this.productType = productType;
+	}
+
+	public void setAttribute(T attribute) {
+		this.attribute = attribute;
 	}
 
 	public int getProductId() {

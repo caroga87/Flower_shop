@@ -2,33 +2,28 @@ package n2MySQL.beans;
 
 
 import n2MySQL.enums.ProductTypeEnum;
-import n2MySQL.interfaces.ISpecificProduct;
 import n2MySQL.handlers.AppHandler;
 
-public class Tree extends Product implements ISpecificProduct{
-	private int height;
+public class Tree <T> extends Product <T>{
+	private T height;
 
-	public Tree(String name, double sellPrice, double costPrice, int stock, int height) {
-		super(name, sellPrice, costPrice, stock);
+
+	public Tree(String name, double sellPrice, double costPrice, int stock, T height) {
+		super(name, sellPrice, costPrice, stock, ProductType.TREE, height);
 		this.height = height;
 	}
 
-	public Tree(int product_id, String name, double sellPrice, double costPrice, int stock, int height) {
-		super(product_id, name, sellPrice, costPrice, stock);
+	public Tree(int product_id, String name, double sellPrice, double costPrice, int stock, T height) {
+		super(product_id, name, sellPrice, costPrice, stock, ProductType.TREE, height);
 		this.height = height;
 	}
 
-	public int getHeight() {
+	public T getHeight() {
 		return height;
 	}
 
-	public void setHeight(int height) {
+	public void setHeight(T height) {
 		this.height = height;
-	}
-
-	@Override
-	public void printProductType() {
-		AppHandler.printText(ProductTypeEnum.TREE.getType());
 	}
 
 	@Override

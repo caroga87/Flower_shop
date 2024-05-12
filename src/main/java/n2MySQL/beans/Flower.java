@@ -2,33 +2,27 @@ package n2MySQL.beans;
 
 
 import n2MySQL.enums.ProductTypeEnum;
-import n2MySQL.interfaces.ISpecificProduct;
 import n2MySQL.handlers.AppHandler;
 
-public class Flower extends Product implements ISpecificProduct {
+public class Flower<T> extends Product <T> {
+	private  T colour;
 
-	private String colour;
-	public Flower(String name, double sellPrice, double costPrice, int stock, String colour) {
-		super(name, sellPrice, costPrice, stock);
+	public Flower(String name, double sellPrice, double costPrice, int stock, T colour) {
+		super(name, sellPrice, costPrice, stock, ProductType.FLOWER, colour);
 		this.colour = colour;
 	}
 
-	public Flower(int product_id, String name, double sellPrice, double costPrice, int stock, String colour) {
-		super(product_id, name, sellPrice, costPrice, stock);
+	public Flower(int product_id, String name, double sellPrice, double costPrice, int stock, T colour) {
+		super(product_id, name, sellPrice, costPrice, stock, ProductType.FLOWER, colour);
 		this.colour = colour;
 	}
 
-	public String getColour() {
+	public T getColour() {
 		return colour;
 	}
 
-	public void setColour(String colour) {
+	public void setColour(T colour) {
 		this.colour = colour;
-	}
-
-	@Override
-	public void printProductType() {
-		AppHandler.printText(ProductTypeEnum.FLOWER.getType());
 	}
 
 	@Override

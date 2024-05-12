@@ -4,17 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55e38529-ac3d-400c-9400-b59071d9d90b" name="Changes" comment="StockHandler modified">
-      <change afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/DAO/ProductDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/ProductSQL.java" afterDir="false" />
+    <list default="true" id="55e38529-ac3d-400c-9400-b59071d9d90b" name="Changes" comment="Update 07/05">
+      <change afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/ProductType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_05_2024_10_10_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_05_2024_10_10__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/DAO/TicketDataDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/DAO/TicketDataDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/FlowerSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/FlowerSQL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/MySQLQueries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/MySQLQueries.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/DecorationMongo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/FlowerMongo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/MongoDatabaseConnection.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/TicketMongo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/mongoDatabase/TreeMongo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/ProductSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/ProductSQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/TicketDataSQL.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/TicketSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/MySQLdatabase/queries/TicketSQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Decoration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Decoration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Flower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Flower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Ticket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/TicketData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/beans/Tree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/DecorationFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/DecorationFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/FlowerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/FlowerFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/ProductAbstractFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/ProductAbstractFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/TreeFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/factories/TreeFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/CreateTicketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/n2MySQL/handlers/CreateTicketHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/n2MySQL/interfaces/ISpecificProduct.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +60,7 @@
       <list>
         <option value="Class" />
         <option value="Interface" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -67,8 +80,8 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/caroga87/Flower_shop&quot;,
-    &quot;accountId&quot;: &quot;0729b1f6-2cf5-4eb4-9df8-7ddec9c68199&quot;
+    &quot;url&quot;: &quot;https://github.com/caroga87/Flower_shop.git&quot;,
+    &quot;accountId&quot;: &quot;c9685857-c520-411f-879e-3dcc3b3a26b6&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -82,23 +95,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Gradle.Build Flower_shop.executor": "Run",
-    "Gradle.Flowershop [:Main.main()].executor": "Run",
-    "Kotlin script (Beta).build.gradle.kts.executor": "Debug",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "branch__Carla",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/rocac/IdeaProjects/Flowershop/lib/mysql-connector-j-8.3.0.jar",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2908046"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Gradle.Build Flower_shop.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Flowershop [:Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin script (Beta).build.gradle.kts.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;branch__Carla&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/rocac/IdeaProjects/Flowershop/lib/mysql-connector-j-8.3.0.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2908046&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\rocac\IdeaProjects\Flowershop\src\main\java\n2MySQL\handlers" />
@@ -213,7 +226,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715036478280</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Update 07/05">
+      <option name="closed" value="true" />
+      <created>1715082858159</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1715082858159</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -239,6 +260,7 @@
     <MESSAGE value="Ultimes modificacions + codi SQL" />
     <MESSAGE value="Merge remote-tracking branch 'origin/branch_Carla' into branch_Carla&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="StockHandler modified" />
-    <option name="LAST_COMMIT_MESSAGE" value="StockHandler modified" />
+    <MESSAGE value="Update 07/05" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update 07/05" />
   </component>
 </project>

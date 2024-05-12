@@ -34,7 +34,7 @@ public class FlowerSQL implements FlowerDAO {
                 if (rs.next()) {
                     product_id = rs.getInt(1);
                     flowerst.setInt(1, product_id);
-                    flowerst.setString(2, flower.getColour());
+                    flowerst.setString(2, flower.getColour().toString());
                     flowerst.executeUpdate();
                 }
             }
@@ -49,7 +49,7 @@ public class FlowerSQL implements FlowerDAO {
         try (Connection connection = connectionManager.openConnection();
             PreparedStatement flowerSt = connection.prepareStatement(MySQLQueries.UPDATE_FLOWER)){
             flowerSt.setString(1,flower.getName());
-            flowerSt.setString(2, flower.getColour());
+            flowerSt.setString(2, flower.getColour().toString());
             flowerSt.setDouble(3, flower.getSellPrice());
             flowerSt.setDouble(4, flower.getCostPrice());
             flowerSt.setInt(5,flower.getStock());
@@ -133,5 +133,31 @@ public class FlowerSQL implements FlowerDAO {
         }
         return flower;
     }
+
+    public Flower getOneByID (int id){
+        Flower flower = null;
+        try (Connection connection = connectionManager.openConnection();
+             PreparedStatement st = connection.prepareStatement(MySQLQueries.GET_FLOWER_ID)){
+            st.setInt(1, id);
+            ResultSet resultSet = st.executeQuery(); {
+                if (resultSet.next()) {
+                    int productId = resultSet.getInt("product_id");
+                    String name = resultSet.getString("name");
+                    double sellPrice = resultSet.getDouble("sell_price");
+                    double costPrice = resultSet.getDouble("cost_price");
+                    int stock = resultSet.getInt("stock");
+                    String colour = resultSet.getString("colour");
+
+                    flower = new Flower(productId, name, sellPrice, costPrice, stock, colour);
+                } else {
+                    AppHandler.printText(Constants.Menus.PRODUCT_NOT_FOUND);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return flower;
+    }
+
 }
 

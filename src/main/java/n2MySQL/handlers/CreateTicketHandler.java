@@ -3,7 +3,6 @@ package n2MySQL.handlers;
 import n2MySQL.beans.Product;
 import n2MySQL.utils.Validations;
 import n2MySQL.beans.Ticket;
-import n2MySQL.beans.TicketData;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
