@@ -1,7 +1,6 @@
 package n2MySQL.MySQLdatabase.connections;
 
 import n2MySQL.exceptions.EmptyDatabaseException;
-import n2MySQL.mongoDatabase.MongoDatabaseConnection;
 import n2MySQL.utils.Constants;
 
 public class ConnectionFactory {
@@ -14,7 +13,7 @@ public class ConnectionFactory {
 			return (IConnection) new SQLDatabaseConnection();
 			
 		}else if(database.equalsIgnoreCase(Constants.RunningModes.MONGODB)) {
-			return (IConnection) new MongoDatabaseConnection();
+			return null;
 		}
 		
 		return null;

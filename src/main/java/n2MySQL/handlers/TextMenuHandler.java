@@ -11,7 +11,7 @@ import java.util.List;
 public class TextMenuHandler {
 	
 	public static String getEnterValidConnectionName() {
-		return Constants.Menus.UP_RUNNING_MODE;
+		return Constants.Menus.APP_RUNNING_MODE;
 	}
 
 	public static String getCreateFlowerShopMenu() {
@@ -54,7 +54,7 @@ public class TextMenuHandler {
 		
 		int count = 1;
 		for(ProductTypeEnum enumValue : productTypeEnumValues) {
-			sb.append(count).append(". ").append(enumValue.getType()).append("\n");
+			sb.append(count).append(". ").append(enumValue.toString()).append("\n");
 			count++;
 		}
 		

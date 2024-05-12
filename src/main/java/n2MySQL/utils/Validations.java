@@ -5,13 +5,12 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
 
+import n2MySQL.enums.ProductTypeEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import n2MySQL.enums.DateFormatEnum;
 import n2MySQL.enums.MaterialsEnum;
-import n2MySQL.enums.ProductTypeEnum;
-
 
 
 public class Validations {

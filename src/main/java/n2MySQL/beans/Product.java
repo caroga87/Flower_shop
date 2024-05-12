@@ -1,5 +1,7 @@
 package n2MySQL.beans;
 
+import n2MySQL.enums.ProductTypeEnum;
+
 public abstract class Product <T> {
 
 	private int product_id;
@@ -7,26 +9,26 @@ public abstract class Product <T> {
 	private double sellPrice;
 	private double costPrice;
 	private int stock;
-	private ProductType productType;
+	private ProductTypeEnum productTypeEnum;
 	private T attribute;
 
 
-	public Product(String name, double sellPrice, double costPrice, int stock, ProductType productType, T attribute) {
+	public Product(String name, double sellPrice, double costPrice, int stock, ProductTypeEnum productTypeEnum, T attribute) {
 		this.name = name;
 		this.sellPrice = sellPrice;
 		this.costPrice = costPrice;
 		this.stock = stock;
-		this.productType = productType;
+		this.productTypeEnum = productTypeEnum;
 		this.attribute = attribute;
 	}
 
-	public Product(int product_id, String name, double sellPrice, double costPrice, int stock,  ProductType productType, T attribute) {
+	public Product(int product_id, String name, double sellPrice, double costPrice, int stock, ProductTypeEnum productTypeEnum, T attribute) {
 		this.product_id = product_id;
 		this.name = name;
 		this.sellPrice = sellPrice;
 		this.costPrice = costPrice;
 		this.stock = stock;
-		this.productType = productType;
+		this.productTypeEnum = productTypeEnum;
 		this.attribute = attribute;
 	}
 
@@ -58,12 +60,12 @@ public abstract class Product <T> {
 		return attribute;
 	}
 
-	public ProductType getProductType() {
-		return productType;
+	public ProductTypeEnum getProductType() {
+		return productTypeEnum;
 	}
 
-	public void setProductType(ProductType productType) {
-		this.productType = productType;
+	public void setProductType(ProductTypeEnum productTypeEnum) {
+		this.productTypeEnum = productTypeEnum;
 	}
 
 	public void setAttribute(T attribute) {

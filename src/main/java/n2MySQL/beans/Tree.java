@@ -2,19 +2,18 @@ package n2MySQL.beans;
 
 
 import n2MySQL.enums.ProductTypeEnum;
-import n2MySQL.handlers.AppHandler;
 
 public class Tree <T> extends Product <T>{
-	private T height;
+	private  T height;
 
 
 	public Tree(String name, double sellPrice, double costPrice, int stock, T height) {
-		super(name, sellPrice, costPrice, stock, ProductType.TREE, height);
+		super(name, sellPrice, costPrice, stock, ProductTypeEnum.TREE, height);
 		this.height = height;
 	}
 
 	public Tree(int product_id, String name, double sellPrice, double costPrice, int stock, T height) {
-		super(product_id, name, sellPrice, costPrice, stock, ProductType.TREE, height);
+		super(product_id, name, sellPrice, costPrice, stock, ProductTypeEnum.TREE, height);
 		this.height = height;
 	}
 

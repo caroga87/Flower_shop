@@ -1,5 +1,7 @@
 package n2MySQL.handlers;
 
+import n2MySQL.MySQLdatabase.queries.ProductSQL;
+import n2MySQL.MySQLdatabase.queries.TicketSQL;
 import n2MySQL.beans.Product;
 import n2MySQL.utils.Validations;
 import n2MySQL.beans.Ticket;
@@ -7,10 +9,14 @@ import n2MySQL.beans.Ticket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Map;
+
 
 public class CreateTicketHandler {
 
 	private static Logger logger = LoggerFactory.getLogger(CreateTicketHandler.class);
+	private static TicketSQL ticketSQL;
+	private static ProductSQL productSQL;
 
 	public static void runCreateNewTicket() {
 
@@ -36,8 +42,7 @@ public class CreateTicketHandler {
 			processTicketMenuOption(ticketMenuOption, newTicket);
 
 			if(ticketMenuOption.equalsIgnoreCase("0")) {
-				//Query
-				//SalesSingleton.getSalesSingleton().getSales().add(newTicket);
+				ticketSQL.create(newTicket);
 				TicketHandler.recalculateTotalEarnings(newTicket.getTotalAmount());
 
 			}
@@ -69,101 +74,49 @@ public class CreateTicketHandler {
 	}
 
 	private static void runAddProductToMenuOption(Ticket newTicket) {
+		AppHandler.printText(TextMenuHandler.getEnterValidProductName());
+		String productName = AppHandler.readConsoleInput().trim();
+		Product product = productSQL.getOneByName(productName);
 
-		//product name
-		String productName = "";
-		do {
+		if (product != null) {
+			AppHandler.printText(TextMenuHandler.getEnterValidQuantity());
+			String quantity = AppHandler.readConsoleInput().trim();
 
-			AppHandler.printText(TextMenuHandler.getEnterValidProductName());
-			productName = AppHandler.readConsoleInput().trim();
-
-		} while(!Validations.isValidProductName(productName));
-
-		//checks if product exists in catalogue
-		Product product = StockHandler.findProductByName(productName);
-
-		//product exists in catalogue
-		if(product != null) {
-
-			//quantity
-			String quantity = "";
-			do {
-
-				AppHandler.printText(TextMenuHandler.getEnterValidQuantity());
-				quantity = AppHandler.readConsoleInput().trim();
-
-			} while(!Validations.isNaturalNumber(quantity));
-
-			//checks if there is sufficient stock
-			boolean sufficientStock = StockHandler.thereIsEnoughStock(product, Integer.parseInt(quantity));
-
-			if(sufficientStock) {
-
-				//handle stock + sales
+			if (StockHandler.thereIsEnoughStock(product, Integer.parseInt(quantity))) {
 				StockHandler.deductStock(product, Integer.parseInt(quantity));
 				recalculateTicketTotalAmountOnProductAdd(newTicket, Integer.parseInt(quantity), product.getSellPrice());
-				addProductToTicket(newTicket, product.getName(), Integer.parseInt(quantity), product.getProductId());
-
+				newTicket.getProducts().put(product, Integer.valueOf(quantity));
 				AppHandler.printText(TextMenuHandler.getProductAddedMessage());
 
 				AppHandler.printText(newTicket.toString());
-
 			} else {
-
-				AppHandler.printText(TextMenuHandler.getInsufficientStockMessage());
-
+				System.out.println(TextMenuHandler.getInsufficientStockMessage());
 			}
-
 		} else {
-
-			AppHandler.printText(TextMenuHandler.getProductNotFoundMessage() + ", name: " + productName + "\n");
-
+			System.out.println(TextMenuHandler.getProductNotFoundMessage() + ", name: " + productName + "\n");
 		}
 
 	}
 
 	private static void runDeleteProductFromMenuOption(Ticket newTicket) {
+		boolean hasProducts = !newTicket.getProducts().isEmpty();;
+		if (hasProducts) {
+			AppHandler.printText(TextMenuHandler.getEnterValidProductId());
+			String productId = AppHandler.readConsoleInput().trim();
+			Product product =productSQL.getOne(Integer.valueOf(productId));
 
-		boolean hasProducts = checkTicketHasProducts(newTicket);
-
-		if(hasProducts) {
-
-			//product id
-			String productId = "";
-			do {
-
-				AppHandler.printText(TextMenuHandler.getEnterValidProductId());
-				productId = AppHandler.readConsoleInput().trim();
-
-			} while(!Validations.isNaturalNumber(productId));
-
-			//checks if product exists in catalogue. Query.
-			Product product = StockHandler.findProductByProductId(Integer.parseInt(productId));
-
-			//product exists in catalogue
-			if(product != null) {
-
-				int quantity = findProductQuantityInTicket(newTicket, product.getName());
-
-				//handle stock + sales. Query.
-				//StockHandler.putBackInStock(product, quantity);
-				//recalculateTicketTotalAmountOnProductDelete(newTicket, quantity, product.getSellPrice());
-				removeProductFromTicket(newTicket, product.getName());
-
-				AppHandler.printText(TextMenuHandler.getDeletedMessage());
-
-				AppHandler.printText(newTicket.toString());
-
+			if (product != null) {
+				int quantity = findProductQuantityInTicket(newTicket, product);
+				StockHandler.putBackInStock(product, quantity);
+				newTicket.getProducts().remove(product);
+				recalculateTicketTotalAmountOnProductDelete(newTicket, quantity, product.getSellPrice());
+				System.out.println(TextMenuHandler.getDeletedMessage());
+				System.out.println(newTicket);
 			} else {
-
-				AppHandler.printText(TextMenuHandler.getProductNotFoundMessage() + ", id: " + productId + "\n");
-
+				System.out.println(TextMenuHandler.getProductNotFoundMessage() + ", id: " + productId + "\n");
 			}
-
 		} else {
-
-			AppHandler.printText(TextMenuHandler.getTicketHasNoProductsMessage());
-
+			System.out.println(TextMenuHandler.getTicketHasNoProductsMessage());
 		}
 
 	}
@@ -172,18 +125,14 @@ public class CreateTicketHandler {
 		return !newTicket.getProducts().isEmpty();
 	}
 
-	public static int findProductQuantityInTicket(Ticket ticket, String productName) {
-		TicketData data = ticket.getProducts().get(productName);
-		if(data != null) {
-			return data.getQuantity();
-		} else {
-			return 0;
-		}
+	public static int findProductQuantityInTicket(Ticket ticket, Product product) {
+		Map<Product, Integer> products = ticket.getProducts();
+		return products.containsKey(product) ? products.get(product) : 0;
 	}
 
-	public static void addProductToTicket(Ticket ticket, String productName, int quantity, int productId) {
-		TicketData data = new TicketData(quantity, productId);
-		ticket.getProducts().put(productName, data);
+	public static void addProductToTicket(Ticket ticket, Product product, int quantity) {
+		Map<Product, Integer> products = ticket.getProducts();
+		products.put(product, quantity);
 	}
 
 	public static void removeProductFromTicket(Ticket ticket, String productName) {

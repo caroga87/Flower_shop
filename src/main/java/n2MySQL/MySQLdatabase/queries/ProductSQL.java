@@ -3,6 +3,7 @@ package n2MySQL.MySQLdatabase.queries;
 import n2MySQL.DAO.ProductDAO;
 import n2MySQL.MySQLdatabase.connections.SQLDatabaseConnection;
 import n2MySQL.beans.*;
+import n2MySQL.enums.ProductTypeEnum;
 import n2MySQL.handlers.AppHandler;
 import n2MySQL.utils.Constants;
 
@@ -39,8 +40,8 @@ public class ProductSQL implements ProductDAO  {
             }
 
             // Determinar el atributo específico del producto (else-if ternario)
-            String specificAttribute = (product.getProductType() == ProductType.TREE) ? "height" :
-                    ((product.getProductType() == ProductType.FLOWER) ? "color" : "material");
+            String specificAttribute = (product.getProductType() == ProductTypeEnum.TREE) ? "height" :
+                    ((product.getProductType() == ProductTypeEnum.FLOWER) ? "color" : "material");
 
             // Insertar el atributo específico
             String formattedQuery = String.format(MySQLQueries.INSERT_ATTRIBUTE, product.getProductType().name().toLowerCase(), specificAttribute);
@@ -142,7 +143,7 @@ public class ProductSQL implements ProductDAO  {
         String typeString = resultSet.getString("type");
         String attribute = resultSet.getString("attribute");
 
-        ProductType type = ProductType.valueOf(typeString);
+        ProductTypeEnum type = ProductTypeEnum.valueOf(typeString);
 
         switch (type) {
             case FLOWER:
@@ -155,10 +156,25 @@ public class ProductSQL implements ProductDAO  {
                 throw new IllegalArgumentException("Invalid product type: " + typeString);
         }
     }
+
+    public Product getOneByName(String name) {
+        Product product = null;
+        try (Connection connection = connectionManager.openConnection();
+             PreparedStatement statement = connection.prepareStatement(MySQLQueries.READ_ONE_BY_NAME)) {
+            statement.setString(1, name);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                product = createProductFromResultSet(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return product;
+    }
     public List<Product> getFlowers() {
         List<Product> allProducts = readAll();
         return allProducts.stream()
-                .filter(product -> product.getProductType() == ProductType.FLOWER)
+                .filter(product -> product.getProductType() == ProductTypeEnum.FLOWER)
                 .collect(Collectors.toList());
     }
 
@@ -166,7 +182,7 @@ public class ProductSQL implements ProductDAO  {
     public List<Product> getTrees() {
         List<Product> allProducts = readAll();
         return allProducts.stream()
-                .filter(product -> product.getProductType() == ProductType.TREE)
+                .filter(product -> product.getProductType() == ProductTypeEnum.TREE)
                 .collect(Collectors.toList());
     }
 
@@ -174,7 +190,7 @@ public class ProductSQL implements ProductDAO  {
     public List<Product> getDecorations() {
         List<Product> allProducts = readAll();
         return allProducts.stream()
-                .filter(product -> product.getProductType() == ProductType.DECORATION)
+                .filter(product -> product.getProductType() == ProductTypeEnum.DECORATION)
                 .collect(Collectors.toList());
     }
 }
