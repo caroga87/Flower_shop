@@ -16,7 +16,7 @@ public class SQLDatabaseConnection implements IConnection{
 		super();
 		this.url = "jdbc:mysql://localhost:3306/flower_shop";
 		this.user = "root";
-		this.password = "Claudio2023!"; // Escribir aquí vuestra contraseña.
+		this.password = ""; // Escribir aquí vuestra contraseña.
 	}
 
 
